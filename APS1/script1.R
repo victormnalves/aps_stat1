@@ -104,7 +104,6 @@ dados %>% group_by(golvisitante) %>% filter(res == 'V' & pv > 0.5 & temporada ==
   summarise(n = n()) %>% mutate(freq = n / sum(n))
 
 
-
 #### TRABALHANDO COM AS ESTAÇÕES DO ANO, RESULTADOS DE JOGO DADA PROBABILIDADE OU NÃO ####
 
 # Analisando o resultado no outono e inverno de 2014
@@ -156,7 +155,6 @@ dados %>% group_by(res) %>% filter(data > '2020-09-22' & data < '2021-03-20' ) %
   summarise(n = n()) %>% mutate(freq = n / sum(n))
 dados %>% group_by(res) %>% filter(pc > 0.5 & data > '2020-09-22' & data < '2021-03-20' ) %>% 
   summarise(n = n()) %>% mutate(freq = n / sum(n))
-
 
 
 #### TRABALHANDO COM AS ESTAÇÕES DO ANO, ESTADOS, RESULTADOS DE JOGO DADA PROBABILIDADE OU NÃO
@@ -223,12 +221,13 @@ dados %>% group_by(res) %>% filter(pc > 0.5 & data > '2020-03-20' & data < '2020
 # Analisando o resultado na primavera e verão de 2020
 dados %>% group_by(res) %>% filter(data > '2020-09-22' & data < '2021-03-20' & estado %in% c('Alagoas', 'Bahia', 'Ceara', 'Pernambuco', 'Rio de Janeiro')) %>% 
                             summarise(n = n()) %>% mutate(freq = n / sum(n))
-dados %>% group_by(res) %>% filter(pc > 0.5 & data > '2020-09-22' & data < '2021-03-20' & estados %in% c('Alagoas', 'Bahia', 
+dados %>% group_by(res) %>% filter(pc > 0.5 & data > '2020-09-22' & data < '2021-03-20' & estado %in% c('Alagoas', 'Bahia', 
                                                                                                          'Ceara', 'Pernambuco', 'Rio de Janeiro')) %>% 
   summarise(n = n()) %>% mutate(freq = n / sum(n))
 
 
 dados2 <- dados %>% mutate('somagols' = golcasa+golvisitante)
+
 
 #### TRABALHANDO COM A SOMA DE GOLS SEGREGADOS POR TEMPORADA ####
 
@@ -260,8 +259,33 @@ gols_2019 <- dados2 %>% group_by(somagols) %>% filter(temporada == 2019) %>% sum
 gols_2020 <- dados2 %>% group_by(somagols) %>% filter(temporada == 2020) %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
 
 
-#### TRABALHANDO COM A SOMA DE GOLS EM 2015 POR PERIODO ####
+#### TRABALHANDO COM A SOMA DE GOLS POR PERIODO ####
 dados2 %>% group_by(somagols) %>% filter(temporada == 2015, periodo == 'Noite') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
 dados2 %>% group_by(somagols) %>% filter(temporada == 2015, periodo == 'Tarde') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
 
 #### TRABALHANDO COM A SOMA DE GOLS A TARDE EM 2015 POR ESTADO ESTADO ####
+dados2 %>% group_by(somagols) %>% filter(periodo == 'Tarde', estado == 'Alagoas') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados2 %>% group_by(somagols) %>% filter(periodo == 'Tarde', estado == 'Bahia') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados2 %>% group_by(somagols) %>% filter(periodo == 'Tarde', estado == 'Ceara') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados2 %>% group_by(somagols) %>% filter(periodo == 'Tarde', estado == 'Goias') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados2 %>% group_by(somagols) %>% filter(periodo == 'Tarde', estado == 'Minas Gerais') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados2 %>% group_by(somagols) %>% filter(periodo == 'Tarde', estado == 'Parana') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados2 %>% group_by(somagols) %>% filter(periodo == 'Tarde', estado == 'Pernambuco') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados2 %>% group_by(somagols) %>% filter(periodo == 'Tarde', estado == 'Rio de Janeiro') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados2 %>% group_by(somagols) %>% filter(periodo == 'Tarde', estado == 'Rio Grande do Sul') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados2 %>% group_by(somagols) %>% filter(periodo == 'Tarde', estado == 'Santa Catarina') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados2 %>% group_by(somagols) %>% filter(periodo == 'Tarde', estado == 'Sao Paulo') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+
+dados2 %>% group_by(somagols) %>% filter(periodo == 'Noite', estado == 'Alagoas') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados2 %>% group_by(somagols) %>% filter(periodo == 'Noite', estado == 'Bahia') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados2 %>% group_by(somagols) %>% filter(periodo == 'Noite', estado == 'Ceara') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados2 %>% group_by(somagols) %>% filter(periodo == 'Noite', estado == 'Goias') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados2 %>% group_by(somagols) %>% filter(periodo == 'Noite', estado == 'Minas Gerais') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados2 %>% group_by(somagols) %>% filter(periodo == 'Noite', estado == 'Parana') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados2 %>% group_by(somagols) %>% filter(periodo == 'Noite', estado == 'Pernambuco') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados2 %>% group_by(somagols) %>% filter(periodo == 'Noite', estado == 'Rio de Janeiro') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados2 %>% group_by(somagols) %>% filter(periodo == 'Noite', estado == 'Rio Grande do Sul') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados2 %>% group_by(somagols) %>% filter(periodo == 'Noite', estado == 'Santa Catarina') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados2 %>% group_by(somagols) %>% filter(periodo == 'Noite', estado == 'Sao Paulo') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+
+### TEMOS QUE SÃO PAULO A NOITE É VANTAJOSO
