@@ -4,30 +4,97 @@ library(gridExtra)
 
 dados <- readxl::read_excel("C:/Users/alves/OneDrive - Insper - Institudo de Ensino e Pesquisa/Estudos/Programação e Data Science/Estat/aps_stat1/APS1/BRA2.xlsx") %>% clean_names()
 
+#### TRABALHANDO COM PROBABILIDADES E TEMPORADA POR RESULTADO ####
 
-#### MEDIA GOLS ####
-media_gols_casa <- cbind(tapply(dados$golcasa, dados$casa, mean))
-media_gols_fora <- cbind(tapply(dados$golvisitante, dados$visitante, mean))
-media_gols <- bind_cols(media_gols_casa, media_gols_fora) %>% rename('media_casa' = '...1','media_fora' = '...2')
+# desconsiderando a probabilidade e considerando temporada
+dados %>% group_by(res) %>% filter(temporada != 2020) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados %>% group_by(res) %>% filter(temporada == 2020) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
 
-### MEDIANA GOLS ###
-mediana_gols_casa <- cbind(tapply(dados$golcasa, dados$casa, median))
-mediana_gols_fora <- cbind(tapply(dados$golvisitante, dados$visitante, mean))
-mediana_gols <- bind_cols(mediana_gols_casa, mediana_gols_fora) %>% rename('mediana_casa' = '...1','median_fora' = '...2')
+# considerando a probabilidade do time mandante vencer segregado por ano
+
+dados %>% group_by(res) %>% filter(pc > 0.5 & temporada != 2020) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados %>% group_by(res) %>% filter(pc > 0.5 & temporada == 2020) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados %>% group_by(res) %>% filter(pc > 0.5) %>% summarise(n = n()) %>% 
+  mutate(freq = n / sum(n))
+
+# considerando a probabilidade do time visitante vencer segregado por ano
+dados %>% group_by(res) %>% filter(pv > 0.5) %>% summarise(n = n()) %>% 
+  mutate(freq = n / sum(n))
+dados %>% group_by(res) %>% filter(pv > 0.5 & temporada != 2020) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados %>% group_by(res) %>% filter(pv > 0.5 & temporada == 2020) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
 
 
-dados %>% group_by(res)%>% summarise(n = n()) %>% mutate(freq = n / sum(n))
-dados %>% group_by(golcasa) %>% filter(res == 'C') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
-dados %>% group_by(golcasa) %>% filter(res == 'V') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
-dados %>% group_by(golcasa) %>% filter(res == 'E') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+#### TRABALHANDO COM PROBABILIDADES, TEMPORADA E GOLS DADO QUE A CASA VENCEU ####
+
+# analisando a quantidade de gols dado o resultado e probabilidades da casa e que ele venceu
+dados %>% group_by(golcasa) %>% filter(res == 'C' & pc > 0.5) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados %>% group_by(golvisitante) %>% filter(res == 'C' & pc > 0.5) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
 
 
+# desconsiderando a probabilidade, considerando temporada e gols da casa e que ele venceu, segregado por ano
+dados %>% group_by(golcasa) %>% filter(res == 'C' & temporada != 2020) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados %>% group_by(golvisitante) %>% filter(res == 'C' & temporada != 2020) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
 
-dados %>% ggplot(mapping = aes(golcasa,length(dados), fill = res)) + geom_bar(stat="identity") +
-          ggtitle('quantidade de gols por resultado') + xlab('quantidade de gols') + ylab('quantidade de vitórias em casa/visitante ou empate') +
-          theme(plot.title = element_text(hjust = 0.5)) +
-          theme_minimal()
-dados %>% ggplot(mapping = aes(golvisitante,length(dados), fill = res)) + geom_bar(stat="identity") +
-          ggtitle('quantidade de gols por resultado') + xlab('quantidade de gols') + ylab('quantidade de vitórias em casa/visitante ou empate') +
-          theme(plot.title = element_text(hjust = 0.5)) +
-          theme_minimal()
+dados %>% group_by(golcasa) %>% filter(res == 'C' & temporada == 2020) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados %>% group_by(golvisitante) %>% filter(res =='C' & temporada == 2020) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
+
+
+# considerando a probabilidade do time da casa e que ele venceu, segregado por ano
+
+dados %>% group_by(golcasa) %>% filter(res == 'C' & pc > 0.5 & temporada != 2020) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados %>% group_by(golvisitante) %>% filter(res == 'C' & pc > 0.5 & temporada != 2020) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
+
+
+dados %>% group_by(golcasa) %>% filter(res == 'C' & pc > 0.5 & temporada == 2020) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados %>% group_by(golvisitante) %>% filter(res == 'C' & pc > 0.5 & temporada == 2020) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
+
+
+#### TRABALHANDO COM PROBABILIDADES, TEMPORADA E GOLS DADO QUE O VISITANTE VENCEU ####
+
+# analisando a quantidade de gols dado o resultado e probabilidades do visitante ele venceu
+dados %>% group_by(golcasa) %>% filter(res == 'V' & pv > 0.5) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados %>% group_by(golvisitante) %>% filter(res == 'V' & pv > 0.5) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
+
+
+# desconsiderando a probabilidade, considerando temporada e gols do visitante e que ele venceu
+dados %>% group_by(golcasa) %>% filter(res == 'V' & temporada != 2020) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados %>% group_by(golvisitante) %>% filter(res == 'V' & temporada != 2020) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
+
+dados %>% group_by(golcasa) %>% filter(res == 'V' & temporada == 2020) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados %>% group_by(golvisitante) %>% filter(res =='V' & temporada == 2020) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
+
+
+# considerando a probabilidade do time visitante vencer e que ele venceu
+
+dados %>% group_by(golcasa) %>% filter(res == 'V' & pv > 0.5 & temporada != 2020) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados %>% group_by(golvisitante) %>% filter(res == 'V' & pv > 0.5 & temporada != 2020) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
+
+
+dados %>% group_by(golcasa) %>% filter(res == 'V' & pv > 0.5 & temporada == 2020) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados %>% group_by(golvisitante) %>% filter(res == 'V' & pv > 0.5 & temporada == 2020) %>% 
+  summarise(n = n()) %>% mutate(freq = n / sum(n))
