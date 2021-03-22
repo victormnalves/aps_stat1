@@ -230,32 +230,38 @@ dados %>% group_by(res) %>% filter(pc > 0.5 & data > '2020-09-22' & data < '2021
 
 dados2 <- dados %>% mutate('somagols' = golcasa+golvisitante)
 
-#### TRABALHANDO COM GOLS E RESULTADO SEGREGADOS POR TEMPORADA ####
+#### TRABALHANDO COM A SOMA DE GOLS SEGREGADOS POR TEMPORADA ####
 
 # 2012
-gols_2012 <- dados2 %>% group_by(res, somagols, estado, periodo) %>% filter(temporada == 2012) %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+gols_2012 <- dados2 %>% group_by(somagols) %>% filter(temporada == 2012) %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
 
 # 2013
-gols_2013 <- dados2 %>% group_by(res, somagols, estado, periodo) %>% filter(temporada == 2013) %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+gols_2013 <- dados2 %>% group_by(somagols) %>% filter(temporada == 2013) %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
 
 # 2014
-gols_2014 <- dados2 %>% group_by(res, somagols, estado, periodo) %>% filter(temporada == 2014) %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+gols_2014 <- dados2 %>% group_by(somagols) %>% filter(temporada == 2014) %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
 
 # 2015
-gols_2015 <- dados2 %>% group_by(res, somagols, estado, periodo) %>% filter(temporada == 2015) %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+gols_2015 <- dados2 %>% group_by(somagols) %>% filter(temporada == 2015) %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
 
 # 2016
-gols_2016 <- dados2 %>% group_by(res, somagols, estado, periodo) %>% filter(temporada == 2016) %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+gols_2016 <- dados2 %>% group_by(somagols) %>% filter(temporada == 2016) %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
 
 # 2017
-gols_2017 <- dados2 %>% group_by(res, somagols, estado, periodo)%>% filter(temporada == 2017) %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+gols_2017 <- dados2 %>% group_by(somagols)%>% filter(temporada == 2017) %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
 
 # 2018
-gols_2018 <- dados2 %>% group_by(res, somagols, estado, periodo) %>% filter(temporada == 2018) %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+gols_2018 <- dados2 %>% group_by(somagols) %>% filter(temporada == 2018) %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
 
 # 2019
-gols_2019 <- dados2 %>% group_by(res, somagols, estado, periodo) %>% filter(temporada == 2019) %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+gols_2019 <- dados2 %>% group_by(somagols) %>% filter(temporada == 2019) %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
 
 # 2020
-gols_2020 <- dados2 %>% group_by(res, somagols, estado, periodo) %>% filter(temporada == 2020) %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+gols_2020 <- dados2 %>% group_by(somagols) %>% filter(temporada == 2020) %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
 
+
+#### TRABALHANDO COM A SOMA DE GOLS EM 2015 POR PERIODO ####
+dados2 %>% group_by(somagols) %>% filter(temporada == 2015, periodo == 'Noite') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+dados2 %>% group_by(somagols) %>% filter(temporada == 2015, periodo == 'Tarde') %>% summarise(n = n()) %>% mutate(freq = n / sum(n))
+
+#### TRABALHANDO COM A SOMA DE GOLS A TARDE EM 2015 POR ESTADO ESTADO ####
