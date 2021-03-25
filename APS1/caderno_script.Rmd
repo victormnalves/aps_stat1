@@ -1,3 +1,10 @@
+---
+title: "APS Estatística I - Analisando os times do Brasil"
+output: pdf_notebook
+---
+ 
+# Carregando os dados e pacotes
+```{r}
 library(tidyverse)
 library(janitor)
 library(gridExtra)
@@ -11,17 +18,22 @@ dados <- readxl::read_excel("C:/Users/alves/OneDrive - Insper - Institudo de Ens
                                           "numeric", "numeric")) %>% clean_names() %>% 
                             mutate('somagols' = golcasa+golvisitante)
 
+```
+## Considerando a contagem de resultados por time e temporadas.
 
+resultados de apenas 2020 e também desconsiderando 2020.
 
-
-#### TRABALHANDO COM PROBABILIDADES E TEMPORADA POR RESULTADO ####
-
-# desconsiderando a probabilidade e considerando temporada
+```{r}
 resultado_n2020 <- dados %>% group_by(res) %>% filter(temporada != 2020) %>% 
   summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
 resultado_2020 <- dados %>% group_by(res) %>% filter(temporada == 2020) %>% 
   summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
 
+```
+
+resultado filtrado pelas probabilidades do mandante vencer a partida e por 2020 ou não 2020 (Não é útil para a pesquisa)
+
+```{r}
 # considerando a probabilidade do time mandante vencer segregado por ano
 
 resultado_pc <- dados %>% group_by(res) %>% filter(pc > pv) %>% summarise(n = n()) %>% 
@@ -39,7 +51,12 @@ resultado_n2020_pv <- dados %>% group_by(res) %>% filter(pv > pc & temporada != 
 resultado_2020_pv <- dados %>% group_by(res) %>% filter(pv > pc & temporada == 2020) %>% 
   summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
 
-# UNINDO OS APENAS RESULTADOS
+
+```
+
+Unindo os resultados obtidos anteriormente, considerando as possibilidades (Não é útil para a pesquisa)
+
+```{r}
 resultados <- as.tibble(cbind(resultado_2020$res,resultado_2020$n,resultado_2020$freq,
                     resultado_n2020$n,resultado_n2020$freq, 
                     resultado_pc$n, resultado_pc$freq,
@@ -74,15 +91,21 @@ names(resultados2) <- c('r','f_2020',
                        'f_n2020_pc',
                        'f_2020_pv',
                        'f_n2020_pv')
-#### RESULTADOS POR ANO ####
 
+```
+
+Considerando apenas a contagem de cada possibilidade de resultado
+
+```{r}
 resultado_ano_casa <- dados %>% group_by(res, temporada, casa) %>% 
   summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
 resultado_ano_visitante <- dados %>% group_by(res, temporada, visitante) %>% 
   summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
+```
 
-# posição e dispersão vitorias casa
+Calculando algumas medidas de posição e dispersão da contagem dos resultados por time e por ano
 
+```{r}
 medidas_res_c <- as.tibble(resultado_ano_casa %>% filter(res == 'C') %>% 
                              summarise('media' = mean(n),
                                       'mediana' = median(n),
@@ -103,155 +126,12 @@ medidas_res_c_casa <- as.tibble(resultado_ano_casa %>% group_by(casa) %>% filter
                                 'mediana' = median(n),
                                 'desvpad' = sd(n)))
 
-#### TRABALHANDO COM PROBABILIDADES, TEMPORADA E GOLS DADO QUE A CASA VENCEU ####
-
-# analisando a quantidade de gols dados o resultado e probabilidades da casa e que ele venceu
-golc_c_pc <- dados %>% group_by(golcasa) %>% filter(res == 'C' & pc > pv) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-golv_c_pc <- dados %>% group_by(golvisitante) %>% filter(res == 'C' & pc > pv) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-
-# desconsiderando a probabilidade, considerando temporada e gols da casa e que ele venceu, segregado por ano
-golc_c_n2020 <- dados %>% group_by(golcasa) %>% filter(res == 'C' & temporada != 2020) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-golv_c_n2020 <- dados %>% group_by(golvisitante) %>% filter(res == 'C' & temporada != 2020) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-golc_c_2020 <- dados %>% group_by(golcasa) %>% filter(res == 'C' & temporada == 2020) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-golv_c_2020 <- dados %>% group_by(golvisitante) %>% filter(res =='C' & temporada == 2020) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-
-# considerando a probabilidade do time da casa e que ele venceu, segregado por ano
-
-golc_c_pc_n2020 <- dados %>% group_by(golcasa) %>% filter(res == 'C' & pc > pv & temporada != 2020) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-golv_c_pc_n2020 <- dados %>% group_by(golvisitante) %>% filter(res == 'C' & pc > pv & temporada != 2020) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-
-golc_c_pc_2020 <- dados %>% group_by(golcasa) %>% filter(res == 'C' & pc > pv & temporada == 2020) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-golv_c_pc_2020 <- dados %>% group_by(golvisitante) %>% filter(res == 'C' & pc > pv & temporada == 2020) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-
-#### TRABALHANDO COM PROBABILIDADES, TEMPORADA E GOLS DADO QUE O VISITANTE VENCEU ####
-
-# analisando a quantidade de gols dados o resultado e probabilidades do visitante ele venceu
-golc_v_pv <- dados %>% group_by(golcasa) %>% filter(res == 'V' & pv > pc) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-golv_v_pv <- dados %>% group_by(golvisitante) %>% filter(res == 'V' & pv > pc) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-
-# desconsiderando a probabilidade, considerando temporada e gols do visitante e que ele venceu
-golc_v_n2020 <- dados %>% group_by(golcasa) %>% filter(res == 'V' & temporada != 2020) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-golv_v_n2020 <- dados %>% group_by(golvisitante) %>% filter(res == 'V' & temporada != 2020) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-golc_v_2020 <- dados %>% group_by(golcasa) %>% filter(res == 'V' & temporada == 2020) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-golv_v_2020 <- dados %>% group_by(golvisitante) %>% filter(res =='V' & temporada == 2020) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-
-# considerando a probabilidade do time visitante vencer e que ele venceu
-
-golc_pv_v_n2020 <- dados %>% group_by(golcasa) %>% filter(res == 'V' & pv > pc & temporada != 2020) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-golv_pv_v_n2020 <- dados %>% group_by(golvisitante) %>% filter(res == 'V' & pv > pc & temporada != 2020) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-
-golc_pv_v_2020 <- dados %>% group_by(golcasa) %>% filter(res == 'V', pv > pc & temporada == 2020) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-golv_pv_v_2020 <- dados %>% group_by(golvisitante) %>% filter(res == 'V', pv > pc & temporada == 2020) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-#### NOVOS DATAFRAMES ####
-
-#criando o df para gols da casa
-
-golcasa <- left_join(golc_c_2020, golc_c_n2020, by = 'golcasa') %>%
-  right_join(., golc_v_2020,by = 'golcasa') %>%
-  right_join(., golc_v_n2020, by = 'golcasa') %>%
-  right_join(., golc_v_pv, by = 'golcasa') %>%
-  right_join(., golc_pv_v_2020, by = 'golcasa') %>%
-  right_join(., golc_pv_v_n2020, by = 'golcasa') %>%
-  right_join(., golc_c_pc, by = 'golcasa') %>%
-  right_join(., golc_c_pc_2020, by = 'golcasa') %>%
-  right_join(., golc_c_pc_n2020, by = 'golcasa')
-
-names(golcasa) <- c('gc', 'n_gc_c_2020','f_gc_c_2020',
-                    'n_gc_c_n2020','f_gc_c_n2020',
-                    'n_gc_v_2020','f_gc_v_2020',
-                    'n_gc_v_n2020','f_gc_v_n2020',
-                    'n_gc_pv_v', 'f_gc_pv_v',
-                    'n_gc_pv_v_2020','f_gc_pv_v_2020',
-                    'n_gc_pv_v_n2020','f_gc_pv_v_n2020',
-                    'n_gc_c_pc','f_gc_c_pc',
-                    'n_gc_c_pc_2020','f_gc_c_pc_2020',
-                    'n_gc_c_pc_n2020','f_gc_c_pc_n2020')
+```
 
 
 
-#### TRABALHANDO COM AS ESTAÇÕES DO ANO, RESULTADOS DE JOGO ####
-
-# Analisando o resultado no outono e inverno de 2014
-frio_2014 <- dados %>% group_by(res) %>% filter(data > '2014-03-20' & data < '2014-09-22') %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-calor_2014 <- dados %>% group_by(res) %>% filter(data > '2014-09-22' & data < '2015-03-20' ) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-clima_2014 <- left_join(calor_2014, frio_2014, by='res')
-names(clima_2014) <- c('r','n_calor','f_calor','n_frio','f_frio')
-
-# Analisando o resultado no frio e calor de 2016
-frio_2016 <- dados %>% group_by(res) %>% filter(data > '2016-03-20' & data < '2016-09-22') %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-calor_2016 <- dados %>% group_by(res) %>% filter(data > '2016-09-22' & data < '2017-03-20' ) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-clima_2016 <- left_join(calor_2016, frio_2016, by='res')
-names(clima_2016) <- c('r','n_calor','f_calor','n_frio','f_frio')
-
-# Analisando o resultado no frio e calor de 2018
-frio_2018 <- dados %>% group_by(res) %>% filter(data > '2018-03-20' & data < '2018-09-22' ) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-calor_2018 <- dados %>% group_by(res) %>% filter(data > '2018-09-22' & data < '2019-03-20' ) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-clima_2018 <- left_join(calor_2018, frio_2018, by='res')
-names(clima_2018) <- c('r','n_calor','f_calor','n_frio','f_frio')
-
-# Analisando o resultado no frio e calor de 2020
-frio_2020 <- dados %>% group_by(res) %>% filter(data > '2020-03-20' & data < '2020-09-22' ) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-calor_2020 <- dados %>% group_by(res) %>% filter(data > '2020-09-22' & data < '2021-03-20' ) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-clima_2020 <- left_join(calor_2020, frio_2020, by='res')
-names(clima_2020) <- c('r','n_calor','f_calor','n_frio','f_frio')
-
-#unido os climas e anos
-clima_geral <- as.tibble(left_join(clima_2014, clima_2016, by = 'r') %>%
-                           left_join(., clima_2018, by = 'r') %>%
-                           left_join(., clima_2020, by = 'r'))
-
-names(clima_geral) <- c('r','n_calor_2014', 'f_calor_2014',
-                        'n_frio_2014', 'f_frio_2014',
-                        'n_calor_2016', 'f_calor_2016',
-                        'n_frio_2016', 'f_frio_2016',
-                        'n_calor_2018', 'f_calor_2018',
-                        'n_frio_2018', 'f_frio_2018',
-                        'n_calor_2020', 'f_calor_2020',
-                        'n_frio_2020', 'f_frio_2020')
-
-
+## Segregando os resultados dos jogos por estação por ano nos estados de mais quentes da amosta
+```{r}
 #### CLIMA NOS ESTADOS QUENTES ####
 estados_quentes <- c('Alagoas','Bahia','Ceara','Pernambuco','Goias' ,'Rio de Janeiro')
 
@@ -331,8 +211,10 @@ medidas_calor_quentes_2020 <- as.tibble(climao_quente %>%
                                             'mediana' = median(n),
                                             'desvpad' = sd(n)))
 
+```
 
-
+## Segregando a contagem dos jogos por estação por ano nos estados "não quentes"
+```{r}
 #### CLIMA NOS ESTADOS FRIOS ####
 climao_gelado <- dados %>% group_by(res, data, periodo) %>% filter(!estado %in% estados_quentes) %>%
   summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
@@ -410,9 +292,10 @@ medidas_calor_gelado_2020 <- as.tibble(climao_gelado %>%
                                                     'mediana' = median(n),
                                                     'desvpad' = sd(n)))
 
+```
 
-#### TRABALHANDO COM A SOMA DE GOLS POR PERIODO ####
-
+## Trabalhando com a soma dos gols por período do dia
+```{r}
 somagols_estado_periodo_ano <- dados %>% group_by(somagols, estado, temporada, periodo) %>% 
   summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
 
@@ -430,29 +313,21 @@ medidas_gols_noite <- as.tibble(somagols_estado_periodo_ano %>% group_by(estado,
                                             'desvpad' = sd(n)))
 
 
+```
 
-#### TRABALHANDO COM A SOMA DE GOLS POR ESTADO POR ESTADO ####
-estados <- c('Alagoas','Bahia','Ceara','Goias','Minas Gerais','Parana','Pernambuco','Rio de Janeiro','Rio Grande do Sul','Santa Catarina','Sao Paulo')
-
-
-# Possibilidades por estado e por período
-
+## Trabalhando com a soma dos gols por estado
+```{r}
 gols_estado_tarde <- dados %>% group_by(somagols, estado) %>% filter(periodo == 'Tarde') %>% 
   summarise(n = n())
 gols_estado_noite <- dados %>% group_by(somagols, estado) %>% filter(periodo == 'Noite') %>% 
   summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
 
-#### PLOTS ####
+```
 
-dist_vitoriacasa <- resultado_ano_casa %>% filter(res == 'C') %>% ggplot(aes(n, y = stat(density))) + 
-  geom_histogram(bins = 8, fill = 'springgreen3') + 
-  geom_density(alpha=.5, fill = 'steelblue2') +
-  ggtitle('Distribuição do número de vitórias do time da casa') +
-  xlab('Número de vitórias') + ylab('Frequência') + 
-  theme_minimal() + ggeasy::easy_center_title()
+# Plots
 
-######################################
-
+## Plot média de gols por período
+```{r}
 media_gol_tarde <- medidas_gols_tarde %>%  mutate(estado = fct_reorder(estado, media)) %>% 
   ggplot(aes(media, estado, colour=temporada)) + geom_point() +
   scale_color_viridis(discrete = FALSE) +
@@ -466,9 +341,18 @@ media_gol_noite <- medidas_gols_noite %>% mutate(estado = fct_reorder(estado, me
   ggtitle('Media de gols a noite por estado') + 
   xlab('Media de gols') + ylab('Estado') +
   theme_minimal() + ggeasy::easy_center_title()
+```
 
-###############################################################
+### Unindo os plots das médias de gols por período
+```{r}
+dist_mgolsper <- grid.arrange(arrangeGrob(media_gol_noite, media_gol_tarde), 
+                              top = 'Distribuição da quantidade de gols por estado e período')
+```
 
+
+
+## Plot soma de gols por estado
+```{r}
 dist_sg_al <- somagols_estado_periodo_ano %>% filter(estado == 'Alagoas') %>%
   ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
   geom_histogram(color = 'black', bins = 8) + 
@@ -557,8 +441,21 @@ dist_sg_sp <- somagols_estado_periodo_ano %>% filter(estado == 'Sao Paulo') %>%
   xlab('Soma dos gols por jogos') + ylab('Densidade') +
   theme_minimal() + ggeasy::easy_center_title() 
 
-############################################################
+```
+### Unindo os plots da soma de gols por estado
+```{r}
+dist_sg1 <- grid.arrange(arrangeGrob(dist_sg_al, dist_sg_ba, dist_sg_ce, 
+                         dist_sg_go,dist_sg_mg, dist_sg_pb), 
+                         top = 'Distribuição da quantidade total de gols por estado e período (1)')
 
+dist_sg2 <- grid.arrange(arrangeGrob(dist_sg_pr, dist_sg_rj, dist_sg_rs,
+                         dist_sg_sc, dist_sg_sp, 
+                         top = 'Distribuição da quantidade total de gols por estado e período (2)'))
+```
+
+
+## Plot da quantidade por resultados dos estados "não quentes"
+```{r}
 dist_frio_gelados2014 <- climao_gelado %>% 
   filter(data > '2014-03-20' & data < '2014-09-22') %>%
   ggplot(aes(n, fill = res)) + 
@@ -691,7 +588,11 @@ dist_calor_gelados2020 <- climao_gelado %>%
   xlab('Quantidade de resultados') + ylab('Ocorrências') +
   theme_minimal() + ggeasy::easy_center_title()
 
-######
+```
+
+
+## Plot da quantidade por resultados dos estados mais quentes
+```{r}
 dist_frio_quentes2014 <- climao_quente %>% 
   filter(data > '2014-03-20' & data < '2014-09-22') %>%
   ggplot(aes(n, fill = res)) + 
@@ -824,8 +725,9 @@ dist_calor_quentes2020 <- climao_quente %>%
   xlab('Quantidade de resultados') + ylab('Ocorrências') +
   theme_minimal() + ggeasy::easy_center_title() 
 
-
-
+```
+#### Unindo os plots para comparação ano-ano clima-clima
+```{r}
 dist_res2014 <- grid.arrange(arrangeGrob(dist_calor_gelados2014, dist_calor_quentes2014,
                          dist_frio_gelados2014, dist_frio_quentes2014), 
                          top = 'Distribuição dos resultados em 2014')
@@ -848,14 +750,9 @@ dist_res2020 <- grid.arrange(arrangeGrob(dist_calor_gelados2020, dist_calor_quen
                          dist_frio_gelados2020, dist_frio_quentes2020), 
                          top = 'Distribuição dos resultados em 2020')
 
+```
 
-dist_sg1 <- grid.arrange(arrangeGrob(dist_sg_al, dist_sg_ba, dist_sg_ce, 
-                         dist_sg_go,dist_sg_mg, dist_sg_pb), 
-                         top = 'Distribuição da quantidade total de gols por estado e período (1)')
 
-dist_sg2 <- grid.arrange(arrangeGrob(dist_sg_pr, dist_sg_rj, dist_sg_rs,
-                         dist_sg_sc, dist_sg_sp, 
-                         top = 'Distribuição da quantidade total de gols por estado e período (2)'))
 
-dist_mgolsper <- grid.arrange(arrangeGrob(media_gol_noite, media_gol_tarde), 
-                              top = 'Distribuição da quantidade de gols por estado e período')
+
+
