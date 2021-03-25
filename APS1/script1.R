@@ -1,6 +1,8 @@
 library(tidyverse)
 library(janitor)
 library(gridExtra)
+library(viridis)
+library(RColorBrewer)
 
 dados <- readxl::read_excel("C:/Users/alves/OneDrive - Insper - Institudo de Ensino e Pesquisa/Estudos/Programação e Data Science/Estat/aps_stat1/APS1/BRA2.xlsx", 
                             col_types = c("text", "text", "numeric", 
@@ -8,6 +10,9 @@ dados <- readxl::read_excel("C:/Users/alves/OneDrive - Insper - Institudo de Ens
                                           "numeric", "numeric", "text", "numeric", 
                                           "numeric", "numeric")) %>% clean_names() %>% 
                             mutate('somagols' = golcasa+golvisitante)
+
+
+
 
 #### TRABALHANDO COM PROBABILIDADES E TEMPORADA POR RESULTADO ####
 
@@ -70,6 +75,35 @@ names(resultados2) <- c('r','f_2020',
                        'f_n2020_pc',
                        'f_2020_pv',
                        'f_n2020_pv')
+#### RESULTADOS POR ANO ####
+
+resultado_ano_casa <- dados %>% group_by(res, temporada, casa) %>% 
+  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
+resultado_ano_visitante <- dados %>% group_by(res, temporada, visitante) %>% 
+  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
+
+# posição e dispersão vitorias casa
+
+medidas_res_c <- as.tibble(resultado_ano_casa %>% filter(res == 'C') %>% 
+                             summarise('media' = mean(n),
+                                      'mediana' = median(n),
+                                      'desvpad' = sd(n)))
+
+medidas_res_v <- as.tibble(resultado_ano_casa %>% filter(res == 'V') %>% 
+                             summarise('media' = mean(n),
+                                       'mediana' = median(n),
+                                       'desvpad' = sd(n)))
+
+medidas_res_e <- as.tibble(resultado_ano_casa %>% filter(res == 'E') %>% 
+                             summarise('media' = mean(n),
+                                       'mediana' = median(n),
+                                       'desvpad' = sd(n)))
+
+medidas_res_c_casa <- as.tibble(resultado_ano_casa %>% group_by(casa) %>% filter(res == 'C') %>% 
+                      summarise('media' = mean(n),
+                                'mediana' = median(n),
+                                'desvpad' = sd(n)))
+
 #### TRABALHANDO COM PROBABILIDADES, TEMPORADA E GOLS DADO QUE A CASA VENCEU ####
 
 # analisando a quantidade de gols dados o resultado e probabilidades da casa e que ele venceu
@@ -103,10 +137,6 @@ golc_c_pc_2020 <- dados %>% group_by(golcasa) %>% filter(res == 'C' & pc > pv & 
   summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
 golv_c_pc_2020 <- dados %>% group_by(golvisitante) %>% filter(res == 'C' & pc > pv & temporada == 2020) %>% 
   summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-
-
-
 
 
 #### TRABALHANDO COM PROBABILIDADES, TEMPORADA E GOLS DADO QUE O VISITANTE VENCEU ####
@@ -273,7 +303,7 @@ dados %>% group_by(res) %>% filter(data > '2020-09-22' & data < '2021-03-20' &
 #### TRABALHANDO COM A SOMA DE GOLS SEGREGADOS POR TEMPORADA ####
 
 # 2012
-gols_2012 <- dados %>% group_by(somagols) %>% filter(temporada == 2012) %>% 
+gols_2012 <- dados %>% group_by(somagols, periodo, estado) %>% filter(temporada == 2012) %>% 
               summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
 
 # 2013
@@ -310,18 +340,24 @@ gols_2020 <- dados %>% group_by(somagols) %>% filter(temporada == 2020) %>%
 
 
 #### TRABALHANDO COM A SOMA DE GOLS POR PERIODO ####
-gols_estado_noite <- dados %>% group_by(somagols, estado) %>% 
-           filter(periodo == 'Noite') %>%
-           summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-gols_estado_tarde <- dados %>% group_by(somagols, estado) %>% 
-           filter(periodo == 'Tarde') %>%
-           summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
+
+somagols_estado_periodo_ano <- dados %>% group_by(somagols, estado, temporada, periodo) %>% 
+  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
 
 
-media_sg_estado_noite <- tapply(dados$somagols[dados$periodo == 'Noite'], 
-                                dados$estado[dados$periodo == 'Noite'], mean)
-media_sg_estado_tarde <- tapply(dados$somagols[dados$periodo == 'Tarde'], 
-                                dados$estado[dados$periodo == 'Tarde'], mean)
+medidas_gols_tarde <- as.tibble(somagols_estado_periodo_ano %>% group_by(estado, temporada) %>%
+                                  filter(periodo == 'Tarde') %>% 
+                                  summarise('media' = mean(n),
+                                            'mediana' = median(n),
+                                            'desvpad' = sd(n)))
+
+medidas_gols_noite <- as.tibble(somagols_estado_periodo_ano %>% group_by(estado, temporada) %>%
+                                  filter(periodo == 'Noite') %>% 
+                                  summarise('media' = mean(n),
+                                            'mediana' = median(n),
+                                            'desvpad' = sd(n)))
+
+
 
 #### TRABALHANDO COM A SOMA DE GOLS POR ESTADO POR ESTADO ####
 estados <- c('Alagoas','Bahia','Ceara','Goias','Minas Gerais','Parana','Pernambuco','Rio de Janeiro','Rio Grande do Sul','Santa Catarina','Sao Paulo')
@@ -336,17 +372,134 @@ gols_estado_noite <- dados %>% group_by(somagols, estado) %>% filter(periodo == 
 
 #### PLOTS ####
 
-dados %>% ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
-  geom_histogram(color = 'black', bins = 10) + geom_density(alpha=.8) + 
-  ggtitle('Distribuição da soma dos gols por período') +
-  xlab('Soma dos gols por jogos') + ylab('Densidade') +
+resultado_ano_casa %>% filter(res == 'C') %>% ggplot(aes(n, y = stat(density))) + 
+  geom_histogram(bins = 8, fill = 'springgreen3') + 
+  geom_density(alpha=.5, fill = 'steelblue2') +
+  ggtitle('Distribuição do número de vitórias do time da casa') +
+  xlab('Número de vitórias') + ylab('Frequência') + 
   theme_minimal() + ggeasy::easy_center_title()
 
 
-dados %>%
+media_gol_tarde <- medidas_gols_tarde %>%  mutate(estado = fct_reorder(estado, media)) %>% 
+  ggplot(aes(media, estado, colour=temporada)) + geom_point() +
+  scale_color_viridis(discrete = FALSE) +
+  ggtitle('Media de gols a tarde por estado') + 
+  xlab('Media de gols') + ylab('Estado') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+media_gol_noite <- medidas_gols_noite %>% mutate(estado = fct_reorder(estado, media)) %>%
+  ggplot(aes(media, estado, colour=temporada)) + geom_point() +
+  scale_color_viridis(discrete = FALSE) +
+  ggtitle('Media de gols a noite por estado') + 
+  xlab('Media de gols') + ylab('Estado') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_sg_al <- somagols_estado_periodo_ano %>% filter(estado == 'Alagoas') %>%
+  ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
+  geom_histogram(color = 'black', bins = 8) + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição da soma dos gols por período em Alagoas') +
+  xlab('Soma dos gols por jogos') + ylab('Densidade') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_sg_ba <- somagols_estado_periodo_ano %>% filter(estado == 'Bahia') %>%
+  ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
+  geom_histogram(color = 'black', bins = 8) +
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição da soma dos gols por período na Bahia') +
+  xlab('Soma dos gols por jogos') + ylab('Densidade') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_sg_ce <- somagols_estado_periodo_ano %>% filter(estado == 'Ceara') %>%
+  ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
+  geom_histogram(color = 'black', bins = 8) + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição da soma dos gols por período no Ceara') +
+  xlab('Soma dos gols por jogos') + ylab('Densidade') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_sg_go <- somagols_estado_periodo_ano %>% filter(estado == 'Goias') %>%
+  ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
+  geom_histogram(color = 'black', bins = 8) + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição da soma dos gols por período em Goias') +
+  xlab('Soma dos gols por jogos') + ylab('Densidade') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_sg_mg <- somagols_estado_periodo_ano %>% filter(estado == 'Minas Gerais') %>%
+  ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
+  geom_histogram(color = 'black', bins = 8) + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição da soma dos gols por período em Minas Gerais') +
+  xlab('Soma dos gols por jogos') + ylab('Densidade') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_sg_pr <- somagols_estado_periodo_ano %>% filter(estado == 'Parana') %>%
+  ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
+  geom_histogram(color = 'black', bins = 8) + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição da soma dos gols por período no Parana') +
+  xlab('Soma dos gols por jogos') + ylab('Densidade') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_sg_pb <- somagols_estado_periodo_ano %>% filter(estado == 'Pernambuco') %>%
+  ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
+  geom_histogram(color = 'black', bins = 8) + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição da soma dos gols por período no Pernambuco') +
+  xlab('Soma dos gols por jogos') + ylab('Densidade') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_sg_rs <- somagols_estado_periodo_ano %>% filter(estado == 'Rio Grande do Sul') %>%
+  ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
+  geom_histogram(color = 'black', bins = 8) + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição da soma dos gols por período no Rio Grande do Sul') +
+  xlab('Soma dos gols por jogos') + ylab('Densidade') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_sg_rj <- somagols_estado_periodo_ano %>% filter(estado == 'Rio de Janeiro') %>%
+  ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
+  geom_histogram(color = 'black', bins = 8) + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição da soma dos gols por período no Rio de Janeiro') +
+  xlab('Soma dos gols por jogos') + ylab('Densidade') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_sg_sc <- somagols_estado_periodo_ano %>% filter(estado == 'Santa Catarina') %>%
+  ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
+  geom_histogram(color = 'black', bins = 8) + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição da soma dos gols por período em Santa Catarina') +
+  xlab('Soma dos gols por jogos') + ylab('Densidade') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_sg_sp <- somagols_estado_periodo_ano %>% filter(estado == 'Sao Paulo') %>%
+  ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
+  geom_histogram(color = 'black', bins = 8) + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição da soma dos gols por período em São Paulo') +
+  xlab('Soma dos gols por jogos') + ylab('Densidade') +
+  theme_minimal() + ggeasy::easy_center_title() 
+
+
+somagols_estado_periodo_ano %>%
   ggplot(aes(periodo, estado, fill = somagols)) + 
   geom_tile() + 
   scale_fill_gradient(low='white', high='red') + 
   ggtitle('Distribuição da soma dos gols por período') +
   xlab('Periodo') + ylab('Estado') + labs(fill = 'Soma dos gols por temporada') + 
   theme_minimal() + ggeasy::easy_center_title() 
+
+
+grid.arrange(arrangeGrob(dist_sg_al, dist_sg_ba, dist_sg_ce, 
+                         dist_sg_go,dist_sg_mg, dist_sg_pb), 
+             top = 'Distribuição da quantidade total de gols por estado e período (1)')
+
+grid.arrange(arrangeGrob(dist_sg_pr, dist_sg_rj, dist_sg_rs,
+                         dist_sg_sc, dist_sg_sp, 
+             top = 'Distribuição da quantidade total de gols por estado e período (2)'))
+
+grid.arrange(arrangeGrob(media_gol_noite, media_gol_tarde), 
+             top = 'Distribuição da quantidade de gols por estado e período')
+
