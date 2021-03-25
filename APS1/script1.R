@@ -200,7 +200,7 @@ names(golcasa) <- c('gc', 'n_gc_c_2020','f_gc_c_2020',
 
 
 
-#### TRABALHANDO COM AS ESTAÇÕES DO ANO, RESULTADOS DE JOGO DADA PROBABILIDADE OU NÃO ####
+#### TRABALHANDO COM AS ESTAÇÕES DO ANO, RESULTADOS DE JOGO ####
 
 # Analisando o resultado no outono e inverno de 2014
 frio_2014 <- dados %>% group_by(res) %>% filter(data > '2014-03-20' & data < '2014-09-22') %>% 
@@ -253,90 +253,163 @@ names(clima_geral) <- c('r','n_calor_2014', 'f_calor_2014',
                         'n_frio_2020', 'f_frio_2020')
 
 
-#### TRABALHANDO COM AS ESTAÇÕES DO ANO, ESTADOS, RESULTADOS DE JOGO DADA PROBABILIDADE OU NÃO ####
-# Analisando o resultado no outono e inverno de 2014
+#### CLIMA NOS ESTADOS QUENTES ####
+estados_quentes <- c('Alagoas','Bahia','Ceara','Pernambuco','Goias' ,'Rio de Janeiro')
 
-estados_quentes <- c('Alagoas', 'Bahia', 
-                     'Ceara', 'Pernambuco', 'Rio de Janeiro')
-
-dados %>% group_by(res) %>% filter(data > '2014-03-20' & data < '2014-09-22' &
-                                     !estado %in% estados_quentes) %>% 
+climao_quente <- dados %>% group_by(res, data) %>% filter(estado %in% estados_quentes) %>%
   summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
 
-# Analisando o resultado na primavera e verão de 2014
-dados %>% group_by(res) %>% filter(data > '2014-09-22' & data < '2015-03-20' &
-                                     estado %in% estados_quentes) %>% 
+medidas_frio_quentes_2014 <- as.tibble(climao_quente %>% 
+                             filter(data > '2014-03-20' & data < '2014-09-22') %>% 
+                             summarise('media' = mean(n),
+                                       'mediana' = median(n),
+                                       'desvpad' = sd(n)))
+medidas_calor_quentes_2014 <- as.tibble(climao_quente %>% 
+                                 filter(data > '2014-09-22' & data < '2015-03-20') %>% 
+                                 summarise('media' = mean(n),
+                                           'mediana' = median(n),
+                                           'desvpad' = sd(n)))
+
+medidas_frio_quentes_2015 <- as.tibble(climao_quente %>% 
+                                 filter(data > '2015-03-20' & data < '2015-09-22') %>% 
+                                 summarise('media' = mean(n),
+                                           'mediana' = median(n),
+                                           'desvpad' = sd(n)))
+medidas_calor_quentes_2015 <- as.tibble(climao_quente %>% 
+                                  filter(data > '2015-09-22' & data < '2016-03-20') %>% 
+                                  summarise('media' = mean(n),
+                                            'mediana' = median(n),
+                                            'desvpad' = sd(n)))
+
+medidas_frio_quentes_2016 <- as.tibble(climao_quente %>% 
+                                 filter(data > '2016-03-20' & data < '2016-09-22') %>% 
+                                 summarise('media' = mean(n),
+                                           'mediana' = median(n),
+                                           'desvpad' = sd(n)))
+medidas_calor_quentes_2016 <- as.tibble(climao_quente %>% 
+                                  filter(data > '2016-09-22' & data < '2017-03-20') %>% 
+                                  summarise('media' = mean(n),
+                                            'mediana' = median(n),
+                                            'desvpad' = sd(n)))
+medidas_frio_quentes_2017 <- as.tibble(climao_quente %>% 
+                                 filter(data > '2017-03-20' & data < '2017-09-22') %>% 
+                                 summarise('media' = mean(n),
+                                           'mediana' = median(n),
+                                           'desvpad' = sd(n)))
+medidas_calor_quentes_2017 <- as.tibble(climao_quente %>% 
+                                  filter(data > '2017-09-22' & data < '2018-03-20') %>% 
+                                  summarise('media' = mean(n),
+                                            'mediana' = median(n),
+                                            'desvpad' = sd(n)))
+medidas_frio_quentes_2018 <- as.tibble(climao_quente %>% 
+                                 filter(data > '2018-03-20' & data < '2018-09-22') %>% 
+                                 summarise('media' = mean(n),
+                                           'mediana' = median(n),
+                                           'desvpad' = sd(n)))
+medidas_calor_quentes_2018 <- as.tibble(climao_quente %>% 
+                                  filter(data > '2018-09-22' & data < '2019-03-20') %>% 
+                                  summarise('media' = mean(n),
+                                            'mediana' = median(n),
+                                            'desvpad' = sd(n)))
+medidas_frio_quentes_2019 <- as.tibble(climao_quente %>% 
+                                 filter(data > '2019-03-20' & data < '2019-09-22') %>% 
+                                 summarise('media' = mean(n),
+                                           'mediana' = median(n),
+                                           'desvpad' = sd(n)))
+medidas_calor_quentes_2019 <- as.tibble(climao_quente %>% 
+                                  filter(data > '2019-09-22' & data < '2020-03-20') %>% 
+                                  summarise('media' = mean(n),
+                                            'mediana' = median(n),
+                                            'desvpad' = sd(n)))
+medidas_frio_quentes_2020 <- as.tibble(climao_quente %>% 
+                                 filter(data > '2020-03-20' & data < '2020-09-22') %>% 
+                                 summarise('media' = mean(n),
+                                           'mediana' = median(n),
+                                           'desvpad' = sd(n)))
+medidas_calor_quentes_2020 <- as.tibble(climao_quente %>% 
+                                  filter(data > '2020-09-22' & data < '2021-03-20') %>% 
+                                  summarise('media' = mean(n),
+                                            'mediana' = median(n),
+                                            'desvpad' = sd(n)))
+
+
+
+#### CLIMA NOS ESTADOS FRIOS ####
+climao_gelado <- dados %>% group_by(res, data) %>% filter(!estado %in% estados_quentes) %>%
   summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
 
-# Analisando o resultado no outono e inverno de 2016
-dados %>% group_by(res) %>% filter(data > '2016-03-20' & data < '2016-09-22' &
-                                     !estado %in% estados_quentes) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
+medidas_frio_gelado_2014 <- as.tibble(climao_gelado %>% 
+                                         filter(data > '2014-03-20' & data < '2014-09-22') %>% 
+                                         summarise('media' = mean(n),
+                                                   'mediana' = median(n),
+                                                   'desvpad' = sd(n)))
+medidas_calor_gelado_2014 <- as.tibble(climao_gelado %>% 
+                                          filter(data > '2014-09-22' & data < '2015-03-20') %>% 
+                                          summarise('media' = mean(n),
+                                                    'mediana' = median(n),
+                                                    'desvpad' = sd(n)))
 
-# Analisando o resultado na primavera e verão de 2016
-dados %>% group_by(res) %>% filter(data > '2016-09-22' & data < '2017-03-20' &
-                                     estado %in% estados_quentes) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
+medidas_frio_gelado_2015 <- as.tibble(climao_gelado %>% 
+                                         filter(data > '2015-03-20' & data < '2015-09-22') %>% 
+                                         summarise('media' = mean(n),
+                                                   'mediana' = median(n),
+                                                   'desvpad' = sd(n)))
+medidas_calor_gelado_2015 <- as.tibble(climao_gelado %>% 
+                                          filter(data > '2015-09-22' & data < '2016-03-20') %>% 
+                                          summarise('media' = mean(n),
+                                                    'mediana' = median(n),
+                                                    'desvpad' = sd(n)))
 
-# Analisando o resultado no outono e inverno de 2018
-dados %>% group_by(res) %>% filter(data > '2018-03-20' & data < '2018-09-22' & 
-                                     !estado %in% estados_quentes) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-# Analisando o resultado na primavera e verão de 2018
-dados %>% group_by(res) %>% filter(data > '2018-09-22' & data < '2019-03-20' & 
-                                     estado %in% estados_quentes) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-# Analisando o resultado no outono e inverno de 2020
-dados %>% group_by(res) %>% filter(data > '2020-03-20' & data < '2020-09-22' & 
-                                     !estado %in% estados_quentes) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-# Analisando o resultado na primavera e verão de 2020
-dados %>% group_by(res) %>% filter(data > '2020-09-22' & data < '2021-03-20' & 
-                                     estado %in% estados_quentes) %>% 
-                            summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-
-
-#### TRABALHANDO COM A SOMA DE GOLS SEGREGADOS POR TEMPORADA ####
-
-# 2012
-gols_2012 <- dados %>% group_by(somagols, periodo, estado) %>% filter(temporada == 2012) %>% 
-              summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-# 2013
-gols_2013 <- dados %>% group_by(somagols) %>% filter(temporada == 2013) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-# 2014
-gols_2014 <- dados %>% group_by(somagols) %>% filter(temporada == 2014) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-# 2015
-gols_2015 <- dados %>% group_by(somagols) %>% filter(temporada == 2015) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-# 2016
-gols_2016 <- dados %>% group_by(somagols) %>% filter(temporada == 2016) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-# 2017
-gols_2017 <- dados %>% group_by(somagols)%>% filter(temporada == 2017) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-# 2018
-gols_2018 <- dados %>% group_by(somagols) %>% filter(temporada == 2018) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-# 2019
-gols_2019 <- dados %>% group_by(somagols) %>% filter(temporada == 2019) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-
-# 2020
-gols_2020 <- dados %>% group_by(somagols) %>% filter(temporada == 2020) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
+medidas_frio_gelado_2016 <- as.tibble(climao_gelado %>% 
+                                         filter(data > '2016-03-20' & data < '2016-09-22') %>% 
+                                         summarise('media' = mean(n),
+                                                   'mediana' = median(n),
+                                                   'desvpad' = sd(n)))
+medidas_calor_gelado_2016 <- as.tibble(climao_gelado %>% 
+                                          filter(data > '2016-09-22' & data < '2017-03-20') %>% 
+                                          summarise('media' = mean(n),
+                                                    'mediana' = median(n),
+                                                    'desvpad' = sd(n)))
+medidas_frio_gelado_2017 <- as.tibble(climao_gelado %>% 
+                                         filter(data > '2017-03-20' & data < '2017-09-22') %>% 
+                                         summarise('media' = mean(n),
+                                                   'mediana' = median(n),
+                                                   'desvpad' = sd(n)))
+medidas_calor_gelado_2017 <- as.tibble(climao_gelado %>% 
+                                          filter(data > '2017-09-22' & data < '2018-03-20') %>% 
+                                          summarise('media' = mean(n),
+                                                    'mediana' = median(n),
+                                                    'desvpad' = sd(n)))
+medidas_frio_gelado_2018 <- as.tibble(climao_gelado %>% 
+                                         filter(data > '2018-03-20' & data < '2018-09-22') %>% 
+                                         summarise('media' = mean(n),
+                                                   'mediana' = median(n),
+                                                   'desvpad' = sd(n)))
+medidas_calor_gelado_2018 <- as.tibble(climao_gelado %>% 
+                                          filter(data > '2018-09-22' & data < '2019-03-20') %>% 
+                                          summarise('media' = mean(n),
+                                                    'mediana' = median(n),
+                                                    'desvpad' = sd(n)))
+medidas_frio_gelado_2019 <- as.tibble(climao_gelado %>% 
+                                         filter(data > '2019-03-20' & data < '2019-09-22') %>% 
+                                         summarise('media' = mean(n),
+                                                   'mediana' = median(n),
+                                                   'desvpad' = sd(n)))
+medidas_calor_gelado_2019 <- as.tibble(climao_gelado %>% 
+                                          filter(data > '2019-09-22' & data < '2020-03-20') %>% 
+                                          summarise('media' = mean(n),
+                                                    'mediana' = median(n),
+                                                    'desvpad' = sd(n)))
+medidas_frio_gelado_2020 <- as.tibble(climao_gelado %>% 
+                                         filter(data > '2020-03-20' & data < '2020-09-22') %>% 
+                                         summarise('media' = mean(n),
+                                                   'mediana' = median(n),
+                                                   'desvpad' = sd(n)))
+medidas_calor_gelado_2020 <- as.tibble(climao_gelado %>% 
+                                          filter(data > '2020-09-22' & data < '2021-03-20') %>% 
+                                          summarise('media' = mean(n),
+                                                    'mediana' = median(n),
+                                                    'desvpad' = sd(n)))
 
 
 #### TRABALHANDO COM A SOMA DE GOLS POR PERIODO ####
@@ -379,6 +452,7 @@ resultado_ano_casa %>% filter(res == 'C') %>% ggplot(aes(n, y = stat(density))) 
   xlab('Número de vitórias') + ylab('Frequência') + 
   theme_minimal() + ggeasy::easy_center_title()
 
+######################################
 
 media_gol_tarde <- medidas_gols_tarde %>%  mutate(estado = fct_reorder(estado, media)) %>% 
   ggplot(aes(media, estado, colour=temporada)) + geom_point() +
@@ -393,6 +467,8 @@ media_gol_noite <- medidas_gols_noite %>% mutate(estado = fct_reorder(estado, me
   ggtitle('Media de gols a noite por estado') + 
   xlab('Media de gols') + ylab('Estado') +
   theme_minimal() + ggeasy::easy_center_title()
+
+###############################################################
 
 dist_sg_al <- somagols_estado_periodo_ano %>% filter(estado == 'Alagoas') %>%
   ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
@@ -482,6 +558,273 @@ dist_sg_sp <- somagols_estado_periodo_ano %>% filter(estado == 'Sao Paulo') %>%
   xlab('Soma dos gols por jogos') + ylab('Densidade') +
   theme_minimal() + ggeasy::easy_center_title() 
 
+############################################################
+
+dist_frio_gelados2014 <- climao_gelado %>% 
+  filter(data > '2014-03-20' & data < '2014-09-22') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados frios no inverno de 2014') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_calor_gelados2014 <- climao_gelado %>% 
+  filter(data > '2014-09-22' & data < '2015-03-20') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados frios no verão de 2014') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+
+dist_frio_gelados2015 <- climao_gelado %>% 
+  filter(data > '2015-03-20' & data < '2015-09-22') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados frios no inverno de 2015') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_calor_gelados2015 <- climao_gelado %>% 
+  filter(data > '2015-09-22' & data < '2016-03-20') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados frios no verão de 2015') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+
+dist_frio_gelados2016 <- climao_gelado %>% 
+  filter(data > '2016-03-20' & data < '2016-09-22') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados frios no inverno de 2016') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_calor_gelados2016 <- climao_gelado %>% 
+  filter(data > '2016-09-22' & data < '2016-03-20') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados frios no verão de 2016') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+
+dist_frio_gelados2017 <- climao_gelado %>% 
+  filter(data > '2017-03-20' & data < '2017-09-22') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados frios no inverno de 2017') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_calor_gelados2017 <- climao_gelado %>% 
+  filter(data > '2017-09-22' & data < '2018-03-20') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados frios no verão de 2017') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+
+dist_frio_gelados2018 <- climao_gelado %>% 
+  filter(data > '2018-03-20' & data < '2018-09-22') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados frios no inverno de 2018') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_calor_gelados2018 <- climao_gelado %>% 
+  filter(data > '2018-09-22' & data < '2019-03-20') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados frios no verão de 2018') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title() 
+
+
+dist_frio_gelados2019 <- climao_gelado %>% 
+  filter(data > '2019-03-20' & data < '2019-09-22') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados frios no inverno de 2019') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_calor_gelados2019 <- climao_gelado %>% 
+  filter(data > '2019-09-22' & data < '2020-03-20') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados frios no verão de 2019') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+
+dist_frio_gelados2020 <- climao_gelado %>% 
+  filter(data > '2020-03-20' & data < '2020-09-22') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados frios no inverno de 2020') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_calor_gelados2020 <- climao_gelado %>% 
+  filter(data > '2020-09-22' & data < '2021-03-20') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados frios no verão de 2020') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+######
+dist_frio_quentes2014 <- climao_quente %>% 
+  filter(data > '2014-03-20' & data < '2014-09-22') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados quentes no inverno de 2014') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_calor_quentes2014 <- climao_quente %>% 
+  filter(data > '2014-09-22' & data < '2015-03-20') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados quentes no verão de 2014') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+
+dist_frio_quentes2015 <- climao_quente %>% 
+  filter(data > '2015-03-20' & data < '2015-09-22') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados quentes no inverno de 2015') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_calor_quentes2015 <- climao_quente %>% 
+  filter(data > '2015-09-22' & data < '2016-03-20') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados quentes no verão de 2015') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+
+dist_frio_quentes2016 <- climao_quente %>% 
+  filter(data > '2016-03-20' & data < '2016-09-22') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados quentes no inverno de 2016') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_calor_quentes2016 <- climao_quente %>% 
+  filter(data > '2016-09-22' & data < '2016-03-20') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados quentes no verão de 2016') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+
+dist_frio_quentes2017 <- climao_quente %>% 
+  filter(data > '2017-03-20' & data < '2017-09-22') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados quentes no inverno de 2017') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_calor_quentes2017 <- climao_quente %>% 
+  filter(data > '2017-09-22' & data < '2018-03-20') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados quentes no verão de 2017') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+
+dist_frio_quentes2018 <- climao_quente %>% 
+  filter(data > '2018-03-20' & data < '2018-09-22') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados quentes no inverno de 2018') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_calor_quentes2018 <- climao_quente %>% 
+  filter(data > '2018-09-22' & data < '2019-03-20') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados quentes no verão de 2018') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+
+dist_frio_quentes2019 <- climao_quente %>% 
+  filter(data > '2019-03-20' & data < '2019-09-22') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados quentes no inverno de 2019') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_calor_quentes2019 <- climao_quente %>% 
+  filter(data > '2019-09-22' & data < '2020-03-20') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados quentes no verão de 2019') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+
+dist_frio_quentes2020 <- climao_quente %>% 
+  filter(data > '2020-03-20' & data < '2020-09-22') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados quentes no inverno de 2020') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title() 
+
+dist_calor_quentes2020 <- climao_quente %>% 
+  filter(data > '2020-09-22' & data < '2021-03-20') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados quentes no verão de 2020') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title() 
+
 
 somagols_estado_periodo_ano %>%
   ggplot(aes(periodo, estado, fill = somagols)) + 
@@ -492,14 +835,37 @@ somagols_estado_periodo_ano %>%
   theme_minimal() + ggeasy::easy_center_title() 
 
 
-grid.arrange(arrangeGrob(dist_sg_al, dist_sg_ba, dist_sg_ce, 
+
+dist_res2014 <- grid.arrange(arrangeGrob(dist_calor_gelados2014, dist_calor_quentes2014,
+                         dist_frio_gelados2014, dist_frio_quentes2014), 
+                         top = 'Distribuição dos resultados em 2014')
+dist_res2015 <- grid.arrange(arrangeGrob(dist_calor_gelados2015, dist_calor_quentes2015,
+                         dist_frio_gelados2015, dist_frio_quentes2015), 
+                         top = 'Distribuição dos resultados em 2015')
+dist_res2016 <- grid.arrange(arrangeGrob(dist_calor_gelados2016, dist_calor_quentes2016,
+                         dist_frio_gelados2016, dist_frio_quentes2016), 
+                         top = 'Distribuição dos resultados em 2016')
+dist_res2017 <- grid.arrange(arrangeGrob(dist_calor_gelados2017, dist_calor_quentes2017,
+                         dist_frio_gelados2017, dist_frio_quentes2017), 
+                         top = 'Distribuição dos resultados em 2017')
+dist_res2018 <- grid.arrange(arrangeGrob(dist_calor_gelados2018, dist_calor_quentes2018,
+                         dist_frio_gelados2018, dist_frio_quentes2018), 
+                         top = 'Distribuição dos resultados em 2018')
+dist_res2019 <- grid.arrange(arrangeGrob(dist_calor_gelados2019, dist_frio_quentes2019,
+                         dist_frio_gelados2019, dist_frio_quentes2019), 
+                         top = 'Distribuição dos resultados em 2019')
+dist_res2020 <- grid.arrange(arrangeGrob(dist_calor_gelados2020, dist_calor_quentes2020,
+                         dist_frio_gelados2020, dist_frio_quentes2020), 
+                         top = 'Distribuição dos resultados em 2020')
+
+
+dist_sg1 <- grid.arrange(arrangeGrob(dist_sg_al, dist_sg_ba, dist_sg_ce, 
                          dist_sg_go,dist_sg_mg, dist_sg_pb), 
-             top = 'Distribuição da quantidade total de gols por estado e período (1)')
+                         top = 'Distribuição da quantidade total de gols por estado e período (1)')
 
-grid.arrange(arrangeGrob(dist_sg_pr, dist_sg_rj, dist_sg_rs,
+dist_sg2 <- grid.arrange(arrangeGrob(dist_sg_pr, dist_sg_rj, dist_sg_rs,
                          dist_sg_sc, dist_sg_sp, 
-             top = 'Distribuição da quantidade total de gols por estado e período (2)'))
+                         top = 'Distribuição da quantidade total de gols por estado e período (2)'))
 
-grid.arrange(arrangeGrob(media_gol_noite, media_gol_tarde), 
-             top = 'Distribuição da quantidade de gols por estado e período')
-
+dist_mgolsper <- grid.arrange(arrangeGrob(media_gol_noite, media_gol_tarde), 
+                              top = 'Distribuição da quantidade de gols por estado e período')
