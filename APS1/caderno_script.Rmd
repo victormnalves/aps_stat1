@@ -294,7 +294,7 @@ medidas_calor_gelado_2020 <- as.tibble(climao_gelado %>%
 
 ```
 
-## Trabalhando com a soma dos gols por período do dia
+## Trabalhando com a soma dos gols por período do dia e por temporada
 ```{r}
 somagols_estado_periodo_ano <- dados %>% group_by(somagols, estado, temporada, periodo) %>% 
   summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
@@ -302,18 +302,40 @@ somagols_estado_periodo_ano <- dados %>% group_by(somagols, estado, temporada, p
 
 medidas_gols_tarde <- as.tibble(somagols_estado_periodo_ano %>% group_by(estado, temporada) %>%
                                   filter(periodo == 'Tarde') %>% 
-                                  summarise('media' = mean(n),
-                                            'mediana' = median(n),
-                                            'desvpad' = sd(n)))
+                                  summarise('media' = mean(somagols),
+                                            'mediana' = median(somagols),
+                                            'desvpad' = sd(somagols)))
 
 medidas_gols_noite <- as.tibble(somagols_estado_periodo_ano %>% group_by(estado, temporada) %>%
+                                  filter(periodo == 'Noite') %>% 
+                                  summarise('media' = mean(somagols),
+                                            'mediana' = median(somagols),
+                                            'desvpad' = sd(somagols)))
+
+
+```
+
+Calculando medidas dos gols por ano
+
+```{r}
+somagols_ano <- dados %>% group_by(golcasa, temporada, res)
+
+
+medidas_gols_ano <- as.tibble(somagols_ano %>% group_by(temporada)%>%
+                                  filter(res == 'C') %>% 
+                                  summarise('media' = mean(golcasa),
+                                            'mediana' = median(golcasa),
+                                            'desvpad' = sd(golcasa)))
+
+medidas_gols_noite <- as.tibble(somagols_estado_periodo_ano %>% group_by(temporada) %>%
                                   filter(periodo == 'Noite') %>% 
                                   summarise('media' = mean(n),
                                             'mediana' = median(n),
                                             'desvpad' = sd(n)))
 
-
 ```
+
+
 
 ## Trabalhando com a soma dos gols por estado
 ```{r}
@@ -323,6 +345,10 @@ gols_estado_noite <- dados %>% group_by(somagols, estado) %>% filter(periodo == 
   summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
 
 ```
+
+
+
+
 
 # Plots
 
@@ -342,6 +368,17 @@ media_gol_noite <- medidas_gols_noite %>% mutate(estado = fct_reorder(estado, me
   xlab('Media de gols') + ylab('Estado') +
   theme_minimal() + ggeasy::easy_center_title()
 ```
+
+```{r}
+medidas_gols_ano %>% 
+  ggplot(aes(temporada, media, colour = temporada)) + geom_point() +
+  scale_color_viridis(discrete = FALSE) +
+  ggtitle('Media de gols a tarde por ano') + 
+  xlab('Ano') + ylab('Media de gols') +
+  theme(legend.position="none")
+  theme_minimal() + ggeasy::easy_center_title()
+```
+
 
 ### Unindo os plots das médias de gols por período
 ```{r}
