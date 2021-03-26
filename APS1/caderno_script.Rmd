@@ -456,6 +456,44 @@ dist_sg2 <- grid.arrange(arrangeGrob(dist_sg_pr, dist_sg_rj, dist_sg_rs,
 
 ## Plot da quantidade por resultados dos estados "não quentes"
 ```{r}
+dist_frio_gelados2012 <- climao_gelado %>% 
+  filter(data > '2012-03-20' & data < '2012-09-22') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados frios no inverno de 2012') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_calor_gelados2012 <- climao_gelado %>% 
+  filter(data > '2012-09-22' & data < '2013-03-20') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados frios no verão de 2012') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+
+dist_frio_gelados2013 <- climao_gelado %>% 
+  filter(data > '2013-03-20' & data < '2013-09-22') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados frios no inverno de 2013') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_calor_gelados2013 <- climao_gelado %>% 
+  filter(data > '2013-09-22' & data < '2014-03-20') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados frios no verão de 2013') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+
 dist_frio_gelados2014 <- climao_gelado %>% 
   filter(data > '2014-03-20' & data < '2014-09-22') %>%
   ggplot(aes(n, fill = res)) + 
@@ -593,6 +631,45 @@ dist_calor_gelados2020 <- climao_gelado %>%
 
 ## Plot da quantidade por resultados dos estados mais quentes
 ```{r}
+dist_frio_quentes2012 <- climao_quente %>% 
+  filter(data > '2013-03-20' & data < '2012-09-22') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados quentes no inverno de 2012') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_calor_quentes2012 <- climao_quente %>% 
+  filter(data > '2012-09-22' & data < '2013-03-20') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados quentes no verão de 2012') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+
+dist_frio_quentes2013 <- climao_quente %>% 
+  filter(data > '2013-03-20' & data < '2013-09-22') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados quentes no inverno de 2013') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+dist_calor_quentes2013 <- climao_quente %>% 
+  filter(data > '2013-09-22' & data < '2014-03-20') %>%
+  ggplot(aes(n, fill = res)) + 
+  geom_bar(alpha = .6,color = 'black') + 
+  scale_fill_brewer(palette = 'Dark2') +
+  ggtitle('Distribuição de resultado nos estados quentes no verão de 2013') +
+  xlab('Quantidade de resultados') + ylab('Ocorrências') +
+  theme_minimal() + ggeasy::easy_center_title()
+
+
+
 dist_frio_quentes2014 <- climao_quente %>% 
   filter(data > '2014-03-20' & data < '2014-09-22') %>%
   ggplot(aes(n, fill = res)) + 
@@ -728,6 +805,15 @@ dist_calor_quentes2020 <- climao_quente %>%
 ```
 #### Unindo os plots para comparação ano-ano clima-clima
 ```{r}
+dist_res2012 <- grid.arrange(arrangeGrob(dist_calor_gelados2012, dist_calor_quentes2012,
+                         dist_frio_gelados2012, dist_frio_quentes2012), 
+                         top = 'Distribuição dos resultados em 2012')
+
+dist_res2013 <- grid.arrange(arrangeGrob(dist_calor_gelados2013, dist_calor_quentes2013,
+                         dist_frio_gelados2013, dist_frio_quentes2013), 
+                         top = 'Distribuição dos resultados em 2013')
+
+
 dist_res2014 <- grid.arrange(arrangeGrob(dist_calor_gelados2014, dist_calor_quentes2014,
                          dist_frio_gelados2014, dist_frio_quentes2014), 
                          top = 'Distribuição dos resultados em 2014')
