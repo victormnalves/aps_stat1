@@ -1,0 +1,1887 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+  \usepackage{amssymb}
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={APS Estatística I - Analisando os times do Brasil},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{APS Estatística I - Analisando os times do Brasil}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\hypertarget{carregando-os-dados-e-pacotes}{%
+\section{Carregando os dados e
+pacotes}\label{carregando-os-dados-e-pacotes}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --
+\end{verbatim}
+
+\begin{verbatim}
+## v ggplot2 3.3.3     v purrr   0.3.4
+## v tibble  3.1.0     v dplyr   1.0.5
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.1
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(janitor)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'janitor'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     chisq.test, fisher.test
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(gridExtra)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'gridExtra'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:dplyr':
+## 
+##     combine
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(viridis)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: viridisLite
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(RColorBrewer)}
+\FunctionTok{theme\_set}\NormalTok{(}\FunctionTok{theme\_minimal}\NormalTok{())}
+
+\NormalTok{dados }\OtherTok{\textless{}{-}}\NormalTok{ readxl}\SpecialCharTok{::}\FunctionTok{read\_excel}\NormalTok{(}\StringTok{"C:/Users/alves/OneDrive {-} Insper {-} Institudo de Ensino e Pesquisa/Estudos/Programação e Data Science/Estat/aps\_stat1/APS1/BRA2.xlsx"}\NormalTok{, }
+                            \AttributeTok{col\_types =} \FunctionTok{c}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\StringTok{"text"}\NormalTok{, }\StringTok{"numeric"}\NormalTok{, }
+                                          \StringTok{"date"}\NormalTok{, }\StringTok{"text"}\NormalTok{, }\StringTok{"text"}\NormalTok{, }\StringTok{"text"}\NormalTok{, }\StringTok{"numeric"}\NormalTok{, }
+                                          \StringTok{"numeric"}\NormalTok{, }\StringTok{"numeric"}\NormalTok{, }\StringTok{"text"}\NormalTok{, }\StringTok{"numeric"}\NormalTok{, }
+                                          \StringTok{"numeric"}\NormalTok{, }\StringTok{"numeric"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{clean\_names}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+                            \FunctionTok{mutate}\NormalTok{(}\StringTok{\textquotesingle{}somagols\textquotesingle{}} \OtherTok{=}\NormalTok{ golcasa}\SpecialCharTok{+}\NormalTok{golvisitante)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{considerando-a-contagem-de-resultados-por-time-e-temporadas.}{%
+\subsection{Considerando a contagem de resultados por time e
+temporadas.}\label{considerando-a-contagem-de-resultados-por-time-e-temporadas.}}
+
+Contagem dos resultados por ano
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{resultado\_ano }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(res, temporada) }\SpecialCharTok{\%\textgreater{}\%}  
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{n =} \FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{freq =} \FunctionTok{round}\NormalTok{((n }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(n))}\SpecialCharTok{*}\DecValTok{100}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+Considerando apenas a contagem de cada possibilidade de resultado
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{resultado\_ano\_casa }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(res, temporada, casa) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{n =} \FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{freq =} \FunctionTok{round}\NormalTok{((n }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(n))}\SpecialCharTok{*}\DecValTok{100}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res', 'temporada'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{resultado\_ano\_visitante }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(res, temporada, visitante) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{n =} \FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{freq =} \FunctionTok{round}\NormalTok{((n }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(n))}\SpecialCharTok{*}\DecValTok{100}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res', 'temporada'. You can override using the `.groups` argument.
+\end{verbatim}
+
+Calculando algumas medidas de posição e dispersão da contagem dos
+resultados por time e por ano
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_res\_c }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(resultado\_ano\_casa }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(res }\SpecialCharTok{==} \StringTok{\textquotesingle{}C\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+                             \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                      \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                      \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: `as.tibble()` was deprecated in tibble 2.0.0.
+## Please use `as_tibble()` instead.
+## The signature and semantics have changed, see `?as_tibble`.
+\end{verbatim}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_res\_v }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(resultado\_ano\_casa }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(res }\SpecialCharTok{==} \StringTok{\textquotesingle{}V\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+                             \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                       \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                       \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_res\_e }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(resultado\_ano\_casa }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(res }\SpecialCharTok{==} \StringTok{\textquotesingle{}E\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+                             \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                       \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                       \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_res\_casa }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(resultado\_ano\_casa }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(casa, res, temporada) }\SpecialCharTok{\%\textgreater{}\%} 
+                      \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'casa', 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\hypertarget{criando-as-estauxe7uxf5es-do-ano}{%
+\subsection{criando as estações do
+ano}\label{criando-as-estauxe7uxf5es-do-ano}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{inverno\_2012 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(data) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2012{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2012{-}09{-}22\textquotesingle{}}\NormalTok{))}
+\NormalTok{verao\_2012 }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(data) }\SpecialCharTok{\%\textgreater{}\%}  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2012{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2013{-}03{-}20\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{inverno\_2013 }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(data) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2013{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2013{-}09{-}22\textquotesingle{}}\NormalTok{)}
+\NormalTok{verao\_2013 }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(data) }\SpecialCharTok{\%\textgreater{}\%}  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2013{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2014{-}03{-}20\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{inverno\_2014 }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(data) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2014{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2014{-}09{-}22\textquotesingle{}}\NormalTok{)}
+\NormalTok{verao\_2014 }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(data) }\SpecialCharTok{\%\textgreater{}\%}  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2014{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2015{-}03{-}20\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{inverno\_2015 }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(data) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2015{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2015{-}09{-}22\textquotesingle{}}\NormalTok{)}
+\NormalTok{verao\_2015 }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(data) }\SpecialCharTok{\%\textgreater{}\%}  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2015{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2016{-}03{-}20\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{inverno\_2016 }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(data) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2016{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2016{-}09{-}22\textquotesingle{}}\NormalTok{)}
+\NormalTok{verao\_2016 }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(data) }\SpecialCharTok{\%\textgreater{}\%}  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2016{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2017{-}03{-}20\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{inverno\_2017 }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(data) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2017{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2017{-}09{-}22\textquotesingle{}}\NormalTok{)}
+\NormalTok{verao\_2017 }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(data) }\SpecialCharTok{\%\textgreater{}\%}  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2017{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2018{-}03{-}20\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{inverno\_2018 }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(data) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2018{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2018{-}09{-}22\textquotesingle{}}\NormalTok{)}
+\NormalTok{verao\_2018 }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(data) }\SpecialCharTok{\%\textgreater{}\%}  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2018{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2019{-}03{-}20\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{inverno\_2019 }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(data) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2019{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2019{-}09{-}22\textquotesingle{}}\NormalTok{)}
+\NormalTok{verao\_2019 }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(data) }\SpecialCharTok{\%\textgreater{}\%}  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2019{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2020{-}03{-}20\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{inverno\_2020 }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(data) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2020{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2020{-}09{-}22\textquotesingle{}}\NormalTok{)}
+\NormalTok{verao\_2020 }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(data) }\SpecialCharTok{\%\textgreater{}\%}  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2020{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2021{-}03{-}20\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{segregando-a-contagem-dos-resultados-por-estauxe7uxe3o-por-ano-nos-estados-quentes}{%
+\subsection{Segregando a contagem dos resultados por estação por ano nos
+estados
+`quentes'}\label{segregando-a-contagem-dos-resultados-por-estauxe7uxe3o-por-ano-nos-estados-quentes}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\# CLIMA NOS ESTADOS QUENTES \#\#\#\#}
+\NormalTok{estados\_quentes }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Alagoas\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Bahia\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Ceara\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Pernambuco\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Goias\textquotesingle{}}\NormalTok{ ,}\StringTok{\textquotesingle{}Rio de Janeiro\textquotesingle{}}\NormalTok{)}
+
+\NormalTok{climao\_quente }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(res, data, periodo) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(estado }\SpecialCharTok{\%in\%}\NormalTok{ estados\_quentes) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{n =} \FunctionTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res', 'data'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_frio\_quentes\_2014 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+                             \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ inverno\_2014}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                             \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                       \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                       \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_calor\_quentes\_2014 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+                                 \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ verao\_2014}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                 \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                           \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                           \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_frio\_quentes\_2015 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+                                 \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ inverno\_2015}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                 \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                           \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                           \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_calor\_quentes\_2015 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+                                  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ verao\_2015}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                  \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                            \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                            \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_frio\_quentes\_2016 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+                                 \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ inverno\_2016}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                 \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                           \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                           \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_calor\_quentes\_2016 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+                                  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ verao\_2016}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                  \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                            \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                            \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_frio\_quentes\_2017 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+                                 \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ inverno\_2017}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                 \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                           \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                           \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_calor\_quentes\_2017 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+                                  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ verao\_2017}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                  \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                            \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                            \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_frio\_quentes\_2018 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+                                 \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ inverno\_2018}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                 \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                           \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                           \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_calor\_quentes\_2018 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+                                  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ verao\_2018}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                  \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                            \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                            \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_frio\_quentes\_2019 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+                                 \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ inverno\_2019}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                 \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                           \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                           \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_calor\_quentes\_2019 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+                                  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ verao\_2019}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                  \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                            \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                            \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_frio\_quentes\_2020 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+                                 \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ inverno\_2020}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                 \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                           \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                           \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_calor\_quentes\_2020 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+                                  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ verao\_2020}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                  \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                            \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                            \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\hypertarget{segregando-a-contagem-dos-resultados-por-estauxe7uxe3o-por-ano-nos-estados-nuxe3o-quentes}{%
+\subsection{Segregando a contagem dos resultados por estação por ano nos
+estados `não
+quentes'}\label{segregando-a-contagem-dos-resultados-por-estauxe7uxe3o-por-ano-nos-estados-nuxe3o-quentes}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{climao\_gelado }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(res, data, periodo) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(estado }\SpecialCharTok{\%in\%}\NormalTok{ estados\_quentes) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{n =} \FunctionTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res', 'data'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_frio\_gelado\_2014 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ inverno\_2014}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                                   \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                                   \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_calor\_gelado\_2014 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+                                          \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ verao\_2014}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                          \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                                    \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                                    \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_frio\_gelado\_2015 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ inverno\_2015}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                                   \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                                   \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_calor\_gelado\_2015 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+                                          \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ verao\_2015}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                          \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                                    \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                                    \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_frio\_gelado\_2016 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ inverno\_2016}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                                   \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                                   \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_calor\_gelado\_2016 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+                                          \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ verao\_2016}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                          \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                                    \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                                    \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_frio\_gelado\_2017 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ inverno\_2017}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                                   \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                                   \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_calor\_gelado\_2017 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+                                          \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ verao\_2017}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                          \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                                    \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                                    \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_frio\_gelado\_2018 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ inverno\_2018}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                                   \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                                   \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_calor\_gelado\_2018 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+                                          \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ verao\_2018}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                          \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                                    \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                                    \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_frio\_gelado\_2019 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ inverno\_2019}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                                   \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                                   \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_calor\_gelado\_2019 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+                                          \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ verao\_2019}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                          \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                                    \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                                    \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_frio\_gelado\_2020 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ inverno\_2020}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                                   \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                                   \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_calor\_gelado\_2020 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+                                          \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ verao\_2020}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                          \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(n),}
+                                                    \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(n),}
+                                                    \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(n)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'res'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\hypertarget{gols-nos-estados-por-estauxe7uxe3o-por-ano}{%
+\subsection{Gols nos estados por estação por
+ano}\label{gols-nos-estados-por-estauxe7uxe3o-por-ano}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_sg\_inverno\_2014 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(estado, periodo) }\SpecialCharTok{\%\textgreater{}\%}
+                                         \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ inverno\_2014}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(somagols)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'estado'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_sg\_verao\_2014 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(estado, periodo) }\SpecialCharTok{\%\textgreater{}\%}
+                                          \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ verao\_2014}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(somagols)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'estado'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_sg\_inverno\_2015 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(estado, periodo) }\SpecialCharTok{\%\textgreater{}\%}
+                                         \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ inverno\_2015}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(somagols)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'estado'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_sg\_verao\_2015 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(estado, periodo) }\SpecialCharTok{\%\textgreater{}\%}
+                                          \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ verao\_2015}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(somagols)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'estado'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_sg\_inverno\_2016 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(estado, periodo) }\SpecialCharTok{\%\textgreater{}\%}
+                                         \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ inverno\_2016}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(somagols)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'estado'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_sg\_verao\_2016 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(estado, periodo) }\SpecialCharTok{\%\textgreater{}\%}
+                                          \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ verao\_2016}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(somagols)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'estado'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_sg\_inverno\_2017 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(estado, periodo) }\SpecialCharTok{\%\textgreater{}\%}
+                                         \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ inverno\_2017}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(somagols)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'estado'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_sg\_verao\_2017 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(estado, periodo) }\SpecialCharTok{\%\textgreater{}\%}
+                                          \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ verao\_2017}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(somagols)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'estado'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_sg\_inverno\_2018 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(estado, periodo) }\SpecialCharTok{\%\textgreater{}\%}
+                                         \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ inverno\_2018}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(somagols)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'estado'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_sg\_verao\_2018 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(estado, periodo) }\SpecialCharTok{\%\textgreater{}\%}
+                                          \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ verao\_2018}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(somagols)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'estado'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_sg\_inverno\_2019 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(estado, periodo) }\SpecialCharTok{\%\textgreater{}\%}
+                                         \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ inverno\_2019}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(somagols)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'estado'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_sg\_verao\_2019 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(estado, periodo) }\SpecialCharTok{\%\textgreater{}\%}
+                                          \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ verao\_2019}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(somagols)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'estado'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_sg\_inverno\_2020 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(estado, periodo) }\SpecialCharTok{\%\textgreater{}\%}
+                                         \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ inverno\_2020}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(somagols)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'estado'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_sg\_verao\_2020 }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(estado, periodo) }\SpecialCharTok{\%\textgreater{}\%}
+                                          \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\%in\%}\NormalTok{ verao\_2020}\SpecialCharTok{$}\NormalTok{data) }\SpecialCharTok{\%\textgreater{}\%} 
+                                         \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(somagols),}
+                                                   \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(somagols)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'estado'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\hypertarget{trabalhando-com-a-soma-dos-gols-por-peruxedodo-do-dia-e-por-temporada}{%
+\subsection{Trabalhando com a soma dos gols por período do dia e por
+temporada}\label{trabalhando-com-a-soma-dos-gols-por-peruxedodo-do-dia-e-por-temporada}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{somagols\_estado\_periodo }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(somagols, estado, periodo)}
+
+
+
+\NormalTok{medidas\_gols\_estado\_periodo }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(somagols\_estado\_periodo }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(estado, periodo) }\SpecialCharTok{\%\textgreater{}\%} 
+                                  \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(somagols),}
+                                            \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(somagols),}
+                                            \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(somagols)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'estado'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\hypertarget{calculando-medidas-dos-gols-da-casa-por-ano}{%
+\subsection{Calculando medidas dos gols da casa por
+ano}\label{calculando-medidas-dos-gols-da-casa-por-ano}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_gols\_ano }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(temporada, res)}\SpecialCharTok{\%\textgreater{}\%}
+                                  \FunctionTok{filter}\NormalTok{(res }\SpecialCharTok{==} \StringTok{\textquotesingle{}C\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+                                  \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(golcasa),}
+                                            \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(golcasa),}
+                                            \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(golcasa)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'temporada'. You can override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_gols\_estado }\OtherTok{\textless{}{-}} \FunctionTok{as.tibble}\NormalTok{(dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(estado) }\SpecialCharTok{\%\textgreater{}\%}
+                                  \FunctionTok{filter}\NormalTok{(res }\SpecialCharTok{==} \StringTok{\textquotesingle{}C\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+                                  \FunctionTok{summarise}\NormalTok{(}\StringTok{\textquotesingle{}media\textquotesingle{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(golcasa),}
+                                            \StringTok{\textquotesingle{}mediana\textquotesingle{}} \OtherTok{=} \FunctionTok{median}\NormalTok{(golcasa),}
+                                            \StringTok{\textquotesingle{}desvpad\textquotesingle{}} \OtherTok{=} \FunctionTok{sd}\NormalTok{(golcasa)))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{plots}{%
+\section{Plots}\label{plots}}
+
+\hypertarget{distribuiuxe7uxe3o-dos-resultados-ao-longo-dos-anos}{%
+\subsection{Distribuição dos resultados ao longo dos
+anos}\label{distribuiuxe7uxe3o-dos-resultados-ao-longo-dos-anos}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dist\_res\_2020 }\OtherTok{\textless{}{-}}\NormalTok{ resultado\_ano }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{group\_by}\NormalTok{(temporada) }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(temporada, n, }\AttributeTok{colour =}\NormalTok{ res)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{scale\_color\_viridis}\NormalTok{(}\AttributeTok{discrete =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de vitórias do mandante por temporada\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+    \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Temporada\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{col =} \StringTok{\textquotesingle{}Resultado\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+\NormalTok{    ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{distribuiuxe7uxe3o-dos-resultados-da-casa-por-temporada}{%
+\subsection{Distribuição dos resultados da casa por
+temporada}\label{distribuiuxe7uxe3o-dos-resultados-da-casa-por-temporada}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dist\_c\_casa\_ano }\OtherTok{\textless{}{-}}\NormalTok{ resultado\_ano\_casa }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(res }\SpecialCharTok{==} \StringTok{\textquotesingle{}C\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{casa =} \FunctionTok{fct\_reorder}\NormalTok{(casa, n)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(casa) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(temporada, casa, }\AttributeTok{colour =}\NormalTok{ n)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_viridis}\NormalTok{(}\AttributeTok{discrete =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de vitórias da casa por ano\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Temporada\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Time\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{col =} \StringTok{\textquotesingle{}Quantidade\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+\NormalTok{   ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_v\_casa\_ano }\OtherTok{\textless{}{-}}\NormalTok{ resultado\_ano\_casa }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(res }\SpecialCharTok{==} \StringTok{\textquotesingle{}V\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{casa =} \FunctionTok{fct\_reorder}\NormalTok{(casa, n)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(casa) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(temporada, casa, }\AttributeTok{colour =}\NormalTok{ n)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_viridis}\NormalTok{(}\AttributeTok{discrete =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de derrotas da casa por ano\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Temporada\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Time\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{col =} \StringTok{\textquotesingle{}Quantidade\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+\NormalTok{   ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+
+\FunctionTok{grid.arrange}\NormalTok{(}\FunctionTok{arrangeGrob}\NormalTok{(dist\_c\_casa\_ano, dist\_v\_casa\_ano), }
+                         \AttributeTok{top =} \StringTok{\textquotesingle{}Distribuição da quantidade de resultados do time considerando o mandante\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{caderno_script_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+\hypertarget{plot-muxe9dia-de-gols-por-peruxedodo}{%
+\subsection{Plot média de gols por
+período}\label{plot-muxe9dia-de-gols-por-peruxedodo}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dist\_med\_gols\_periodo }\OtherTok{\textless{}{-}}\NormalTok{ medidas\_gols\_estado\_periodo }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{estado =} \FunctionTok{fct\_reorder}\NormalTok{(estado, media)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(estado) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(media, estado, }\AttributeTok{colour =}\NormalTok{ periodo)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_viridis}\NormalTok{(}\AttributeTok{discrete =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols a tarde por estado\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Estado\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{   ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{plot-de-gols-por-estado}{%
+\subsection{Plot de gols por estado}\label{plot-de-gols-por-estado}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dist\_med\_gols\_estado }\OtherTok{\textless{}{-}}\NormalTok{ medidas\_gols\_estado }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{estado =} \FunctionTok{fct\_reorder}\NormalTok{(estado, media)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(media, estado, }\AttributeTok{colour =}\NormalTok{ media)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_viridis}\NormalTok{(}\AttributeTok{discrete =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Media de gols da casa por estado\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Ano\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Media de gols\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position=}\StringTok{"none"}\NormalTok{)}
+\NormalTok{   ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 1
+##  $ plot.title:List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : num 0.5
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi FALSE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  - attr(*, "class")= chr [1:2] "theme" "gg"
+##  - attr(*, "complete")= logi FALSE
+##  - attr(*, "validate")= logi TRUE
+\end{verbatim}
+
+\hypertarget{plots-medias-gol-por-estado-e-muxe9dia-gol-por-temporada}{%
+\subsection{Plots medias gol por estado e média gol por
+temporada}\label{plots-medias-gol-por-estado-e-muxe9dia-gol-por-temporada}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medidas\_gols\_ano }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(media, temporada, }\AttributeTok{colour =}\NormalTok{ media)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_viridis}\NormalTok{(}\AttributeTok{discrete =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Media de gols da casa por ano\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Ano\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Media de gols\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position=}\StringTok{"none"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{caderno_script_files/figure-latex/unnamed-chunk-15-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{   ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 1
+##  $ plot.title:List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : num 0.5
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi FALSE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  - attr(*, "class")= chr [1:2] "theme" "gg"
+##  - attr(*, "complete")= logi FALSE
+##  - attr(*, "validate")= logi TRUE
+\end{verbatim}
+
+\hypertarget{plot-soma-de-gols-por-estado}{%
+\subsection{Plot soma de gols por
+estado}\label{plot-soma-de-gols-por-estado}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dist\_sg\_al }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(estado }\SpecialCharTok{==} \StringTok{\textquotesingle{}Alagoas\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(somagols, }\AttributeTok{y =} \FunctionTok{stat}\NormalTok{(density), }\AttributeTok{fill =}\NormalTok{ periodo)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, }\AttributeTok{bins =} \DecValTok{8}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição da soma dos gols por período em Alagoas\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Soma dos gols por jogos\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Densidade\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_sg\_ba }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(estado }\SpecialCharTok{==} \StringTok{\textquotesingle{}Bahia\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(somagols, }\AttributeTok{y =} \FunctionTok{stat}\NormalTok{(density), }\AttributeTok{fill =}\NormalTok{ periodo)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, }\AttributeTok{bins =} \DecValTok{8}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição da soma dos gols por período na Bahia\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Soma dos gols por jogos\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Densidade\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_sg\_ce }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(estado }\SpecialCharTok{==} \StringTok{\textquotesingle{}Ceara\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(somagols, }\AttributeTok{y =} \FunctionTok{stat}\NormalTok{(density), }\AttributeTok{fill =}\NormalTok{ periodo)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, }\AttributeTok{bins =} \DecValTok{8}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição da soma dos gols por período no Ceara\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Soma dos gols por jogos\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Densidade\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_sg\_go }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(estado }\SpecialCharTok{==} \StringTok{\textquotesingle{}Goias\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(somagols, }\AttributeTok{y =} \FunctionTok{stat}\NormalTok{(density), }\AttributeTok{fill =}\NormalTok{ periodo)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, }\AttributeTok{bins =} \DecValTok{8}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição da soma dos gols por período em Goias\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Soma dos gols por jogos\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Densidade\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_sg\_mg }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(estado }\SpecialCharTok{==} \StringTok{\textquotesingle{}Minas Gerais\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(somagols, }\AttributeTok{y =} \FunctionTok{stat}\NormalTok{(density), }\AttributeTok{fill =}\NormalTok{ periodo)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, }\AttributeTok{bins =} \DecValTok{8}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição da soma dos gols por período em Minas Gerais\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Soma dos gols por jogos\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Densidade\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_sg\_pr }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(estado }\SpecialCharTok{==} \StringTok{\textquotesingle{}Parana\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(somagols, }\AttributeTok{y =} \FunctionTok{stat}\NormalTok{(density), }\AttributeTok{fill =}\NormalTok{ periodo)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, }\AttributeTok{bins =} \DecValTok{8}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição da soma dos gols por período no Parana\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Soma dos gols por jogos\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Densidade\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_sg\_pb }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(estado }\SpecialCharTok{==} \StringTok{\textquotesingle{}Pernambuco\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(somagols, }\AttributeTok{y =} \FunctionTok{stat}\NormalTok{(density), }\AttributeTok{fill =}\NormalTok{ periodo)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, }\AttributeTok{bins =} \DecValTok{8}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição da soma dos gols por período no Pernambuco\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Soma dos gols por jogos\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Densidade\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_sg\_rs }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(estado }\SpecialCharTok{==} \StringTok{\textquotesingle{}Rio Grande do Sul\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(somagols, }\AttributeTok{y =} \FunctionTok{stat}\NormalTok{(density), }\AttributeTok{fill =}\NormalTok{ periodo)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, }\AttributeTok{bins =} \DecValTok{8}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição da soma dos gols por período no Rio Grande do Sul\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Soma dos gols por jogos\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Densidade\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_sg\_rj }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(estado }\SpecialCharTok{==} \StringTok{\textquotesingle{}Rio de Janeiro\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(somagols, }\AttributeTok{y =} \FunctionTok{stat}\NormalTok{(density), }\AttributeTok{fill =}\NormalTok{ periodo)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, }\AttributeTok{bins =} \DecValTok{8}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição da soma dos gols por período no Rio de Janeiro\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Soma dos gols por jogos\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Densidade\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_sg\_sc }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(estado }\SpecialCharTok{==} \StringTok{\textquotesingle{}Santa Catarina\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(somagols, }\AttributeTok{y =} \FunctionTok{stat}\NormalTok{(density), }\AttributeTok{fill =}\NormalTok{ periodo)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, }\AttributeTok{bins =} \DecValTok{8}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição da soma dos gols por período em Santa Catarina\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Soma dos gols por jogos\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Densidade\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_sg\_sp }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(estado }\SpecialCharTok{==} \StringTok{\textquotesingle{}Sao Paulo\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(somagols, }\AttributeTok{y =} \FunctionTok{stat}\NormalTok{(density), }\AttributeTok{fill =}\NormalTok{ periodo)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{, }\AttributeTok{bins =} \DecValTok{8}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição da soma dos gols por período em São Paulo\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Soma dos gols por jogos\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Densidade\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{unindo-os-plots-da-soma-de-gols-por-estado}{%
+\subsection{Unindo os plots da soma de gols por
+estado}\label{unindo-os-plots-da-soma-de-gols-por-estado}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dist\_sg1 }\OtherTok{\textless{}{-}} \FunctionTok{grid.arrange}\NormalTok{(}\FunctionTok{arrangeGrob}\NormalTok{(dist\_sg\_al, dist\_sg\_ba, dist\_sg\_ce, }
+\NormalTok{                         dist\_sg\_go,dist\_sg\_mg, dist\_sg\_pb), }
+                         \AttributeTok{top =} \StringTok{\textquotesingle{}Distribuição da quantidade total de gols por estado e período (1)\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{caderno_script_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dist\_sg2 }\OtherTok{\textless{}{-}} \FunctionTok{grid.arrange}\NormalTok{(}\FunctionTok{arrangeGrob}\NormalTok{(dist\_sg\_pr, dist\_sg\_rj, dist\_sg\_rs,}
+\NormalTok{                         dist\_sg\_sc, dist\_sg\_sp, }
+                         \AttributeTok{top =} \StringTok{\textquotesingle{}Distribuição da quantidade total de gols por estado e período (2)\textquotesingle{}}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{caderno_script_files/figure-latex/unnamed-chunk-17-2.pdf}
+
+\hypertarget{plot-da-quantidade-por-resultados-dos-estados-nuxe3o-quentes}{%
+\subsection{Plot da quantidade por resultados dos estados ``não
+quentes''}\label{plot-da-quantidade-por-resultados-dos-estados-nuxe3o-quentes}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dist\_frio\_gelados2012 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2012{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2012{-}09{-}22\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados frios no inverno de 2012\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_calor\_gelados2012 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2012{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2013{-}03{-}20\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados frios no verão de 2012\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+
+\NormalTok{dist\_frio\_gelados2013 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2013{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2013{-}09{-}22\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados frios no inverno de 2013\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_calor\_gelados2013 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2013{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2014{-}03{-}20\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados frios no verão de 2013\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+
+\NormalTok{dist\_frio\_gelados2014 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2014{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2014{-}09{-}22\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados frios no inverno de 2014\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_calor\_gelados2014 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2014{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2015{-}03{-}20\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados frios no verão de 2014\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+
+\NormalTok{dist\_frio\_gelados2015 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2015{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2015{-}09{-}22\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados frios no inverno de 2015\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_calor\_gelados2015 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2015{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2016{-}03{-}20\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados frios no verão de 2015\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+
+\NormalTok{dist\_frio\_gelados2016 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2016{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2016{-}09{-}22\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados frios no inverno de 2016\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_calor\_gelados2016 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2016{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2017{-}03{-}20\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados frios no verão de 2016\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+
+\NormalTok{dist\_frio\_gelados2017 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2017{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2017{-}09{-}22\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados frios no inverno de 2017\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_calor\_gelados2017 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2017{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2018{-}03{-}20\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados frios no verão de 2017\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+
+\NormalTok{dist\_frio\_gelados2018 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2018{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2018{-}09{-}22\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados frios no inverno de 2018\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_calor\_gelados2018 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2018{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2019{-}03{-}20\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados frios no verão de 2018\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{() }
+
+
+\NormalTok{dist\_frio\_gelados2019 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2019{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2019{-}09{-}22\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados frios no inverno de 2019\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_calor\_gelados2019 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2019{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2020{-}03{-}20\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados frios no verão de 2019\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+
+\NormalTok{dist\_frio\_gelados2020 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2020{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2020{-}09{-}22\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados frios no inverno de 2020\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_calor\_gelados2020 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_gelado }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2020{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2021{-}03{-}20\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados frios no verão de 2020\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{plot-da-quantidade-por-resultados-dos-estados-mais-quentes}{%
+\subsection{Plot da quantidade por resultados dos estados mais
+quentes}\label{plot-da-quantidade-por-resultados-dos-estados-mais-quentes}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dist\_frio\_quentes2012 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2012{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2012{-}09{-}22\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados quentes no inverno de 2012\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_calor\_quentes2012 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2012{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2013{-}03{-}20\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados quentes no verão de 2012\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+
+\NormalTok{dist\_frio\_quentes2013 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2013{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2013{-}09{-}22\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados quentes no inverno de 2013\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_calor\_quentes2013 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2013{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2014{-}03{-}20\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados quentes no verão de 2013\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+
+
+\NormalTok{dist\_frio\_quentes2014 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2014{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2014{-}09{-}22\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados quentes no inverno de 2014\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_calor\_quentes2014 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2014{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2015{-}03{-}20\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados quentes no verão de 2014\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+
+\NormalTok{dist\_frio\_quentes2015 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2015{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2015{-}09{-}22\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados quentes no inverno de 2015\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_calor\_quentes2015 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2015{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2016{-}03{-}20\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados quentes no verão de 2015\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+
+\NormalTok{dist\_frio\_quentes2016 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2016{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2016{-}09{-}22\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados quentes no inverno de 2016\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_calor\_quentes2016 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2016{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2017{-}03{-}20\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados quentes no verão de 2016\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+
+\NormalTok{dist\_frio\_quentes2017 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2017{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2017{-}09{-}22\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados quentes no inverno de 2017\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_calor\_quentes2017 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2017{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2018{-}03{-}20\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados quentes no verão de 2017\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+
+\NormalTok{dist\_frio\_quentes2018 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2018{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2018{-}09{-}22\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados quentes no inverno de 2018\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_calor\_quentes2018 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2018{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2019{-}03{-}20\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados quentes no verão de 2018\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+
+\NormalTok{dist\_frio\_quentes2019 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2019{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2019{-}09{-}22\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados quentes no inverno de 2019\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+\NormalTok{dist\_calor\_quentes2019 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2019{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2020{-}03{-}20\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados quentes no verão de 2019\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{()}
+
+
+\NormalTok{dist\_frio\_quentes2020 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2020{-}03{-}20\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2020{-}09{-}22\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados quentes no inverno de 2020\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{() }
+
+\NormalTok{dist\_calor\_quentes2020 }\OtherTok{\textless{}{-}}\NormalTok{ climao\_quente }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(data }\SpecialCharTok{\textgreater{}} \StringTok{\textquotesingle{}2020{-}09{-}22\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ data }\SpecialCharTok{\textless{}} \StringTok{\textquotesingle{}2021{-}03{-}20\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(n, }\AttributeTok{fill =}\NormalTok{ res)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{6}\NormalTok{,}\AttributeTok{color =} \StringTok{\textquotesingle{}black\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette =} \StringTok{\textquotesingle{}Dark2\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Distribuição de resultado nos estados quentes no verão de 2020\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Quantidade de resultados\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Ocorrências\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{unindo-os-plots-para-comparauxe7uxe3o-de-resultados-ano-ano-clima-clima}{%
+\subsection{Unindo os plots para comparação de resultados ano-ano
+clima-clima}\label{unindo-os-plots-para-comparauxe7uxe3o-de-resultados-ano-ano-clima-clima}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dist\_res2012 }\OtherTok{\textless{}{-}} \FunctionTok{grid.arrange}\NormalTok{(}\FunctionTok{arrangeGrob}\NormalTok{(dist\_calor\_gelados2012, dist\_calor\_quentes2012,}
+\NormalTok{                         dist\_frio\_gelados2012, dist\_frio\_quentes2012), }
+                         \AttributeTok{top =} \StringTok{\textquotesingle{}Distribuição dos resultados em 2012\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{caderno_script_files/figure-latex/unnamed-chunk-20-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dist\_res2013 }\OtherTok{\textless{}{-}} \FunctionTok{grid.arrange}\NormalTok{(}\FunctionTok{arrangeGrob}\NormalTok{(dist\_calor\_gelados2013, dist\_calor\_quentes2013,}
+\NormalTok{                         dist\_frio\_gelados2013, dist\_frio\_quentes2013), }
+                         \AttributeTok{top =} \StringTok{\textquotesingle{}Distribuição dos resultados em 2013\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{caderno_script_files/figure-latex/unnamed-chunk-20-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dist\_res2014 }\OtherTok{\textless{}{-}} \FunctionTok{grid.arrange}\NormalTok{(}\FunctionTok{arrangeGrob}\NormalTok{(dist\_calor\_gelados2014, dist\_calor\_quentes2014,}
+\NormalTok{                         dist\_frio\_gelados2014, dist\_frio\_quentes2014), }
+                         \AttributeTok{top =} \StringTok{\textquotesingle{}Distribuição dos resultados em 2014\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{caderno_script_files/figure-latex/unnamed-chunk-20-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dist\_res2015 }\OtherTok{\textless{}{-}} \FunctionTok{grid.arrange}\NormalTok{(}\FunctionTok{arrangeGrob}\NormalTok{(dist\_calor\_gelados2015, dist\_calor\_quentes2015,}
+\NormalTok{                         dist\_frio\_gelados2015, dist\_frio\_quentes2015), }
+                         \AttributeTok{top =} \StringTok{\textquotesingle{}Distribuição dos resultados em 2015\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{caderno_script_files/figure-latex/unnamed-chunk-20-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dist\_res2016 }\OtherTok{\textless{}{-}} \FunctionTok{grid.arrange}\NormalTok{(}\FunctionTok{arrangeGrob}\NormalTok{(dist\_calor\_gelados2016, dist\_calor\_quentes2016,}
+\NormalTok{                         dist\_frio\_gelados2016, dist\_frio\_quentes2016), }
+                         \AttributeTok{top =} \StringTok{\textquotesingle{}Distribuição dos resultados em 2016\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{caderno_script_files/figure-latex/unnamed-chunk-20-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dist\_res2017 }\OtherTok{\textless{}{-}} \FunctionTok{grid.arrange}\NormalTok{(}\FunctionTok{arrangeGrob}\NormalTok{(dist\_calor\_gelados2017, dist\_calor\_quentes2017,}
+\NormalTok{                         dist\_frio\_gelados2017, dist\_frio\_quentes2017), }
+                         \AttributeTok{top =} \StringTok{\textquotesingle{}Distribuição dos resultados em 2017\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{caderno_script_files/figure-latex/unnamed-chunk-20-6.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dist\_res2018 }\OtherTok{\textless{}{-}} \FunctionTok{grid.arrange}\NormalTok{(}\FunctionTok{arrangeGrob}\NormalTok{(dist\_calor\_gelados2018, dist\_calor\_quentes2018,}
+\NormalTok{                         dist\_frio\_gelados2018, dist\_frio\_quentes2018), }
+                         \AttributeTok{top =} \StringTok{\textquotesingle{}Distribuição dos resultados em 2018\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{caderno_script_files/figure-latex/unnamed-chunk-20-7.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dist\_res2019 }\OtherTok{\textless{}{-}} \FunctionTok{grid.arrange}\NormalTok{(}\FunctionTok{arrangeGrob}\NormalTok{(dist\_calor\_gelados2019, dist\_frio\_quentes2019,}
+\NormalTok{                         dist\_frio\_gelados2019, dist\_frio\_quentes2019), }
+                         \AttributeTok{top =} \StringTok{\textquotesingle{}Distribuição dos resultados em 2019\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{caderno_script_files/figure-latex/unnamed-chunk-20-8.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dist\_res2020 }\OtherTok{\textless{}{-}} \FunctionTok{grid.arrange}\NormalTok{(}\FunctionTok{arrangeGrob}\NormalTok{(dist\_calor\_gelados2020, dist\_calor\_quentes2020,}
+\NormalTok{                         dist\_frio\_gelados2020, dist\_frio\_quentes2020), }
+                         \AttributeTok{top =} \StringTok{\textquotesingle{}Distribuição dos resultados em 2020\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{caderno_script_files/figure-latex/unnamed-chunk-20-9.pdf}
+\#\# Plot da soma de gols por estação
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{somagols\_inverno2014 }\OtherTok{\textless{}{-}}\NormalTok{ medidas\_sg\_inverno\_2014 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{estado =} \FunctionTok{fct\_reorder}\NormalTok{(estado, media)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(estado) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(media, estado, }\AttributeTok{colour =}\NormalTok{ periodo)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_viridis}\NormalTok{(}\AttributeTok{discrete =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols no inverno por período por estado em 2014\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Estado\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{() }
+
+\NormalTok{somagols\_verao2014 }\OtherTok{\textless{}{-}}\NormalTok{ medidas\_sg\_verao\_2014 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{estado =} \FunctionTok{fct\_reorder}\NormalTok{(estado, media)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(estado) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(media, estado, }\AttributeTok{colour =}\NormalTok{ periodo)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_viridis}\NormalTok{(}\AttributeTok{discrete =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols no inverno por período por estado em 2014\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Estado\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{() }
+
+\NormalTok{somagols\_inverno2015 }\OtherTok{\textless{}{-}}\NormalTok{ medidas\_sg\_inverno\_2015 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{estado =} \FunctionTok{fct\_reorder}\NormalTok{(estado, media)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(estado) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(media, estado, }\AttributeTok{colour =}\NormalTok{ periodo)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_viridis}\NormalTok{(}\AttributeTok{discrete =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols no inverno por período por estado em 2015\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Estado\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{() }
+
+\NormalTok{somagols\_verao2015 }\OtherTok{\textless{}{-}}\NormalTok{ medidas\_sg\_verao\_2015 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{estado =} \FunctionTok{fct\_reorder}\NormalTok{(estado, media)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(estado) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(media, estado, }\AttributeTok{colour =}\NormalTok{ periodo)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_viridis}\NormalTok{(}\AttributeTok{discrete =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols no inverno por período por estado em 2015\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Estado\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{() }
+
+\NormalTok{somagols\_inverno2016 }\OtherTok{\textless{}{-}}\NormalTok{ medidas\_sg\_inverno\_2016 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{estado =} \FunctionTok{fct\_reorder}\NormalTok{(estado, media)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(estado) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(media, estado, }\AttributeTok{colour =}\NormalTok{ periodo)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_viridis}\NormalTok{(}\AttributeTok{discrete =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols no inverno por período por estado em 2016\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Estado\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{() }
+
+\NormalTok{somagols\_verao2016 }\OtherTok{\textless{}{-}}\NormalTok{ medidas\_sg\_verao\_2016 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{estado =} \FunctionTok{fct\_reorder}\NormalTok{(estado, media)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(estado) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(media, estado, }\AttributeTok{colour =}\NormalTok{ periodo)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_viridis}\NormalTok{(}\AttributeTok{discrete =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols no inverno por período por estado em 2016\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Estado\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{() }
+
+
+\NormalTok{somagols\_inverno2017 }\OtherTok{\textless{}{-}}\NormalTok{ medidas\_sg\_inverno\_2017 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{estado =} \FunctionTok{fct\_reorder}\NormalTok{(estado, media)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(estado) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(media, estado, }\AttributeTok{colour =}\NormalTok{ periodo)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_viridis}\NormalTok{(}\AttributeTok{discrete =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols no inverno por período por estado em 2017\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Estado\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{() }
+
+\NormalTok{somagols\_verao2017 }\OtherTok{\textless{}{-}}\NormalTok{ medidas\_sg\_verao\_2017 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{estado =} \FunctionTok{fct\_reorder}\NormalTok{(estado, media)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(estado) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(media, estado, }\AttributeTok{colour =}\NormalTok{ periodo)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_viridis}\NormalTok{(}\AttributeTok{discrete =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols no inverno por período por estado em 2017\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Estado\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{() }
+
+
+\NormalTok{somagols\_inverno2018 }\OtherTok{\textless{}{-}}\NormalTok{ medidas\_sg\_inverno\_2018 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{estado =} \FunctionTok{fct\_reorder}\NormalTok{(estado, media)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(estado) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(media, estado, }\AttributeTok{colour =}\NormalTok{ periodo)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_viridis}\NormalTok{(}\AttributeTok{discrete =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols no inverno por período por estado em 2018\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Estado\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{() }
+
+\NormalTok{somagols\_verao2018 }\OtherTok{\textless{}{-}}\NormalTok{ medidas\_sg\_verao\_2018 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{estado =} \FunctionTok{fct\_reorder}\NormalTok{(estado, media)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(estado) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(media, estado, }\AttributeTok{colour =}\NormalTok{ periodo)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_viridis}\NormalTok{(}\AttributeTok{discrete =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols no inverno por período por estado em 2018\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Estado\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{() }
+
+
+\NormalTok{somagols\_inverno2019 }\OtherTok{\textless{}{-}}\NormalTok{ medidas\_sg\_inverno\_2019 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{estado =} \FunctionTok{fct\_reorder}\NormalTok{(estado, media)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(estado) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(media, estado, }\AttributeTok{colour =}\NormalTok{ periodo)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_viridis}\NormalTok{(}\AttributeTok{discrete =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols no inverno por período por estado em 2014\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Estado\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{() }
+
+\NormalTok{somagols\_verao2019 }\OtherTok{\textless{}{-}}\NormalTok{ medidas\_sg\_verao\_2019 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{estado =} \FunctionTok{fct\_reorder}\NormalTok{(estado, media)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(estado) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(media, estado, }\AttributeTok{colour =}\NormalTok{ periodo)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_viridis}\NormalTok{(}\AttributeTok{discrete =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols no inverno por período por estado em 2019\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Estado\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{() }
+
+
+\NormalTok{somagols\_inverno2020 }\OtherTok{\textless{}{-}}\NormalTok{ medidas\_sg\_inverno\_2020 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{estado =} \FunctionTok{fct\_reorder}\NormalTok{(estado, media)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(estado) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(media, estado, }\AttributeTok{colour =}\NormalTok{ periodo)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_viridis}\NormalTok{(}\AttributeTok{discrete =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols no inverno por período por estado em 2020\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Estado\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{() }
+
+\NormalTok{somagols\_verao2020 }\OtherTok{\textless{}{-}}\NormalTok{ medidas\_sg\_verao\_2020 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{estado =} \FunctionTok{fct\_reorder}\NormalTok{(estado, media)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(estado) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(media, estado, }\AttributeTok{colour =}\NormalTok{ periodo)) }\SpecialCharTok{+} \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_viridis}\NormalTok{(}\AttributeTok{discrete =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols no inverno por período por estado em 2020\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Média de gols\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}Estado\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{  ggeasy}\SpecialCharTok{::}\FunctionTok{easy\_center\_title}\NormalTok{() }
+
+
+
+
+\NormalTok{gols0 }\OtherTok{\textless{}{-}} \FunctionTok{grid.arrange}\NormalTok{(}\FunctionTok{arrangeGrob}\NormalTok{(somagols\_verao2014, somagols\_inverno2014,}
+\NormalTok{                         somagols\_verao2015, somagols\_inverno2015), }
+                         \AttributeTok{top =} \StringTok{\textquotesingle{}Distribuição da soma dos gols por estação (1)\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{caderno_script_files/figure-latex/unnamed-chunk-21-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gols1 }\OtherTok{\textless{}{-}} \FunctionTok{grid.arrange}\NormalTok{(}\FunctionTok{arrangeGrob}\NormalTok{(somagols\_verao2016, somagols\_inverno2016,}
+\NormalTok{                         somagols\_verao2017, somagols\_inverno2017), }
+                         \AttributeTok{top =} \StringTok{\textquotesingle{}Distribuição da soma dos gols por estação (2)\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{caderno_script_files/figure-latex/unnamed-chunk-21-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gols2 }\OtherTok{\textless{}{-}} \FunctionTok{grid.arrange}\NormalTok{(}\FunctionTok{arrangeGrob}\NormalTok{(somagols\_verao2018, somagols\_inverno2018,}
+\NormalTok{                         somagols\_verao2019, somagols\_inverno2019), }
+                         \AttributeTok{top =} \StringTok{\textquotesingle{}Distribuição da soma dos gols por estação (3)\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{caderno_script_files/figure-latex/unnamed-chunk-21-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gols3 }\OtherTok{\textless{}{-}} \FunctionTok{grid.arrange}\NormalTok{(}\FunctionTok{arrangeGrob}\NormalTok{(somagols\_verao2020, somagols\_inverno2020), }
+                         \AttributeTok{top =} \StringTok{\textquotesingle{}Distribuição da soma dos gols por estação (4)\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{caderno_script_files/figure-latex/unnamed-chunk-21-4.pdf}
+
+\end{document}
