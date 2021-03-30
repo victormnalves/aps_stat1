@@ -1,16 +1,7 @@
----
-title: "APS Estatística I - Analisando os times do Brasil"
-author: Victor Alves
-date: 03/09/2021
-output: pdf_document
----
-# Importando os dados
-```{r}
 library(tidyverse)
 library(janitor)
 library(gridExtra)
 library(viridis)
-library(RColorBrewer)
 theme_set(theme_minimal())
 
 dados <- readxl::read_excel("C:/Users/alves/OneDrive - Insper - Institudo de Ensino e Pesquisa/Estudos/Programação e Data Science/Estat/aps_stat1/APS1/BRA2.xlsx", 
@@ -18,39 +9,17 @@ dados <- readxl::read_excel("C:/Users/alves/OneDrive - Insper - Institudo de Ens
                                           "date", "text", "text", "text", "numeric", 
                                           "numeric", "numeric", "text", "numeric", 
                                           "numeric", "numeric")) %>% clean_names() %>% 
-                            mutate('somagols' = golcasa+golvisitante)
+  mutate('somagols' = golcasa+golvisitante)
 
-```
-
-
-# Manipulando dados
-
-## Considerando a contagem de resultados por time e temporadas.
-
-Contagem de cada resultado por temporada
-```{r}
 resultado_ano <- dados %>% group_by(res, temporada) %>%  
   summarise(n = n())
-```
-
-Computando a quantidade de resultados do time mandante
-```{r}
 resultado_ano_casa <- dados %>% group_by(res, temporada, casa) %>% 
   summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-```
 
-Computando a quantidade de resultados do time visitante
-```{r}
-resultado_ano_visitante <- dados %>% group_by(res, temporada, visitante) %>% 
-  summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-```
-
-Calculando algumas medidas de posição e dispersão da contagem dos resultados por time e por ano
-```{r}
 medidas_res_c <- as.tibble(resultado_ano_casa %>% filter(res == 'C') %>%
                              summarise('media' = mean(n),
-                                      'mediana' = median(n),
-                                      'desvpad' = sd(n)))
+                                       'mediana' = median(n),
+                                       'desvpad' = sd(n)))
 
 medidas_res_v <- as.tibble(resultado_ano_casa %>% filter(res == 'V') %>% 
                              summarise('media' = mean(n),
@@ -63,16 +32,10 @@ medidas_res_e <- as.tibble(resultado_ano_casa %>% filter(res == 'E') %>%
                                        'desvpad' = sd(n)))
 
 medidas_res_casa <- as.tibble(resultado_ano_casa %>% group_by(casa, res, temporada) %>% 
-                      summarise('media' = mean(n),
-                                'mediana' = median(n),
-                                'desvpad' = sd(n)))
+                                summarise('media' = mean(n),
+                                          'mediana' = median(n),
+                                          'desvpad' = sd(n)))
 
-```
-
-## Trabalhando com os climas e estações do ano
-
-Criando vetores com as estações de cada ano
-```{r}
 inverno_2012 <- c(dados %>% select(data) %>% filter(data > '2012-03-20' & data < '2012-09-22'))
 verao_2012 <- dados %>% select(data) %>%  filter(data > '2012-09-22' & data < '2013-03-20')
 
@@ -99,349 +62,278 @@ verao_2019 <- dados %>% select(data) %>%  filter(data > '2019-09-22' & data < '2
 
 inverno_2020 <- dados %>% select(data) %>% filter(data > '2020-03-20' & data < '2020-09-22')
 verao_2020 <- dados %>% select(data) %>%  filter(data > '2020-09-22' & data < '2021-03-20')
-```
 
-Vetor com os estados mais quentes da amostra
-```{r}
 estados_quentes <- c('Alagoas','Bahia','Ceara','Pernambuco','Goias' ,'Rio de Janeiro')
-```
 
-Dataset contendo a contagem de resultados por data a cada período do dia nos estados mais quentes
-```{r}
 climao_quente <- dados %>% group_by(res, data, periodo) %>% filter(estado %in% estados_quentes) %>%
   summarise(n = n())
-```
-
-
-Dataset contendo a contagem de resultados por data a cada período do dia nos estados menos quentes
-```{r}
 climao_gelado <- dados %>% group_by(res, data, periodo) %>% filter(!estado %in% estados_quentes) %>%
   summarise(n = n())
-```
 
-Computando medidas da quantidade de resultados a cada estação por ano de cada estado mais quente
-```{r}
+
 medidas_frio_quentes_2014 <- as.tibble(climao_quente %>% 
-                             filter(data %in% inverno_2014$data) %>% 
-                             summarise('media' = mean(n),
-                                       'mediana' = median(n),
-                                       'desvpad' = sd(n)))
+                                         filter(data %in% inverno_2014$data) %>% 
+                                         summarise('media' = mean(n),
+                                                   'mediana' = median(n),
+                                                   'desvpad' = sd(n)))
 medidas_calor_quentes_2014 <- as.tibble(climao_quente %>% 
-                                 filter(data %in% verao_2014$data) %>% 
-                                 summarise('media' = mean(n),
-                                           'mediana' = median(n),
-                                           'desvpad' = sd(n)))
+                                          filter(data %in% verao_2014$data) %>% 
+                                          summarise('media' = mean(n),
+                                                    'mediana' = median(n),
+                                                    'desvpad' = sd(n)))
 
 medidas_frio_quentes_2015 <- as.tibble(climao_quente %>% 
-                                 filter(data %in% inverno_2015$data) %>% 
-                                 summarise('media' = mean(n),
-                                           'mediana' = median(n),
-                                           'desvpad' = sd(n)))
+                                         filter(data %in% inverno_2015$data) %>% 
+                                         summarise('media' = mean(n),
+                                                   'mediana' = median(n),
+                                                   'desvpad' = sd(n)))
 medidas_calor_quentes_2015 <- as.tibble(climao_quente %>% 
-                                  filter(data %in% verao_2015$data) %>% 
-                                  summarise('media' = mean(n),
-                                            'mediana' = median(n),
-                                            'desvpad' = sd(n)))
+                                          filter(data %in% verao_2015$data) %>% 
+                                          summarise('media' = mean(n),
+                                                    'mediana' = median(n),
+                                                    'desvpad' = sd(n)))
 
 medidas_frio_quentes_2016 <- as.tibble(climao_quente %>% 
-                                 filter(data %in% inverno_2016$data) %>% 
-                                 summarise('media' = mean(n),
-                                           'mediana' = median(n),
-                                           'desvpad' = sd(n)))
-medidas_calor_quentes_2016 <- as.tibble(climao_quente %>% 
-                                  filter(data %in% verao_2016$data) %>% 
-                                  summarise('media' = mean(n),
-                                            'mediana' = median(n),
-                                            'desvpad' = sd(n)))
-medidas_frio_quentes_2017 <- as.tibble(climao_quente %>% 
-                                 filter(data %in% inverno_2017$data) %>% 
-                                 summarise('media' = mean(n),
-                                           'mediana' = median(n),
-                                           'desvpad' = sd(n)))
-medidas_calor_quentes_2017 <- as.tibble(climao_quente %>% 
-                                  filter(data %in% verao_2017$data) %>% 
-                                  summarise('media' = mean(n),
-                                            'mediana' = median(n),
-                                            'desvpad' = sd(n)))
-medidas_frio_quentes_2018 <- as.tibble(climao_quente %>% 
-                                 filter(data %in% inverno_2018$data) %>% 
-                                 summarise('media' = mean(n),
-                                           'mediana' = median(n),
-                                           'desvpad' = sd(n)))
-medidas_calor_quentes_2018 <- as.tibble(climao_quente %>% 
-                                  filter(data %in% verao_2018$data) %>% 
-                                  summarise('media' = mean(n),
-                                            'mediana' = median(n),
-                                            'desvpad' = sd(n)))
-medidas_frio_quentes_2019 <- as.tibble(climao_quente %>% 
-                                 filter(data %in% inverno_2019$data) %>% 
-                                 summarise('media' = mean(n),
-                                           'mediana' = median(n),
-                                           'desvpad' = sd(n)))
-medidas_calor_quentes_2019 <- as.tibble(climao_quente %>% 
-                                  filter(data %in% verao_2019$data) %>% 
-                                  summarise('media' = mean(n),
-                                            'mediana' = median(n),
-                                            'desvpad' = sd(n)))
-medidas_frio_quentes_2020 <- as.tibble(climao_quente %>% 
-                                 filter(data %in% inverno_2020$data) %>% 
-                                 summarise('media' = mean(n),
-                                           'mediana' = median(n),
-                                           'desvpad' = sd(n)))
-medidas_calor_quentes_2020 <- as.tibble(climao_quente %>% 
-                                  filter(data %in% verao_2020$data) %>% 
-                                  summarise('media' = mean(n),
-                                            'mediana' = median(n),
-                                            'desvpad' = sd(n)))
-
-```
-
-Computando medidas da quantidade de resultados a cada estação por ano de cada estado menos quente
-```{r}
-medidas_frio_gelado_2014 <- as.tibble(climao_gelado %>% 
-                                         filter(data %in% inverno_2014$data) %>% 
+                                         filter(data %in% inverno_2016$data) %>% 
                                          summarise('media' = mean(n),
                                                    'mediana' = median(n),
                                                    'desvpad' = sd(n)))
-medidas_calor_gelado_2014 <- as.tibble(climao_gelado %>% 
-                                          filter(data %in% verao_2014$data) %>% 
+medidas_calor_quentes_2016 <- as.tibble(climao_quente %>% 
+                                          filter(data %in% verao_2016$data) %>% 
                                           summarise('media' = mean(n),
                                                     'mediana' = median(n),
                                                     'desvpad' = sd(n)))
+medidas_frio_quentes_2017 <- as.tibble(climao_quente %>% 
+                                         filter(data %in% inverno_2017$data) %>% 
+                                         summarise('media' = mean(n),
+                                                   'mediana' = median(n),
+                                                   'desvpad' = sd(n)))
+medidas_calor_quentes_2017 <- as.tibble(climao_quente %>% 
+                                          filter(data %in% verao_2017$data) %>% 
+                                          summarise('media' = mean(n),
+                                                    'mediana' = median(n),
+                                                    'desvpad' = sd(n)))
+medidas_frio_quentes_2018 <- as.tibble(climao_quente %>% 
+                                         filter(data %in% inverno_2018$data) %>% 
+                                         summarise('media' = mean(n),
+                                                   'mediana' = median(n),
+                                                   'desvpad' = sd(n)))
+medidas_calor_quentes_2018 <- as.tibble(climao_quente %>% 
+                                          filter(data %in% verao_2018$data) %>% 
+                                          summarise('media' = mean(n),
+                                                    'mediana' = median(n),
+                                                    'desvpad' = sd(n)))
+medidas_frio_quentes_2019 <- as.tibble(climao_quente %>% 
+                                         filter(data %in% inverno_2019$data) %>% 
+                                         summarise('media' = mean(n),
+                                                   'mediana' = median(n),
+                                                   'desvpad' = sd(n)))
+medidas_calor_quentes_2019 <- as.tibble(climao_quente %>% 
+                                          filter(data %in% verao_2019$data) %>% 
+                                          summarise('media' = mean(n),
+                                                    'mediana' = median(n),
+                                                    'desvpad' = sd(n)))
+medidas_frio_quentes_2020 <- as.tibble(climao_quente %>% 
+                                         filter(data %in% inverno_2020$data) %>% 
+                                         summarise('media' = mean(n),
+                                                   'mediana' = median(n),
+                                                   'desvpad' = sd(n)))
+medidas_calor_quentes_2020 <- as.tibble(climao_quente %>% 
+                                          filter(data %in% verao_2020$data) %>% 
+                                          summarise('media' = mean(n),
+                                                    'mediana' = median(n),
+                                                    'desvpad' = sd(n)))
+
+medidas_frio_gelado_2014 <- as.tibble(climao_gelado %>% 
+                                        filter(data %in% inverno_2014$data) %>% 
+                                        summarise('media' = mean(n),
+                                                  'mediana' = median(n),
+                                                  'desvpad' = sd(n)))
+medidas_calor_gelado_2014 <- as.tibble(climao_gelado %>% 
+                                         filter(data %in% verao_2014$data) %>% 
+                                         summarise('media' = mean(n),
+                                                   'mediana' = median(n),
+                                                   'desvpad' = sd(n)))
 
 medidas_frio_gelado_2015 <- as.tibble(climao_gelado %>% 
-                                         filter(data %in% inverno_2015$data) %>% 
+                                        filter(data %in% inverno_2015$data) %>% 
+                                        summarise('media' = mean(n),
+                                                  'mediana' = median(n),
+                                                  'desvpad' = sd(n)))
+medidas_calor_gelado_2015 <- as.tibble(climao_gelado %>% 
+                                         filter(data %in% verao_2015$data) %>% 
                                          summarise('media' = mean(n),
                                                    'mediana' = median(n),
                                                    'desvpad' = sd(n)))
-medidas_calor_gelado_2015 <- as.tibble(climao_gelado %>% 
-                                          filter(data %in% verao_2015$data) %>% 
-                                          summarise('media' = mean(n),
-                                                    'mediana' = median(n),
-                                                    'desvpad' = sd(n)))
 
 medidas_frio_gelado_2016 <- as.tibble(climao_gelado %>% 
-                                         filter(data %in% inverno_2016$data) %>% 
-                                         summarise('media' = mean(n),
-                                                   'mediana' = median(n),
-                                                   'desvpad' = sd(n)))
+                                        filter(data %in% inverno_2016$data) %>% 
+                                        summarise('media' = mean(n),
+                                                  'mediana' = median(n),
+                                                  'desvpad' = sd(n)))
 medidas_calor_gelado_2016 <- as.tibble(climao_gelado %>% 
-                                          filter(data %in% verao_2016$data) %>% 
-                                          summarise('media' = mean(n),
-                                                    'mediana' = median(n),
-                                                    'desvpad' = sd(n)))
+                                         filter(data %in% verao_2016$data) %>% 
+                                         summarise('media' = mean(n),
+                                                   'mediana' = median(n),
+                                                   'desvpad' = sd(n)))
 medidas_frio_gelado_2017 <- as.tibble(climao_gelado %>% 
-                                         filter(data %in% inverno_2017$data) %>% 
-                                         summarise('media' = mean(n),
-                                                   'mediana' = median(n),
-                                                   'desvpad' = sd(n)))
+                                        filter(data %in% inverno_2017$data) %>% 
+                                        summarise('media' = mean(n),
+                                                  'mediana' = median(n),
+                                                  'desvpad' = sd(n)))
 medidas_calor_gelado_2017 <- as.tibble(climao_gelado %>% 
-                                          filter(data %in% verao_2017$data) %>% 
-                                          summarise('media' = mean(n),
-                                                    'mediana' = median(n),
-                                                    'desvpad' = sd(n)))
+                                         filter(data %in% verao_2017$data) %>% 
+                                         summarise('media' = mean(n),
+                                                   'mediana' = median(n),
+                                                   'desvpad' = sd(n)))
 medidas_frio_gelado_2018 <- as.tibble(climao_gelado %>% 
-                                         filter(data %in% inverno_2018$data) %>% 
-                                         summarise('media' = mean(n),
-                                                   'mediana' = median(n),
-                                                   'desvpad' = sd(n)))
+                                        filter(data %in% inverno_2018$data) %>% 
+                                        summarise('media' = mean(n),
+                                                  'mediana' = median(n),
+                                                  'desvpad' = sd(n)))
 medidas_calor_gelado_2018 <- as.tibble(climao_gelado %>% 
-                                          filter(data %in% verao_2018$data) %>% 
-                                          summarise('media' = mean(n),
-                                                    'mediana' = median(n),
-                                                    'desvpad' = sd(n)))
+                                         filter(data %in% verao_2018$data) %>% 
+                                         summarise('media' = mean(n),
+                                                   'mediana' = median(n),
+                                                   'desvpad' = sd(n)))
 medidas_frio_gelado_2019 <- as.tibble(climao_gelado %>% 
-                                         filter(data %in% inverno_2019$data) %>% 
-                                         summarise('media' = mean(n),
-                                                   'mediana' = median(n),
-                                                   'desvpad' = sd(n)))
+                                        filter(data %in% inverno_2019$data) %>% 
+                                        summarise('media' = mean(n),
+                                                  'mediana' = median(n),
+                                                  'desvpad' = sd(n)))
 medidas_calor_gelado_2019 <- as.tibble(climao_gelado %>% 
-                                          filter(data %in% verao_2019$data) %>% 
-                                          summarise('media' = mean(n),
-                                                    'mediana' = median(n),
-                                                    'desvpad' = sd(n)))
-medidas_frio_gelado_2020 <- as.tibble(climao_gelado %>% 
-                                         filter(data %in% inverno_2020$data) %>% 
+                                         filter(data %in% verao_2019$data) %>% 
                                          summarise('media' = mean(n),
                                                    'mediana' = median(n),
                                                    'desvpad' = sd(n)))
+medidas_frio_gelado_2020 <- as.tibble(climao_gelado %>% 
+                                        filter(data %in% inverno_2020$data) %>% 
+                                        summarise('media' = mean(n),
+                                                  'mediana' = median(n),
+                                                  'desvpad' = sd(n)))
 medidas_calor_gelado_2020 <- as.tibble(climao_gelado %>% 
-                                          filter(data %in% verao_2020$data) %>% 
-                                          summarise('media' = mean(n),
-                                                    'mediana' = median(n),
-                                                    'desvpad' = sd(n)))
-
-```
+                                         filter(data %in% verao_2020$data) %>% 
+                                         summarise('media' = mean(n),
+                                                   'mediana' = median(n),
+                                                   'desvpad' = sd(n)))
 
 
-Medidas da soma de gols em cada estado (desconsiderando qual mais quente) a cada ano por estação do ano
-```{r}
 medidas_sg_inverno_2014 <- as.tibble(dados %>% group_by(estado, periodo) %>%
-                                         filter(data %in% inverno_2014$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                       filter(data %in% inverno_2014$data) %>% 
+                                       summarise('media' = mean(somagols),
+                                                 'mediana' = median(somagols),
+                                                 'desvpad' = sd(somagols)))
 medidas_sg_verao_2014 <- as.tibble(dados %>% group_by(estado, periodo) %>%
-                                          filter(data %in% verao_2014$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                     filter(data %in% verao_2014$data) %>% 
+                                     summarise('media' = mean(somagols),
+                                               'mediana' = median(somagols),
+                                               'desvpad' = sd(somagols)))
 
 medidas_sg_inverno_2015 <- as.tibble(dados %>% group_by(estado, periodo) %>%
-                                         filter(data %in% inverno_2015$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                       filter(data %in% inverno_2015$data) %>% 
+                                       summarise('media' = mean(somagols),
+                                                 'mediana' = median(somagols),
+                                                 'desvpad' = sd(somagols)))
 medidas_sg_verao_2015 <- as.tibble(dados %>% group_by(estado, periodo) %>%
-                                          filter(data %in% verao_2015$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                     filter(data %in% verao_2015$data) %>% 
+                                     summarise('media' = mean(somagols),
+                                               'mediana' = median(somagols),
+                                               'desvpad' = sd(somagols)))
 
 medidas_sg_inverno_2016 <- as.tibble(dados %>% group_by(estado, periodo) %>%
-                                         filter(data %in% inverno_2016$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                       filter(data %in% inverno_2016$data) %>% 
+                                       summarise('media' = mean(somagols),
+                                                 'mediana' = median(somagols),
+                                                 'desvpad' = sd(somagols)))
 medidas_sg_verao_2016 <- as.tibble(dados %>% group_by(estado, periodo) %>%
-                                          filter(data %in% verao_2016$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                     filter(data %in% verao_2016$data) %>% 
+                                     summarise('media' = mean(somagols),
+                                               'mediana' = median(somagols),
+                                               'desvpad' = sd(somagols)))
 
 medidas_sg_inverno_2017 <- as.tibble(dados %>% group_by(estado, periodo) %>%
-                                         filter(data %in% inverno_2017$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                       filter(data %in% inverno_2017$data) %>% 
+                                       summarise('media' = mean(somagols),
+                                                 'mediana' = median(somagols),
+                                                 'desvpad' = sd(somagols)))
 medidas_sg_verao_2017 <- as.tibble(dados %>% group_by(estado, periodo) %>%
-                                          filter(data %in% verao_2017$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                     filter(data %in% verao_2017$data) %>% 
+                                     summarise('media' = mean(somagols),
+                                               'mediana' = median(somagols),
+                                               'desvpad' = sd(somagols)))
 medidas_sg_inverno_2018 <- as.tibble(dados %>% group_by(estado, periodo) %>%
-                                         filter(data %in% inverno_2018$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                       filter(data %in% inverno_2018$data) %>% 
+                                       summarise('media' = mean(somagols),
+                                                 'mediana' = median(somagols),
+                                                 'desvpad' = sd(somagols)))
 medidas_sg_verao_2018 <- as.tibble(dados %>% group_by(estado, periodo) %>%
-                                          filter(data %in% verao_2018$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                     filter(data %in% verao_2018$data) %>% 
+                                     summarise('media' = mean(somagols),
+                                               'mediana' = median(somagols),
+                                               'desvpad' = sd(somagols)))
 medidas_sg_inverno_2019 <- as.tibble(dados %>% group_by(estado, periodo) %>%
-                                         filter(data %in% inverno_2019$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                       filter(data %in% inverno_2019$data) %>% 
+                                       summarise('media' = mean(somagols),
+                                                 'mediana' = median(somagols),
+                                                 'desvpad' = sd(somagols)))
 medidas_sg_verao_2019 <- as.tibble(dados %>% group_by(estado, periodo) %>%
-                                          filter(data %in% verao_2019$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                     filter(data %in% verao_2019$data) %>% 
+                                     summarise('media' = mean(somagols),
+                                               'mediana' = median(somagols),
+                                               'desvpad' = sd(somagols)))
 medidas_sg_inverno_2020 <- as.tibble(dados %>% group_by(estado, periodo) %>%
-                                         filter(data %in% inverno_2020$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                       filter(data %in% inverno_2020$data) %>% 
+                                       summarise('media' = mean(somagols),
+                                                 'mediana' = median(somagols),
+                                                 'desvpad' = sd(somagols)))
 medidas_sg_verao_2020 <- as.tibble(dados %>% group_by(estado, periodo) %>%
-                                          filter(data %in% verao_2020$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
-
-```
+                                     filter(data %in% verao_2020$data) %>% 
+                                     summarise('media' = mean(somagols),
+                                               'mediana' = median(somagols),
+                                               'desvpad' = sd(somagols)))
 
 
-## Trabalhando com a soma dos gols por período do dia
 
-
-Dataset contendo a soma dos gols por estado e por período
-```{r}
 somagols_estado_periodo <- dados %>% group_by(somagols, estado, periodo)
-```
 
-Medidas das soma de gols por período e por estado
-```{r}
 medidas_gols_estado_periodo <- as.tibble(somagols_estado_periodo %>% group_by(estado, periodo) %>% 
-                                  summarise('media' = mean(somagols),
-                                            'mediana' = median(somagols),
-                                            'desvpad' = sd(somagols)))
-```
-Medidas da soma de gols por estado
-```{r}
+                                           summarise('media' = mean(somagols),
+                                                     'mediana' = median(somagols),
+                                                     'desvpad' = sd(somagols)))
 medidas_gols_estado <- as.tibble(somagols_estado_periodo %>% group_by(estado) %>% 
-                                  summarise('media' = mean(somagols),
-                                            'mediana' = median(somagols),
-                                            'desvpad' = sd(somagols)))
-```
+                                   summarise('media' = mean(somagols),
+                                             'mediana' = median(somagols),
+                                             'desvpad' = sd(somagols)))
 
 
 
-## Trabalhando com os gols da casa quando ele ganha
 
-Calculando medidas dos gols da casa e visitante, por ano
-```{r}
 medidas_gols_ano <- as.tibble(dados %>% group_by(temporada)%>% 
-                                  summarise('media casa' = mean(golcasa),
-                                            'mediana casa' = median(golcasa),
-                                            'desvpad casa' = sd(golcasa),
-                                            'media visitante' = mean(golvisitante),
-                                            'mediana visitante' = median(golvisitante),
-                                            'desvpad visitante' = sd(golvisitante)))
+                                summarise('media casa' = mean(golcasa),
+                                          'mediana casa' = median(golcasa),
+                                          'desvpad casa' = sd(golcasa),
+                                          'media visitante' = mean(golvisitante),
+                                          'mediana visitante' = median(golvisitante),
+                                          'desvpad visitante' = sd(golvisitante)))
 
 
-```
-
-
-## Gerando frequências
-
-Obtendo a frequência de jogos por período do dia
-```{r}
 dados %>% group_by(periodo) %>% summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-```
-
-Obtendo a frequência de jogos por estado
-```{r}
 dados %>% group_by(estado) %>% summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-```
-
-Obtendo a frequência de jogos por temporada por período
-```{r}
 dados %>% group_by(periodo, temporada) %>% summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-```
-Obtendo a frequência de jogos por temporada por estado
-```{r}
 dados %>% group_by(periodo, estado) %>% summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-```
-
-Obtendo a frequência de gols totais por estado
-```{r}
 dados %>% group_by(somagols) %>% summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-```
-
-Obtendo a frequência de gols totais por estado
-```{r}
 dados %>% group_by(somagols, estado) %>% summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
-```
 
 
-# Plots
-## Plot dos resultados ao longo dos anos
 
-Distribuição da quantidade dos resultados a cada temporada
-```{r}
+
 dist_res_2020 <- resultado_ano %>% 
-    group_by(temporada) %>%
-    ggplot(aes(temporada, n, colour = res)) + geom_point() +
-    scale_color_viridis(discrete = TRUE) +
-    ggtitle('Quantidade de vitórias do mandante por temporada') + 
-    xlab('Temporada') + ylab('Quantidade') + labs(col = 'Resultado') + 
-    ggeasy::easy_center_title()
-```
-
-Distribuição da quantidade de vitórias da casa por temporada
-```{r}
+  group_by(temporada) %>%
+  ggplot(aes(temporada, n, colour = res)) + geom_point() +
+  scale_color_viridis(discrete = TRUE) +
+  ggtitle('Quantidade de vitórias do mandante por temporada') + 
+  xlab('Temporada') + ylab('Quantidade') + labs(col = 'Resultado') + 
+  ggeasy::easy_center_title()
 dist_c_casa_ano <- resultado_ano_casa %>% filter(res == 'C') %>%
   mutate(casa = fct_reorder(casa, n)) %>%
   group_by(casa) %>%
@@ -449,11 +341,8 @@ dist_c_casa_ano <- resultado_ano_casa %>% filter(res == 'C') %>%
   scale_color_viridis(discrete = FALSE) +
   ggtitle('Quantidade de vitórias da casa por ano') + 
   xlab('Temporada') + ylab('Time') + labs(col = 'Quantidade') + 
-   ggeasy::easy_center_title()
-```
+  ggeasy::easy_center_title()
 
-Distribuição da quantidade de derrotas da casa por temporada
-```{r}
 dist_v_casa_ano <- resultado_ano_casa %>% filter(res == 'V') %>%
   mutate(casa = fct_reorder(casa, n)) %>%
   group_by(casa) %>%
@@ -461,21 +350,11 @@ dist_v_casa_ano <- resultado_ano_casa %>% filter(res == 'V') %>%
   scale_color_viridis(discrete = FALSE) +
   ggtitle('Quantidade de derrotas da casa por ano') + 
   xlab('Temporada') + ylab('Time') + labs(col = 'Quantidade') + 
-   ggeasy::easy_center_title()
-```
-
-Unindo a distribuição das vitórias e derrotas do time mandante
-```{r}
+  ggeasy::easy_center_title()
 grid.arrange(arrangeGrob(dist_c_casa_ano, dist_v_casa_ano), 
-                         top = 'Distribuição da quantidade de resultados do time mandante')
-```
+             top = 'Distribuição da quantidade de resultados do time mandante')
 
 
-
-## Plot de gols
-
-Distribuição da média de gols por estado e período
-```{r}
 dist_med_gols_periodo <- medidas_gols_estado_periodo %>% 
   mutate(estado = fct_reorder(estado, media)) %>%
   group_by(estado) %>%
@@ -483,11 +362,7 @@ dist_med_gols_periodo <- medidas_gols_estado_periodo %>%
   scale_color_viridis(discrete = TRUE) +
   ggtitle('Média de gols a tarde por estado') + 
   xlab('Média de gols') + ylab('Estado') +
-   ggeasy::easy_center_title()
-```
-
-Distribuição da média de gols por estado
-```{r}
+  ggeasy::easy_center_title()
 dist_med_gols_estado <- medidas_gols_estado %>% 
   mutate(estado = fct_reorder(estado, media)) %>%
   ggplot(aes(media, estado, colour = media)) + geom_point() +
@@ -495,43 +370,26 @@ dist_med_gols_estado <- medidas_gols_estado %>%
   ggtitle('Media de gols da casa por estado') + 
   xlab('Ano') + ylab('Media de gols') + 
   theme(legend.position="none")
-   ggeasy::easy_center_title()
-```
+ggeasy::easy_center_title()
 
 
-## Plots medias gol por estado e média gol por temporada
-
-Distribuição dos gols do mandante por ano
-```{r}
 medias_gols_casa_ano <- medidas_gols_ano %>%
   ggplot(aes(temporada, `media casa`, colour = `media casa`)) + geom_point() +
   scale_color_viridis(discrete = FALSE) +
   ggtitle('Media de gols da casa por ano') + 
   xlab('Ano') + ylab('Media de gols') +
   theme(legend.position="none")
-   ggeasy::easy_center_title()
-
-```
-
-Distribuição dos gols do visitante por ano
-```{r}
+ggeasy::easy_center_title()
 medias_gols_visitante_ano <- medidas_gols_ano %>%
   ggplot(aes(temporada, `media visitante`, colour = `media visitante`)) + geom_point() +
   scale_color_viridis(discrete = FALSE) +
   ggtitle('Media de gols do visitante por ano') + 
   xlab('Ano') + ylab('Media de gols') +
   theme(legend.position="none")
-   ggeasy::easy_center_title()
-```
-
-Unindo os plots da média de gols da casa e do visitante
-```{r}
+ggeasy::easy_center_title()
 grid.arrange(arrangeGrob(medias_gols_casa_ano, medias_gols_visitante_ano), 
-                         top = 'Distribuição da média de gols da casa e do visitante por temporada')
-```
+             top = 'Distribuição da média de gols da casa e do visitante por temporada')
 
-Distribuição da soma de gols por estado
-```{r}
 dist_sg_al <- dados %>% filter(estado == 'Alagoas') %>%
   ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
   geom_histogram(color = 'black', breaks = seq(0,10, 1)) + xlim(0, 4) +
@@ -621,24 +479,16 @@ dist_sg_sp <- dados %>% filter(estado == 'Sao Paulo') %>%
   xlab('Soma dos gols por jogos') + ylab('Densidade') + labs(fill = 'Período') +
   ggeasy::easy_center_title() 
 
-```
-
-Unindo os plots da soma de gols por estado
-```{r}
 dist_sg1 <- grid.arrange(arrangeGrob(dist_sg_al, dist_sg_ba, dist_sg_ce, 
-                         dist_sg_go,dist_sg_mg, dist_sg_pb), 
+                                     dist_sg_go,dist_sg_mg, dist_sg_pb), 
                          top = 'Distribuição da quantidade total de gols por estado e período (1)')
 
 dist_sg2 <- grid.arrange(arrangeGrob(dist_sg_pr, dist_sg_rj, dist_sg_rs,
-                         dist_sg_sc, dist_sg_sp, 
-                         top = 'Distribuição da quantidade total de gols por estado e período (2)'))
-```
+                                     dist_sg_sc, dist_sg_sp, 
+                                     top = 'Distribuição da quantidade total de gols por estado e período (2)'))
 
 
-## Plots dos resultados por estação do ano
 
-Distribuição da quantidade de resultados nos estados "não quentes"
-```{r}
 dist_frio_gelados2012 <- climao_gelado %>% 
   filter(data %in% inverno_2012$data) %>%
   ggplot(aes(res, fill = res)) + 
@@ -809,10 +659,9 @@ dist_calor_gelados2020 <- climao_gelado %>%
   xlab('Quantidade de resultados') + ylab('Ocorrências') + labs(fill ='Resultado') +
   ggeasy::easy_center_title()
 
-```
 
-Distribuição da quantidade de resultados nos estados mais quentes
-```{r}
+
+
 dist_frio_quentes2012 <- climao_quente %>% 
   filter(data %in% inverno_2012$data) %>%
   ggplot(aes(res, fill = res)) + 
@@ -984,42 +833,37 @@ dist_calor_quentes2020 <- climao_quente %>%
   xlab('Quantidade de resultados') + ylab('Ocorrências') + labs(fill ='Resultado') +
   ggeasy::easy_center_title() 
 
-```
 
-Unindo os plots para comparação de resultados ano-ano clima-clima
-```{r}
 dist_res2012 <- grid.arrange(arrangeGrob(dist_calor_gelados2012, dist_calor_quentes2012,
-                         dist_frio_gelados2012, dist_frio_quentes2012), 
-                         top = 'Distribuição dos resultados em 2012')
+                                         dist_frio_gelados2012, dist_frio_quentes2012), 
+                             top = 'Distribuição dos resultados em 2012')
 dist_res2013 <- grid.arrange(arrangeGrob(dist_calor_gelados2013, dist_calor_quentes2013,
-                         dist_frio_gelados2013, dist_frio_quentes2013), 
-                         top = 'Distribuição dos resultados em 2013')
+                                         dist_frio_gelados2013, dist_frio_quentes2013), 
+                             top = 'Distribuição dos resultados em 2013')
 dist_res2014 <- grid.arrange(arrangeGrob(dist_calor_gelados2014, dist_calor_quentes2014,
-                         dist_frio_gelados2014, dist_frio_quentes2014), 
-                         top = 'Distribuição dos resultados em 2014')
+                                         dist_frio_gelados2014, dist_frio_quentes2014), 
+                             top = 'Distribuição dos resultados em 2014')
 dist_res2015 <- grid.arrange(arrangeGrob(dist_calor_gelados2015, dist_calor_quentes2015,
-                         dist_frio_gelados2015, dist_frio_quentes2015), 
-                         top = 'Distribuição dos resultados em 2015')
+                                         dist_frio_gelados2015, dist_frio_quentes2015), 
+                             top = 'Distribuição dos resultados em 2015')
 dist_res2016 <- grid.arrange(arrangeGrob(dist_calor_gelados2016, dist_calor_quentes2016,
-                         dist_frio_gelados2016, dist_frio_quentes2016), 
-                         top = 'Distribuição dos resultados em 2016')
+                                         dist_frio_gelados2016, dist_frio_quentes2016), 
+                             top = 'Distribuição dos resultados em 2016')
 dist_res2017 <- grid.arrange(arrangeGrob(dist_calor_gelados2017, dist_calor_quentes2017,
-                         dist_frio_gelados2017, dist_frio_quentes2017), 
-                         top = 'Distribuição dos resultados em 2017')
+                                         dist_frio_gelados2017, dist_frio_quentes2017), 
+                             top = 'Distribuição dos resultados em 2017')
 dist_res2018 <- grid.arrange(arrangeGrob(dist_calor_gelados2018, dist_calor_quentes2018,
-                         dist_frio_gelados2018, dist_frio_quentes2018), 
-                         top = 'Distribuição dos resultados em 2018')
+                                         dist_frio_gelados2018, dist_frio_quentes2018), 
+                             top = 'Distribuição dos resultados em 2018')
 dist_res2019 <- grid.arrange(arrangeGrob(dist_calor_gelados2019, dist_frio_quentes2019,
-                         dist_frio_gelados2019, dist_frio_quentes2019), 
-                         top = 'Distribuição dos resultados em 2019')
+                                         dist_frio_gelados2019, dist_frio_quentes2019), 
+                             top = 'Distribuição dos resultados em 2019')
 dist_res2020 <- grid.arrange(arrangeGrob(dist_calor_gelados2020, dist_calor_quentes2020,
-                         dist_frio_gelados2020, dist_frio_quentes2020), 
-                         top = 'Distribuição dos resultados em 2020')
+                                         dist_frio_gelados2020, dist_frio_quentes2020), 
+                             top = 'Distribuição dos resultados em 2020')
 
-```
 
-Plot da soma de gols por estação
-```{r}
+
 somagols_inverno2014 <- medidas_sg_inverno_2014 %>% mutate(estado = fct_reorder(estado, media)) %>% 
   group_by(estado) %>%
   ggplot(aes(media, estado, colour = periodo)) + geom_point() +
@@ -1140,17 +984,15 @@ somagols_verao2020 <- medidas_sg_verao_2020 %>% mutate(estado = fct_reorder(esta
 
 
 gols0 <- grid.arrange(arrangeGrob(somagols_verao2014, somagols_inverno2014,
-                         somagols_verao2015, somagols_inverno2015), 
-                         top = 'Distribuição da soma dos gols por estação (1)')
+                                  somagols_verao2015, somagols_inverno2015), 
+                      top = 'Distribuição da soma dos gols por estação (1)')
 gols1 <- grid.arrange(arrangeGrob(somagols_verao2016, somagols_inverno2016,
-                         somagols_verao2017, somagols_inverno2017), 
-                         top = 'Distribuição da soma dos gols por estação (2)')
+                                  somagols_verao2017, somagols_inverno2017), 
+                      top = 'Distribuição da soma dos gols por estação (2)')
 gols2 <- grid.arrange(arrangeGrob(somagols_verao2018, somagols_inverno2018,
-                         somagols_verao2019, somagols_inverno2019), 
-                         top = 'Distribuição da soma dos gols por estação (3)')
+                                  somagols_verao2019, somagols_inverno2019), 
+                      top = 'Distribuição da soma dos gols por estação (3)')
 gols3 <- grid.arrange(arrangeGrob(somagols_verao2020, somagols_inverno2020), 
-                         top = 'Distribuição da soma dos gols por estação (4)')
+                      top = 'Distribuição da soma dos gols por estação (4)')
 
 
-
-```
