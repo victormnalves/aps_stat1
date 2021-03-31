@@ -1,0 +1,54 @@
+---
+title: "Relatório APS I"
+author: "Victor Alves"
+date: "30/03/2021"
+output: pdf_document
+---
+```{r}
+library(tidyverse)
+library(janitor)
+library(gridExtra)
+library(viridis)
+library(RColorBrewer)
+theme_set(theme_minimal())
+```
+
+
+# Introdução
+
+Para realizarmos a análise dos dados presentes na base de dados denominada BRA2 utilizaremos a linguagem de programação estatística R e os conhecimentos de análise de dados adquiridos durante as aulas e monitorias. Além do R base, utilizaremos pacotes adicionais, como Tidyverse.
+
+# Iniciando a análise
+
+O primeiro passo para análise dos dados foi importar os dados com o pacote readxl, além disso, a base de dados foi manipulada com Tidyverse para a obtenção da variável _somagols_ que determinará a soma de cada partida, e que será posteriormente utilizada para verificar uma premissa dos fãs de futebol.
+
+## Repondendo à primeira pergunta: No ano de 2020 as equipes mandantes foram prejudicadas?
+
+Para responder a essa questão foram criados _datasets_ que receberam a quantidade de vitórias do mandante e a quantidade de vitórias do visitante. Ademais, foram criados _datasets_ com a quantidade de gols do time mandante e do time visitante quando cada um vencia, respectivamente. No que tange às variáveis de gols, foram tiradas medidas de posição e dispersão de cada uma.
+
+### Observando os resultados
+
+```{r}
+resultado_ano %>% 
+    group_by(temporada) %>%
+    ggplot(aes(temporada, n, colour = res)) + geom_point() +
+    scale_color_viridis(discrete = TRUE) +
+    ggtitle('Quantidade de resultados por temporada') + 
+    xlab('Temporada') + ylab('Quantidade') + labs(col = 'Resultado') + 
+    ggeasy::easy_center_title()
+```
+
+O gráfico em questão refere-se a __quantidade total__ de resultados que favoreceram o mandante, visitante ou nenhum dos dois. Observando o gráfico, nota-se que em 2020 ouve de fato uma redução da quantidade total de vitórias do mandante, assim como (já esperado, logicamente), um aumento das vitórias do visitante. Contudo, cabe um pequeno questionamento quanto ao gráfico: observe que em 2017 as vitórias da casa foram as menores em toda a linha do tempo, o que pode ter acontecido em 2017? Dado que não tivemos nenhuma pandemia em 2017, a tentativa de inferir a redução à pandemia não aparenta-se produnte, podendo os resultados terem sido afetados por outro motivo (advindo ou não da pandemia).
+
+```{r}
+grid.arrange(arrangeGrob(medias_gols_casa_ano, medias_gols_visitante_ano), 
+                         top = 'Distribuição da média de gols da casa e do visitante por temporada')
+```
+Foi analisada também a quantidade média de gols do mandante e do visitante ao longo dos anos. Note que em 2020 houve um aumento da média de gols da casa, sendo a maior média em relação aos três anos anteriores.
+Quanto aos gols do visitante, nota-se um aumento. Contudo, esse aumento não superou o aumento dos gols do visitante. Também é importante ressaltarmos que houve um aumento significativo quando comparado à média de gols de 2019.
+Nesta comparação, volta a questão sobre o ano de 2017. Note que há uma queda dos gols médios do mandante (cerca de 0.12 pontos médios) e um aumento na média de gols do visitante (cerca de 0.2 pontos médios).
+
+#### É possível dizer que o mandante foi prejudicado?
+De fato é notável que o mandante foi prejudicado, tanto na sua quantidade média de gols, tanto na quantidade total de vitórias. Entretanto, cabe uma análise mais rebuscada (talvez utilizando técnicas estatísticas mais fortes) para inferir que o real motivo foi a pandemia. Lembre-se que houve prejuízo em 2017, o que ocorreu naquele ano?
+
+##
