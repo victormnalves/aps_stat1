@@ -640,7 +640,7 @@ dist_frio_quentes2012 <- dados %>% group_by(res, data, periodo) %>%
   filter(data %in% inverno_2012$data) %>%
   ggplot(aes(res, fill = res)) + 
   geom_bar(color = 'black') + 
-  scale_fill_viridis(discrete = TRUE) +
+  scale_fill_brewer(palette='Blues') +
   ggtitle('Distribuição de resultado nos dias mais frios de 2012') +
   xlab('Quantidade de resultados') + ylab('Frequência') + labs(fill ='Resultado') +
   ggeasy::easy_center_title()
@@ -649,7 +649,7 @@ dist_calor_quentes2012 <- dados %>% group_by(res, data, periodo) %>%
   filter(data %in% verao_2012$data) %>%
   ggplot(aes(res, fill = res)) + 
   geom_bar(color = 'black') + 
-  scale_fill_viridis(discrete = TRUE) +
+  scale_fill_brewer(palette='Blues') +
   ggtitle('Distribuição de resultado nos dias mais quentes  de 2012') +
   xlab('Quantidade de resultados') + ylab('Frequência') + labs(fill ='Resultado') +
   ggeasy::easy_center_title()
@@ -659,7 +659,7 @@ dist_frio_quentes2013 <- dados %>% group_by(res, data, periodo) %>%
   filter(data %in% inverno_2013$data) %>%
   ggplot(aes(res, fill = res)) + 
   geom_bar(color = 'black') + 
-  scale_fill_viridis(discrete = TRUE) +
+  scale_fill_brewer(palette='Blues') +
   ggtitle('Distribuição de resultado nos dias mais frios de 2013') +
   xlab('Quantidade de resultados') + ylab('Frequência') + labs(fill ='Resultado') +
   ggeasy::easy_center_title()
@@ -668,7 +668,7 @@ dist_calor_quentes2013 <- dados %>% group_by(res, data, periodo) %>%
   filter(data %in% verao_2013$data) %>%
   ggplot(aes(res, fill = res)) + 
   geom_bar(color = 'black') + 
-  scale_fill_viridis(discrete = TRUE) +
+  scale_fill_brewer(palette='Blues') +
   ggtitle('Distribuição de resultado nos dias mais quentes  de 2013') +
   xlab('Quantidade de resultados') + ylab('Frequência') + labs(fill ='Resultado') +
   ggeasy::easy_center_title()
@@ -679,7 +679,7 @@ dist_frio_quentes2014 <- dados %>% group_by(res, data, periodo) %>%
   filter(data %in% inverno_2014$data) %>%
   ggplot(aes(res, fill = res)) + 
   geom_bar(color = 'black') + 
-  scale_fill_viridis(discrete = TRUE) +
+  scale_fill_brewer(palette='Blues') +
   ggtitle('Distribuição de resultado nos dias mais frios de 2014') +
   xlab('Quantidade de resultados') + ylab('Frequência') + labs(fill ='Resultado') +
   ggeasy::easy_center_title()
@@ -688,7 +688,7 @@ dist_calor_quentes2014 <- dados %>% group_by(res, data, periodo) %>%
   filter(data %in% verao_2014$data) %>%
   ggplot(aes(res, fill = res)) + 
   geom_bar(color = 'black') + 
-  scale_fill_viridis(discrete = TRUE) +
+  scale_fill_brewer(palette='Blues') +
   ggtitle('Distribuição de resultado nos dias mais quentes  de 2014') +
   xlab('Quantidade de resultados') + ylab('Frequência') + labs(fill ='Resultado') +
   ggeasy::easy_center_title()
@@ -698,7 +698,7 @@ dist_frio_quentes2015 <- dados %>% group_by(res, data, periodo) %>%
   filter(data %in% inverno_2015$data) %>%
   ggplot(aes(res, fill = res)) + 
   geom_bar(color = 'black') + 
-  scale_fill_viridis(discrete = TRUE) + 
+  scale_fill_brewer(palette='Blues') + 
   ggtitle('Distribuição de resultado nos dias mais frios de 2015') +
   xlab('Quantidade de resultados') + ylab('Frequência') + labs(fill ='Resultado') +
   ggeasy::easy_center_title()
@@ -707,7 +707,7 @@ dist_calor_quentes2015 <- dados %>% group_by(res, data, periodo) %>%
   filter(data %in% verao_2015$data) %>%
   ggplot(aes(res, fill = res)) + 
   geom_bar(color = 'black') + 
-  scale_fill_viridis(discrete = TRUE) +
+  scale_fill_brewer(palette='Blues') +
   ggtitle('Distribuição de resultado nos dias mais quentes  de 2015') +
   xlab('Quantidade de resultados') + ylab('Frequência') + labs(fill ='Resultado') +
   ggeasy::easy_center_title()
@@ -717,7 +717,7 @@ dist_frio_quentes2016 <- dados %>% group_by(res, data, periodo) %>%
   filter(data %in% inverno_2016$data) %>%
   ggplot(aes(res, fill = res)) + 
   geom_bar(color = 'black') + 
-  scale_fill_viridis(discrete = TRUE) +
+  scale_fill_brewer(palette='Blues') +
   ggtitle('Distribuição de resultado nos dias mais frios de 2016') +
   xlab('Quantidade de resultados') + ylab('Frequência') + labs(fill ='Resultado') +
   ggeasy::easy_center_title()
@@ -726,7 +726,7 @@ dist_calor_quentes2016 <- dados %>% group_by(res, data, periodo) %>%
   filter(data %in% verao_2016$data) %>%
   ggplot(aes(res, fill = res)) + 
   geom_bar(color = 'black') + 
-  scale_fill_viridis(discrete = TRUE) +
+  scale_fill_brewer(palette='Blues') +
   ggtitle('Distribuição de resultado nos dias mais quentes  de 2016') +
   xlab('Quantidade de resultados') + ylab('Frequência') + labs(fill ='Resultado') +
   ggeasy::easy_center_title()
@@ -736,7 +736,7 @@ dist_frio_quentes2017 <- dados %>% group_by(res, data, periodo) %>%
   filter(data %in% inverno_2017$data) %>%
   ggplot(aes(res, fill = res)) + 
   geom_bar(color = 'black') + 
-  scale_fill_viridis(discrete = TRUE) +
+  scale_fill_brewer(palette='Blues') +
   ggtitle('Distribuição de resultado nos dias mais frios de 2017') +
   xlab('Quantidade de resultados') + ylab('Frequência') + labs(fill ='Resultado') +
   ggeasy::easy_center_title()
@@ -745,7 +745,7 @@ dist_calor_quentes2017 <- dados %>% group_by(res, data, periodo) %>%
   filter(data %in% verao_2017$data) %>%
   ggplot(aes(res, fill = res)) + 
   geom_bar(color = 'black') + 
-  scale_fill_viridis(discrete = TRUE) +
+  scale_fill_brewer(palette='Blues') +
   ggtitle('Distribuição de resultado nos dias mais quentes  de 2017') +
   xlab('Quantidade de resultados') + ylab('Frequência') + labs(fill ='Resultado') +
   ggeasy::easy_center_title()
@@ -755,7 +755,7 @@ dist_frio_quentes2018 <- dados %>% group_by(res, data, periodo) %>%
   filter(data %in% inverno_2018$data) %>%
   ggplot(aes(res, fill = res)) + 
   geom_bar(color = 'black') + 
-  scale_fill_viridis(discrete = TRUE) +
+  scale_fill_brewer(palette='Blues') +
   ggtitle('Distribuição de resultado nos dias mais frios de 2018') +
   xlab('Quantidade de resultados') + ylab('Frequência') + labs(fill ='Resultado') +
   ggeasy::easy_center_title()
@@ -764,7 +764,7 @@ dist_calor_quentes2018 <- dados %>% group_by(res, data, periodo) %>%
   filter(data %in% verao_2018$data) %>%
   ggplot(aes(res, fill = res)) + 
   geom_bar(color = 'black') + 
-  scale_fill_viridis(discrete = TRUE) +
+  scale_fill_brewer(palette='Blues') +
   ggtitle('Distribuição de resultado nos dias mais quentes  de 2018') +
   xlab('Quantidade de resultados') + ylab('Frequência') + labs(fill ='Resultado') +
   ggeasy::easy_center_title()
@@ -774,7 +774,7 @@ dist_frio_quentes2019 <- dados %>% group_by(res, data, periodo) %>%
   filter(data %in% inverno_2019$data) %>%
   ggplot(aes(res, fill = res)) + 
   geom_bar(color = 'black') + 
-  scale_fill_viridis(discrete = TRUE) +
+  scale_fill_brewer(palette='Blues') +
   ggtitle('Distribuição de resultado nos dias mais frios de 2019') +
   xlab('Quantidade de resultados') + ylab('Frequência') + labs(fill ='Resultado') +
   ggeasy::easy_center_title()
@@ -783,7 +783,7 @@ dist_calor_quentes2019 <- dados %>% group_by(res, data, periodo) %>%
   filter(data %in% verao_2019$data) %>%
   ggplot(aes(res, fill = res)) + 
   geom_bar(color = 'black') + 
-  scale_fill_viridis(discrete = TRUE) +
+  scale_fill_brewer(palette='Blues') +
   ggtitle('Distribuição de resultado nos dias mais quentes  de 2019') +
   xlab('Quantidade de resultados') + ylab('Frequência') + labs(fill ='Resultado') +
   ggeasy::easy_center_title()
@@ -793,7 +793,7 @@ dist_frio_quentes2020 <- dados %>% group_by(res, data, periodo) %>%
   filter(data %in% inverno_2020$data) %>%
   ggplot(aes(res, fill = res)) + 
   geom_bar(color = 'black') + 
-  scale_fill_viridis(discrete = TRUE) +
+  scale_fill_brewer(palette='Blues') +
   ggtitle('Distribuição de resultado nos dias mais frios de 2020') +
   xlab('Quantidade de resultados') + ylab('Frequência') + labs(fill ='Resultado') +
   ggeasy::easy_center_title() 
@@ -802,7 +802,7 @@ dist_calor_quentes2020 <- dados %>% group_by(res, data, periodo) %>%
   filter(data %in% verao_2020$data) %>%
   ggplot(aes(res, fill = res)) + 
   geom_bar(color = 'black') + 
-  scale_fill_viridis(discrete = TRUE) +
+  scale_fill_brewer(palette='Blues') +
   ggtitle('Distribuição de resultado nos dias mais quentes  de 2020') +
   xlab('Quantidade de resultados') + ylab('Frequência') + labs(fill ='Resultado') +
   ggeasy::easy_center_title() 
