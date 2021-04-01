@@ -406,7 +406,7 @@ dist_res_2020 <- resultado_ano %>%
 Distribuição da quantidade de resultados por período
 ```{r}
 dist_resp <- dados %>% 
-    ggplot(aes(res, fill = periodo)) + geom_bar() +
+    ggplot(aes(res, fill = periodo)) + geom_bar(alpha = 0.8, color = 'black', position = 'identity') +
     scale_fill_viridis(discrete = TRUE) +
     ggtitle('Resultado por período do dia') + 
     xlab('Resultado') + ylab('Frequência') + labs(fill = 'Período') + coord_flip() + 
@@ -463,7 +463,8 @@ Distribuição média de gols por período
 ```{r}
 dist_sg_per <- dados %>% group_by(periodo) %>%
   ggplot(aes(total,stat(density) ,fill = periodo)) + 
-  geom_histogram(bins = 10, breaks = seq(0,10, 1)) + xlim(0,8) +
+  geom_histogram(alpha = 0.8, bins = 10, breaks = seq(0,10, 1), position = 'identity') + 
+  xlim(0,8) + 
   scale_fill_viridis(discrete = TRUE) + 
   ggtitle('Distribuição da soma de gols por período do dia') + 
   xlab('Total de gols por partida') + ylab('Densidade') + labs(fill = 'Período') +
