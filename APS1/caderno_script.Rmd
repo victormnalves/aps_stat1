@@ -17,8 +17,7 @@ dados <- readxl::read_excel("C:/Users/alves/OneDrive - Insper - Institudo de Ens
                             col_types = c("text", "text", "numeric", 
                                           "date", "text", "text", "text", "numeric", 
                                           "numeric", "numeric", "text", "numeric", 
-                                          "numeric", "numeric")) %>% clean_names() %>% 
-                            mutate('somagols' = golcasa+golvisitante)
+                                          "numeric", "numeric")) %>% clean_names()
 
 ```
 
@@ -191,101 +190,101 @@ Medidas da soma de gols em cada estado (desconsiderando qual mais quente) a cada
 ```{r}
 medidas_sg_inverno_2012 <- as.tibble(dados %>% group_by(estado, periodo) %>%
                                          filter(data %in% inverno_2012$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                         summarise('media' = mean(total),
+                                                   'mediana' = median(total),
+                                                   'desvpad' = sd(total)))
 medidas_sg_verao_2012 <- as.tibble(dados %>% group_by(estado, periodo) %>%
                                           filter(data %in% verao_2012$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                         summarise('media' = mean(total),
+                                                   'mediana' = median(total),
+                                                   'desvpad' = sd(total)))
 
 
 medidas_sg_inverno_2013 <- as.tibble(dados %>% group_by(estado, periodo) %>%
                                          filter(data %in% inverno_2013$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                         summarise('media' = mean(total),
+                                                   'mediana' = median(total),
+                                                   'desvpad' = sd(total)))
 medidas_sg_verao_2013 <- as.tibble(dados %>% group_by(estado, periodo) %>%
                                           filter(data %in% verao_2013$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                         summarise('media' = mean(total),
+                                                   'mediana' = median(total),
+                                                   'desvpad' = sd(total)))
 
 
 medidas_sg_inverno_2014 <- as.tibble(dados %>% group_by(estado, periodo) %>%
                                          filter(data %in% inverno_2014$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                         summarise('media' = mean(total),
+                                                   'mediana' = median(total),
+                                                   'desvpad' = sd(total)))
 medidas_sg_verao_2014 <- as.tibble(dados %>% group_by(estado, periodo) %>%
                                           filter(data %in% verao_2014$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                         summarise('media' = mean(total),
+                                                   'mediana' = median(total),
+                                                   'desvpad' = sd(total)))
 
 medidas_sg_inverno_2015 <- as.tibble(dados %>% group_by(estado, periodo) %>%
                                          filter(data %in% inverno_2015$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                         summarise('media' = mean(total),
+                                                   'mediana' = median(total),
+                                                   'desvpad' = sd(total)))
 medidas_sg_verao_2015 <- as.tibble(dados %>% group_by(estado, periodo) %>%
                                           filter(data %in% verao_2015$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                         summarise('media' = mean(total),
+                                                   'mediana' = median(total),
+                                                   'desvpad' = sd(total)))
 
 medidas_sg_inverno_2016 <- as.tibble(dados %>% group_by(estado, periodo) %>%
                                          filter(data %in% inverno_2016$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                         summarise('media' = mean(total),
+                                                   'mediana' = median(total),
+                                                   'desvpad' = sd(total)))
 medidas_sg_verao_2016 <- as.tibble(dados %>% group_by(estado, periodo) %>%
                                           filter(data %in% verao_2016$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                         summarise('media' = mean(total),
+                                                   'mediana' = median(total),
+                                                   'desvpad' = sd(total)))
 
 medidas_sg_inverno_2017 <- as.tibble(dados %>% group_by(estado, periodo) %>%
                                          filter(data %in% inverno_2017$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                         summarise('media' = mean(total),
+                                                   'mediana' = median(total),
+                                                   'desvpad' = sd(total)))
 medidas_sg_verao_2017 <- as.tibble(dados %>% group_by(estado, periodo) %>%
                                           filter(data %in% verao_2017$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                         summarise('media' = mean(total),
+                                                   'mediana' = median(total),
+                                                   'desvpad' = sd(total)))
 medidas_sg_inverno_2018 <- as.tibble(dados %>% group_by(estado, periodo) %>%
                                          filter(data %in% inverno_2018$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                         summarise('media' = mean(total),
+                                                   'mediana' = median(total),
+                                                   'desvpad' = sd(total)))
 medidas_sg_verao_2018 <- as.tibble(dados %>% group_by(estado, periodo) %>%
                                           filter(data %in% verao_2018$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                         summarise('media' = mean(total),
+                                                   'mediana' = median(total),
+                                                   'desvpad' = sd(total)))
 medidas_sg_inverno_2019 <- as.tibble(dados %>% group_by(estado, periodo) %>%
                                          filter(data %in% inverno_2019$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                         summarise('media' = mean(total),
+                                                   'mediana' = median(total),
+                                                   'desvpad' = sd(total)))
 medidas_sg_verao_2019 <- as.tibble(dados %>% group_by(estado, periodo) %>%
                                           filter(data %in% verao_2019$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                         summarise('media' = mean(total),
+                                                   'mediana' = median(total),
+                                                   'desvpad' = sd(total)))
 medidas_sg_inverno_2020 <- as.tibble(dados %>% group_by(estado, periodo) %>%
                                          filter(data %in% inverno_2020$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                         summarise('media' = mean(total),
+                                                   'mediana' = median(total),
+                                                   'desvpad' = sd(total)))
 medidas_sg_verao_2020 <- as.tibble(dados %>% group_by(estado, periodo) %>%
                                           filter(data %in% verao_2020$data) %>% 
-                                         summarise('media' = mean(somagols),
-                                                   'mediana' = median(somagols),
-                                                   'desvpad' = sd(somagols)))
+                                         summarise('media' = mean(total),
+                                                   'mediana' = median(total),
+                                                   'desvpad' = sd(total)))
 
 ```
 
@@ -295,22 +294,22 @@ medidas_sg_verao_2020 <- as.tibble(dados %>% group_by(estado, periodo) %>%
 
 Dataset contendo a soma dos gols por estado e por período
 ```{r}
-somagols_estado_periodo <- dados %>% group_by(somagols, estado, periodo)
+total_estado_periodo <- dados %>% group_by(total, estado, periodo)
 ```
 
 Medidas das soma de gols por período e por estado
 ```{r}
-medidas_gols_estado_periodo <- as.tibble(somagols_estado_periodo %>% group_by(estado, periodo) %>% 
-                                  summarise('media' = mean(somagols),
-                                            'mediana' = median(somagols),
-                                            'desvpad' = sd(somagols)))
+medidas_gols_estado_periodo <- as.tibble(total_estado_periodo %>% group_by(estado, periodo) %>% 
+                                  summarise('media' = mean(total),
+                                            'mediana' = median(total),
+                                            'desvpad' = sd(total)))
 ```
 Medidas da soma de gols por estado
 ```{r}
-medidas_gols_estado <- as.tibble(somagols_estado_periodo %>% group_by(estado) %>% 
-                                  summarise('media' = mean(somagols),
-                                            'mediana' = median(somagols),
-                                            'desvpad' = sd(somagols)))
+medidas_gols_estado <- as.tibble(total_estado_periodo %>% group_by(estado) %>% 
+                                  summarise('media' = mean(total),
+                                            'mediana' = median(total),
+                                            'desvpad' = sd(total)))
 ```
 
 
@@ -334,24 +333,24 @@ medidas_gols_ano <- as.tibble(dados %>% group_by(temporada)%>%
 ```{r}
 
 soma_estado_inverno2012 <- dados %>% filter(data %in% inverno_2012$data) %>% group_by(estado) %>%
-                            mutate(somaestado = sum(somagols)) %>% select(estado,temporada, somaestado)
+                            mutate(somaestado = sum(total)) %>% select(estado,temporada, somaestado)
 soma_estado_verao2012 <- dados %>% filter(data %in% verao_2012$data) %>% group_by(estado) %>%
-                            mutate(somaestado = sum(somagols)) %>% select(estado,temporada, somaestado)
+                            mutate(somaestado = sum(total)) %>% select(estado,temporada, somaestado)
 
 soma_estado_inverno2014 <- dados %>% filter(data %in% inverno_2014$data) %>% group_by(estado) %>%
-                            mutate(somaestado = sum(somagols)) %>% select(estado,temporada, somaestado)
+                            mutate(somaestado = sum(total)) %>% select(estado,temporada, somaestado)
 soma_estado_verao2014 <- dados %>% filter(data %in% verao_2014$data) %>% group_by(estado) %>%
-                            mutate(somaestado = sum(somagols)) %>% select(estado,temporada, somaestado)
+                            mutate(somaestado = sum(total)) %>% select(estado,temporada, somaestado)
 
 soma_estado_inverno2016 <- dados %>% filter(data %in% inverno_2016$data) %>% group_by(estado) %>%
-                            mutate(somaestado = sum(somagols)) %>% select(estado,temporada, somaestado)
+                            mutate(somaestado = sum(total)) %>% select(estado,temporada, somaestado)
 soma_estado_verao2016 <- dados %>% filter(data %in% verao_2016$data) %>% group_by(estado) %>%
-                            mutate(somaestado = sum(somagols)) %>% select(estado,temporada, somaestado)
+                            mutate(somaestado = sum(total)) %>% select(estado,temporada, somaestado)
 
 soma_estado_inverno2018 <- dados %>% filter(data %in% inverno_2018$data) %>% group_by(estado) %>%
-                            mutate(somaestado = sum(somagols)) %>% select(estado,temporada, somaestado)
+                            mutate(somaestado = sum(total)) %>% select(estado,temporada, somaestado)
 soma_estado_verao2018 <- dados %>% filter(data %in% verao_2018$data) %>% group_by(estado) %>%
-                            mutate(somaestado = sum(somagols)) %>% select(estado,temporada, somaestado)
+                            mutate(somaestado = sum(total)) %>% select(estado,temporada, somaestado)
 
 ```
 
@@ -380,12 +379,12 @@ dados %>% group_by(periodo, estado) %>% summarise(n = n()) %>% mutate(freq = rou
 
 Obtendo a frequência de gols totais por estado
 ```{r}
-dados %>% group_by(somagols) %>% summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
+dados %>% group_by(total) %>% summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
 ```
 
 Obtendo a frequência de gols totais por estado
 ```{r}
-dados %>% group_by(somagols, estado) %>% summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
+dados %>% group_by(total, estado) %>% summarise(n = n()) %>% mutate(freq = round((n / sum(n))*100,2))
 ```
 
 
@@ -463,7 +462,7 @@ Distribuição média de gols por período
 
 ```{r}
 dist_sg_per <- dados %>% group_by(periodo) %>%
-  ggplot(aes(somagols,stat(density) ,fill = periodo)) + 
+  ggplot(aes(total,stat(density) ,fill = periodo)) + 
   geom_histogram(bins = 10, breaks = seq(0,10, 1)) + xlim(0,8) +
   scale_fill_viridis(discrete = TRUE) + 
   ggtitle('Distribuição da soma de gols por período do dia') + 
@@ -531,7 +530,7 @@ grid.arrange(arrangeGrob(medias_gols_casa_ano, medias_gols_visitante_ano),
 Distribuição da soma de gols por estado
 ```{r}
 dist_sg_al <- dados %>% filter(estado == 'Alagoas') %>%
-  ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
+  ggplot(aes(total, y = stat(density), fill = periodo)) + 
   geom_histogram(color = 'black', breaks = seq(0,10, 1)) + xlim(0, 4) +
   scale_fill_viridis(discrete = TRUE) +
   ggtitle('Distribuição da soma dos gols por período em Alagoas') +
@@ -539,7 +538,7 @@ dist_sg_al <- dados %>% filter(estado == 'Alagoas') %>%
   ggeasy::easy_center_title()
 
 dist_sg_ba <- dados %>% filter(estado == 'Bahia') %>%
-  ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
+  ggplot(aes(total, y = stat(density), fill = periodo)) + 
   geom_histogram(color = 'black', breaks = seq(0,10, 1)) + xlim(0,8) +
   scale_fill_viridis(discrete = TRUE) +
   ggtitle('Distribuição da soma dos gols por período na Bahia') +
@@ -547,7 +546,7 @@ dist_sg_ba <- dados %>% filter(estado == 'Bahia') %>%
   ggeasy::easy_center_title()
 
 dist_sg_ce <- dados %>% filter(estado == 'Ceara') %>%
-  ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
+  ggplot(aes(total, y = stat(density), fill = periodo)) + 
   geom_histogram(color = 'black', breaks = seq(0,10, 1)) + xlim(0,5) +
   scale_fill_viridis(discrete = TRUE) +
   ggtitle('Distribuição da soma dos gols por período no Ceara') +
@@ -555,7 +554,7 @@ dist_sg_ce <- dados %>% filter(estado == 'Ceara') %>%
   ggeasy::easy_center_title()
 
 dist_sg_go <- dados %>% filter(estado == 'Goias') %>%
-  ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
+  ggplot(aes(total, y = stat(density), fill = periodo)) + 
   geom_histogram(color = 'black', breaks = seq(0,10, 1)) + xlim(0,8) + 
   scale_fill_viridis(discrete = TRUE) +
   ggtitle('Distribuição da soma dos gols por período em Goias') +
@@ -563,7 +562,7 @@ dist_sg_go <- dados %>% filter(estado == 'Goias') %>%
   ggeasy::easy_center_title()
 
 dist_sg_mg <- dados %>% filter(estado == 'Minas Gerais') %>%
-  ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
+  ggplot(aes(total, y = stat(density), fill = periodo)) + 
   geom_histogram(color = 'black', breaks = seq(0,10, 1)) + xlim(0,8) +
   scale_fill_viridis(discrete = TRUE) +
   ggtitle('Distribuição da soma dos gols por período em Minas Gerais') +
@@ -571,7 +570,7 @@ dist_sg_mg <- dados %>% filter(estado == 'Minas Gerais') %>%
   ggeasy::easy_center_title()
 
 dist_sg_pr <- dados %>% filter(estado == 'Parana') %>%
-  ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
+  ggplot(aes(total, y = stat(density), fill = periodo)) + 
   geom_histogram(color = 'black', breaks = seq(0,10, 1)) + xlim(0, 8) +
   scale_fill_viridis(discrete = TRUE) +
   ggtitle('Distribuição da soma dos gols por período no Parana') +
@@ -579,7 +578,7 @@ dist_sg_pr <- dados %>% filter(estado == 'Parana') %>%
   ggeasy::easy_center_title()
 
 dist_sg_pb <- dados %>% filter(estado == 'Pernambuco') %>%
-  ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
+  ggplot(aes(total, y = stat(density), fill = periodo)) + 
   geom_histogram(color = 'black', breaks = seq(0,10, 1)) + xlim(0, 8) +
   scale_fill_viridis(discrete = TRUE) +
   ggtitle('Distribuição da soma dos gols por período no Pernambuco') +
@@ -587,7 +586,7 @@ dist_sg_pb <- dados %>% filter(estado == 'Pernambuco') %>%
   ggeasy::easy_center_title()
 
 dist_sg_rs <- dados %>% filter(estado == 'Rio Grande do Sul') %>%
-  ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
+  ggplot(aes(total, y = stat(density), fill = periodo)) + 
   geom_histogram(color = 'black', breaks = seq(0,10, 1)) + xlim(0, 8) +
   scale_fill_viridis(discrete = TRUE) +
   ggtitle('Distribuição da soma dos gols por período no Rio Grande do Sul') +
@@ -595,7 +594,7 @@ dist_sg_rs <- dados %>% filter(estado == 'Rio Grande do Sul') %>%
   ggeasy::easy_center_title()
 
 dist_sg_rj <- dados %>% filter(estado == 'Rio de Janeiro') %>%
-  ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
+  ggplot(aes(total, y = stat(density), fill = periodo)) + 
   geom_histogram(color = 'black', breaks = seq(0,10, 1)) + xlim(0,8) +
   scale_fill_viridis(discrete = TRUE) +
   ggtitle('Distribuição da soma dos gols por período no Rio de Janeiro') +
@@ -603,7 +602,7 @@ dist_sg_rj <- dados %>% filter(estado == 'Rio de Janeiro') %>%
   ggeasy::easy_center_title()
 
 dist_sg_sc <- dados %>% filter(estado == 'Santa Catarina') %>%
-  ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
+  ggplot(aes(total, y = stat(density), fill = periodo)) + 
   geom_histogram(color = 'black', breaks = seq(0,10, 1)) + 
   scale_x_continuous(breaks = seq(0, 9, 1)) +
   scale_fill_viridis(discrete = TRUE) +
@@ -612,7 +611,7 @@ dist_sg_sc <- dados %>% filter(estado == 'Santa Catarina') %>%
   ggeasy::easy_center_title()
 
 dist_sg_sp <- dados %>% filter(estado == 'Sao Paulo') %>%
-  ggplot(aes(somagols, y = stat(density), fill = periodo)) + 
+  ggplot(aes(total, y = stat(density), fill = periodo)) + 
   geom_histogram(color = 'black', breaks = seq(0,10, 1)) + 
   scale_fill_viridis(discrete = TRUE) + xlim(0,8) +
   ggtitle('Distribuição da soma dos gols por período em São Paulo') +
@@ -858,7 +857,7 @@ dist_res20162018 <- grid.arrange(arrangeGrob(dist_calor_quentes2016, dist_frio_q
 
 Plot da soma de gols por estação
 ```{r}
-somagols_inverno2012 <- medidas_sg_inverno_2012 %>% mutate(estado = fct_reorder(estado, media)) %>% 
+total_inverno2012 <- medidas_sg_inverno_2012 %>% mutate(estado = fct_reorder(estado, media)) %>% 
   group_by(estado) %>%
   ggplot(aes(estado, media, colour = periodo)) + geom_point() +
   scale_color_viridis(discrete = TRUE) +
@@ -866,7 +865,7 @@ somagols_inverno2012 <- medidas_sg_inverno_2012 %>% mutate(estado = fct_reorder(
   xlab('Média de gols') + ylab('Estado') + labs(col = 'Período') +
   ggeasy::easy_center_title() 
 
-somagols_verao2012 <- medidas_sg_verao_2012 %>% mutate(estado = fct_reorder(estado, media)) %>% 
+total_verao2012 <- medidas_sg_verao_2012 %>% mutate(estado = fct_reorder(estado, media)) %>% 
   group_by(estado) %>%
   ggplot(aes(media, estado, colour = periodo)) + geom_point() +
   scale_color_viridis(discrete = TRUE) +
@@ -875,7 +874,7 @@ somagols_verao2012 <- medidas_sg_verao_2012 %>% mutate(estado = fct_reorder(esta
   ggeasy::easy_center_title() 
 
 
-somagols_inverno2013 <- medidas_sg_inverno_2013 %>% mutate(estado = fct_reorder(estado, media)) %>% 
+total_inverno2013 <- medidas_sg_inverno_2013 %>% mutate(estado = fct_reorder(estado, media)) %>% 
   group_by(estado) %>%
   ggplot(aes(media, estado, colour = periodo)) + geom_point() +
   scale_color_viridis(discrete = TRUE) +
@@ -883,7 +882,7 @@ somagols_inverno2013 <- medidas_sg_inverno_2013 %>% mutate(estado = fct_reorder(
   xlab('Média de gols') + ylab('Estado') + labs(col = 'Período') +
   ggeasy::easy_center_title() 
 
-somagols_verao2013 <- medidas_sg_verao_2013 %>% mutate(estado = fct_reorder(estado, media)) %>% 
+total_verao2013 <- medidas_sg_verao_2013 %>% mutate(estado = fct_reorder(estado, media)) %>% 
   group_by(estado) %>%
   ggplot(aes(media, estado, colour = periodo)) + geom_point() +
   scale_color_viridis(discrete = TRUE) +
@@ -893,7 +892,7 @@ somagols_verao2013 <- medidas_sg_verao_2013 %>% mutate(estado = fct_reorder(esta
 
 
 
-somagols_inverno2014 <- medidas_sg_inverno_2014 %>% mutate(estado = fct_reorder(estado, media)) %>% 
+total_inverno2014 <- medidas_sg_inverno_2014 %>% mutate(estado = fct_reorder(estado, media)) %>% 
   group_by(estado) %>%
   ggplot(aes(media, estado, colour = periodo)) + geom_point() +
   scale_color_viridis(discrete = TRUE) +
@@ -901,7 +900,7 @@ somagols_inverno2014 <- medidas_sg_inverno_2014 %>% mutate(estado = fct_reorder(
   xlab('Média de gols') + ylab('Estado') + labs(col = 'Período') +
   ggeasy::easy_center_title() 
 
-somagols_verao2014 <- medidas_sg_verao_2014 %>% mutate(estado = fct_reorder(estado, media)) %>% 
+total_verao2014 <- medidas_sg_verao_2014 %>% mutate(estado = fct_reorder(estado, media)) %>% 
   group_by(estado) %>%
   ggplot(aes(media, estado, colour = periodo)) + geom_point() +
   scale_color_viridis(discrete = TRUE) +
@@ -909,7 +908,7 @@ somagols_verao2014 <- medidas_sg_verao_2014 %>% mutate(estado = fct_reorder(esta
   xlab('Média de gols') + ylab('Estado') + labs(col = 'Período') +
   ggeasy::easy_center_title() 
 
-somagols_inverno2015 <- medidas_sg_inverno_2015 %>% mutate(estado = fct_reorder(estado, media)) %>% 
+total_inverno2015 <- medidas_sg_inverno_2015 %>% mutate(estado = fct_reorder(estado, media)) %>% 
   group_by(estado) %>%
   ggplot(aes(media, estado, colour = periodo)) + geom_point() +
   scale_color_viridis(discrete = TRUE) +
@@ -917,7 +916,7 @@ somagols_inverno2015 <- medidas_sg_inverno_2015 %>% mutate(estado = fct_reorder(
   xlab('Média de gols') + ylab('Estado') + labs(col = 'Período') +
   ggeasy::easy_center_title() 
 
-somagols_verao2015 <- medidas_sg_verao_2015 %>% mutate(estado = fct_reorder(estado, media)) %>% 
+total_verao2015 <- medidas_sg_verao_2015 %>% mutate(estado = fct_reorder(estado, media)) %>% 
   group_by(estado) %>%
   ggplot(aes(media, estado, colour = periodo)) + geom_point() +
   scale_color_viridis(discrete = TRUE) +
@@ -925,7 +924,7 @@ somagols_verao2015 <- medidas_sg_verao_2015 %>% mutate(estado = fct_reorder(esta
   xlab('Média de gols') + ylab('Estado') + labs(col = 'Período') +
   ggeasy::easy_center_title() 
 
-somagols_inverno2016 <- medidas_sg_inverno_2016 %>% mutate(estado = fct_reorder(estado, media)) %>% 
+total_inverno2016 <- medidas_sg_inverno_2016 %>% mutate(estado = fct_reorder(estado, media)) %>% 
   group_by(estado) %>%
   ggplot(aes(media, estado, colour = periodo)) + geom_point() +
   scale_color_viridis(discrete = TRUE) +
@@ -933,7 +932,7 @@ somagols_inverno2016 <- medidas_sg_inverno_2016 %>% mutate(estado = fct_reorder(
   xlab('Média de gols') + ylab('Estado') + labs(col = 'Período') +
   ggeasy::easy_center_title() 
 
-somagols_verao2016 <- medidas_sg_verao_2016 %>% mutate(estado = fct_reorder(estado, media)) %>% 
+total_verao2016 <- medidas_sg_verao_2016 %>% mutate(estado = fct_reorder(estado, media)) %>% 
   group_by(estado) %>%
   ggplot(aes(media, estado, colour = periodo)) + geom_point() +
   scale_color_viridis(discrete = TRUE) +
@@ -942,7 +941,7 @@ somagols_verao2016 <- medidas_sg_verao_2016 %>% mutate(estado = fct_reorder(esta
   ggeasy::easy_center_title() 
 
 
-somagols_inverno2017 <- medidas_sg_inverno_2017 %>% mutate(estado = fct_reorder(estado, media)) %>% 
+total_inverno2017 <- medidas_sg_inverno_2017 %>% mutate(estado = fct_reorder(estado, media)) %>% 
   group_by(estado) %>%
   ggplot(aes(media, estado, colour = periodo)) + geom_point() +
   scale_color_viridis(discrete = TRUE) +
@@ -950,7 +949,7 @@ somagols_inverno2017 <- medidas_sg_inverno_2017 %>% mutate(estado = fct_reorder(
   xlab('Média de gols') + ylab('Estado') + labs(col = 'Período') +
   ggeasy::easy_center_title() 
 
-somagols_verao2017 <- medidas_sg_verao_2017 %>% mutate(estado = fct_reorder(estado, media)) %>% 
+total_verao2017 <- medidas_sg_verao_2017 %>% mutate(estado = fct_reorder(estado, media)) %>% 
   group_by(estado) %>%
   ggplot(aes(media, estado, colour = periodo)) + geom_point() +
   scale_color_viridis(discrete = TRUE) +
@@ -959,7 +958,7 @@ somagols_verao2017 <- medidas_sg_verao_2017 %>% mutate(estado = fct_reorder(esta
   ggeasy::easy_center_title() 
 
 
-somagols_inverno2018 <- medidas_sg_inverno_2018 %>% mutate(estado = fct_reorder(estado, media)) %>% 
+total_inverno2018 <- medidas_sg_inverno_2018 %>% mutate(estado = fct_reorder(estado, media)) %>% 
   group_by(estado) %>%
   ggplot(aes(media, estado, colour = periodo)) + geom_point() +
   scale_color_viridis(discrete = TRUE) +
@@ -967,7 +966,7 @@ somagols_inverno2018 <- medidas_sg_inverno_2018 %>% mutate(estado = fct_reorder(
   xlab('Média de gols') + ylab('Estado') + labs(col = 'Período') +
   ggeasy::easy_center_title() 
 
-somagols_verao2018 <- medidas_sg_verao_2018 %>% mutate(estado = fct_reorder(estado, media)) %>% 
+total_verao2018 <- medidas_sg_verao_2018 %>% mutate(estado = fct_reorder(estado, media)) %>% 
   group_by(estado) %>%
   ggplot(aes(media, estado, colour = periodo)) + geom_point() +
   scale_color_viridis(discrete = TRUE) +
@@ -976,7 +975,7 @@ somagols_verao2018 <- medidas_sg_verao_2018 %>% mutate(estado = fct_reorder(esta
   ggeasy::easy_center_title() 
 
 
-somagols_inverno2019 <- medidas_sg_inverno_2019 %>% mutate(estado = fct_reorder(estado, media)) %>%
+total_inverno2019 <- medidas_sg_inverno_2019 %>% mutate(estado = fct_reorder(estado, media)) %>%
   group_by(estado) %>%
   ggplot(aes(media, estado, colour = periodo)) + geom_point() +
   scale_color_viridis(discrete = TRUE) +
@@ -984,7 +983,7 @@ somagols_inverno2019 <- medidas_sg_inverno_2019 %>% mutate(estado = fct_reorder(
   xlab('Média de gols') + ylab('Estado') + labs(col = 'Período') +
   ggeasy::easy_center_title() 
 
-somagols_verao2019 <- medidas_sg_verao_2019 %>% mutate(estado = fct_reorder(estado, media)) %>% 
+total_verao2019 <- medidas_sg_verao_2019 %>% mutate(estado = fct_reorder(estado, media)) %>% 
   group_by(estado) %>%
   ggplot(aes(media, estado, colour = periodo)) + geom_point() +
   scale_color_viridis(discrete = TRUE) +
@@ -993,7 +992,7 @@ somagols_verao2019 <- medidas_sg_verao_2019 %>% mutate(estado = fct_reorder(esta
   ggeasy::easy_center_title() 
 
 
-somagols_inverno2020 <- medidas_sg_inverno_2020 %>% mutate(estado = fct_reorder(estado, media)) %>%
+total_inverno2020 <- medidas_sg_inverno_2020 %>% mutate(estado = fct_reorder(estado, media)) %>%
   group_by(estado) %>%
   ggplot(aes(media, estado, colour = periodo)) + geom_point() +
   scale_color_viridis(discrete = TRUE) +
@@ -1001,7 +1000,7 @@ somagols_inverno2020 <- medidas_sg_inverno_2020 %>% mutate(estado = fct_reorder(
   xlab('Média de gols') + ylab('Estado') + labs(col = 'Período') +
   ggeasy::easy_center_title() 
 
-somagols_verao2020 <- medidas_sg_verao_2020 %>% mutate(estado = fct_reorder(estado, media)) %>% 
+total_verao2020 <- medidas_sg_verao_2020 %>% mutate(estado = fct_reorder(estado, media)) %>% 
   group_by(estado) %>%
   ggplot(aes(media, estado, colour = periodo)) + geom_point() +
   scale_color_viridis(discrete = TRUE) +
@@ -1012,27 +1011,27 @@ somagols_verao2020 <- medidas_sg_verao_2020 %>% mutate(estado = fct_reorder(esta
 Unindo gols por ano estação
 
 ```{r}
-gols0 <- grid.arrange(arrangeGrob(somagols_verao2014, somagols_inverno2014,
-                         somagols_verao2015, somagols_inverno2015), 
+gols0 <- grid.arrange(arrangeGrob(total_verao2014, total_inverno2014,
+                         total_verao2015, total_inverno2015), 
                          top = 'Distribuição da soma dos gols por estação (1)')
-gols1 <- grid.arrange(arrangeGrob(somagols_verao2016, somagols_inverno2016,
-                         somagols_verao2017, somagols_inverno2017), 
+gols1 <- grid.arrange(arrangeGrob(total_verao2016, total_inverno2016,
+                         total_verao2017, total_inverno2017), 
                          top = 'Distribuição da soma dos gols por estação (2)')
-gols2 <- grid.arrange(arrangeGrob(somagols_verao2018, somagols_inverno2018,
-                         somagols_verao2019, somagols_inverno2019), 
+gols2 <- grid.arrange(arrangeGrob(total_verao2018, total_inverno2018,
+                         total_verao2019, total_inverno2019), 
                          top = 'Distribuição da soma dos gols por estação (3)')
-gols3 <- grid.arrange(arrangeGrob(somagols_verao2020, somagols_inverno2020), 
+gols3 <- grid.arrange(arrangeGrob(total_verao2020, total_inverno2020), 
                          top = 'Distribuição da soma dos gols por estação (4)')
 ```
 
 Unindo uniões
 ```{r}
-gols20122014 <- grid.arrange(arrangeGrob(somagols_verao2012, somagols_inverno2012,
-                         somagols_verao2014, somagols_inverno2014), 
+gols20122014 <- grid.arrange(arrangeGrob(total_verao2012, total_inverno2012,
+                         total_verao2014, total_inverno2014), 
                          top = 'Distribuição da média da soma dos gols por clima em 2012 e 2014')
 
-gols20162018 <- grid.arrange(arrangeGrob(somagols_verao2016, somagols_inverno2016,
-                         somagols_verao2018, somagols_inverno2018), 
+gols20162018 <- grid.arrange(arrangeGrob(total_verao2016, total_inverno2016,
+                         total_verao2018, total_inverno2018), 
                          top = 'Distribuição da soma dos gols por clima em 2016 e 2018')
 
 
