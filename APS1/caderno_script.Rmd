@@ -4,6 +4,17 @@ author: Victor Alves
 date: 03/09/2021
 output: pdf_document
 ---
+# Instalando os pacotes
+
+```{r}
+install.packages('tidyverse')
+install.packages('janitor')
+install.packages('gridExtra')
+install.packages('viridis')
+install.packages('RColorBrewer')
+```
+
+
 # Importando os dados
 ```{r}
 library(tidyverse)
