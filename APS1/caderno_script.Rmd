@@ -43,6 +43,12 @@ resultado_ano <- dados %>% group_by(res, temporada) %>%
   summarise(n = n())
 ```
 
+Observando o aproveitamento do mandante
+```{r}
+cont_res_casa <-  as_tibble(dados %>% group_by(res, casa, temporada) %>% summarise(freq = n()) %>% mutate(freq_rel = freq/sum(freq)))
+```
+
+
 Computando a quantidade de resultados do time mandante
 ```{r}
 resultado_ano_casa <- dados %>% group_by(res, temporada, casa) %>% 
