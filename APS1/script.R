@@ -994,5 +994,3 @@ gols2 <- grid.arrange(arrangeGrob(somagols_verao2018, somagols_inverno2018,
                       top = 'Distribuição da soma dos gols por estação (3)')
 gols3 <- grid.arrange(arrangeGrob(somagols_verao2020, somagols_inverno2020), 
                       top = 'Distribuição da soma dos gols por estação (4)')
-
-
