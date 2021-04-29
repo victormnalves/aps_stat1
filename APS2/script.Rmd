@@ -1,0 +1,132 @@
+---
+title: "script"
+author: "Victor Alves"
+date: "28/04/2021"
+output: pdf_document
+---
+
+# Ambientação
+
+Carregando os pacotes
+```{r}
+library(tidyverse)
+library(janitor)
+library(gridExtra)
+library(DescTools)
+library(viridis)
+library(RColorBrewer)
+theme_set(theme_minimal())
+```
+
+Carregando todos os dados
+```{r}
+original_data <- readxl::read_excel("C:/Users/Victor/OneDrive - Insper - Institudo de Ensino e Pesquisa/Estudos/Programação e Data Science/Estat/aps_stat1/APS2/aps2.xlsx") %>%
+  clean_names()
+```
+
+Filtrando os dados apenas para o país de interesse
+```{r}
+dados <- original_data %>% filter(country == 'United States')
+```
+
+# Trabalhando com medidas
+
+Medidas de inflação por país
+```{r}
+medidas_pi_usa <- dados %>%
+  group_by(code) %>% 
+  summarise(media = round(mean(inflation),2),
+            mediana = median(inflation),
+            desvio = round(sd(inflation),2),
+            cv = round(sd(inflation)/mean(inflation)*100,2),
+            meanad = MeanAD(inflation),
+            n = n(),
+            IQ = IQR(inflation),
+            max = max(inflation),
+            min = min(inflation),
+            amp = max - min,
+            li = quantile(inflation, .25) - 1.5*IQR(inflation),
+            ls = quantile(inflation, .75) + 1.5*IQR(inflation),
+            ass_A = quantile(inflation, .5) - quantile(inflation, .25),
+            ass_B = quantile(inflation, .75) - quantile(inflation, .5))
+```
+
+Medidas de desemprego por ano
+```{r}
+medidas_u_usa <- dados %>%
+  group_by(code) %>% 
+  summarise(media = round(mean(unemployment),2),
+            mediana = median(unemployment),
+            desvio = round(sd(unemployment),2),
+            cv = round(sd(unemployment)/mean(unemployment)*100,2),
+            meanad = MeanAD(unemployment),
+            n = n(),
+            IQ = IQR(unemployment),
+            max = max(unemployment),
+            min = min(unemployment),
+            amp = max - min,
+            li = quantile(unemployment, .25) - 1.5*IQR(unemployment),
+            ls = quantile(unemployment, .75) + 1.5*IQR(unemployment),
+            ass_A = quantile(unemployment, .5) - quantile(unemployment, .25),
+            ass_B = quantile(unemployment, .75) - quantile(unemployment, .5))
+```
+
+# Plots
+
+## Evolução linear de pi ao das decadas dos anos
+
+```{r}
+dados %>% filter(year %in% 1960:1969) %>% ggplot() + 
+  geom_point(aes(year,inflation, colour = 'inflation')) + 
+  geom_point(aes(year,unemployment, colour = 'unemployment')) +
+  ggtitle('Inflação e desemprego entre 1960 e 1969') + 
+  xlab('Ano') + ylab('Taxa') + ylim(-1,14) + 
+  scale_colour_viridis(discrete = T,name = 'Variável', labels = c('Inflação', 'Desemprego'))
+
+```
+
+```{r}
+dados %>% filter(year %in% 1970:1979) %>% ggplot() + 
+  geom_point(aes(year,inflation, colour = 'inflation')) + 
+  geom_point(aes(year,unemployment, colour = 'unemployment')) +
+  ggtitle('Inflação e desemprego entre 1970 e 1979') + 
+  xlab('Ano') + ylab('Taxa') + ylim(-1,14) + 
+  scale_colour_viridis(discrete = T,name = 'Variável', labels = c('Inflação', 'Desemprego'))
+```
+
+```{r}
+dados %>% filter(year %in% 1980:1989) %>% ggplot() + 
+  geom_point(aes(year,inflation, colour = 'inflation')) + 
+  geom_point(aes(year,unemployment, colour = 'unemployment')) +
+  ggtitle('Inflação e desemprego entre 1980 e 1989') + 
+  xlab('Ano') + ylab('Taxa') + ylim(-1,14) + 
+  scale_colour_viridis(discrete = T,name = 'Variável', labels = c('Inflação', 'Desemprego'))
+```
+
+```{r}
+dados %>% filter(year %in% 1990:1999) %>% ggplot() + 
+  geom_point(aes(year,inflation, colour = 'inflation')) + 
+  geom_point(aes(year,unemployment, colour = 'unemployment')) +
+  ggtitle('Inflação e desemprego entre 1990 e 1999') + 
+  xlab('Ano') + ylab('Taxa') + ylim(-1,14) + 
+  scale_colour_viridis(discrete = T,name = 'Variável', labels = c('Inflação', 'Desemprego'))
+```
+
+```{r}
+dados %>% filter(year %in% 2000:2009) %>% ggplot() + 
+  geom_point(aes(year,inflation, colour = 'inflation')) + 
+  geom_point(aes(year,unemployment, colour = 'unemployment')) +
+  ggtitle('Inflação e desemprego entre 2000 e 2009') + 
+  xlab('Ano') + ylab('Taxa') + ylim(-1,14) + 
+  scale_colour_viridis(discrete = T,name = 'Variável', labels = c('Inflação', 'Desemprego'))
+```
+
+```{r}
+dados %>% filter(year %in% 2010:2019) %>% ggplot() + 
+  geom_point(aes(year,inflation, colour = 'inflation')) + 
+  geom_point(aes(year,unemployment, colour = 'unemployment')) +
+  ggtitle('Inflação e desemprego entre 2010 e 2019') + 
+  xlab('Ano') + ylab('Taxa') + ylim(-1,14) + 
+  scale_colour_viridis(discrete = T,name = 'Variável', labels = c('Inflação', 'Desemprego'))
+```
+
