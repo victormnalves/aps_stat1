@@ -102,7 +102,7 @@ medidas_pi_usa_a91 <- dados %>%
 ```
 
 ```{r}
-medidas_u_usa_a1991 <- dados %>%
+medidas_u_usa_a91 <- dados %>%
   group_by(code) %>% 
   filter(year <= 1991) %>%
   summarise(media = round(mean(unemployment),2),
@@ -124,7 +124,7 @@ medidas_u_usa_a1991 <- dados %>%
 
 
 ```{r}
-medidas_a91 <- as.tibble(rbind(medidas_pi_usa, medidas_u_usa))
+medidas_a91 <- as.tibble(rbind(medidas_pi_usa_a91, medidas_u_usa_a91))
 medidas_a91 <- medidas_a91 %>% select(-c(code))
 row.names(medidas_a91) <- c('Inflação','Desemprego')
 
@@ -176,7 +176,7 @@ medidas_u_usa_d1991 <- dados %>%
 
 
 ```{r}
-medidas_d91 <- as.tibble(rbind(medidas_pi_usa, medidas_u_usa))
+medidas_d91 <- as.tibble(rbind(medidas_pi_usa_d91, medidas_u_usa_d1991))
 medidas_d91 <- medidas_d91 %>% select(-c(code))
 row.names(medidas_d91) <- c('Inflação','Desemprego')
 
