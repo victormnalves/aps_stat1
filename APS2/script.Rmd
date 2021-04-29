@@ -77,6 +77,111 @@ medidas <- as.tibble(rbind(medidas_pi_usa, medidas_u_usa))
 medidas <- medidas %>% select(-c(code))
 row.names(medidas) <- c('Inflação','Desemprego')
 ```
+# Medidas antes e depois de 1991
+
+Inflação antes de 91
+
+```{r}
+medidas_pi_usa_a91 <- dados %>% 
+  group_by(code) %>% 
+  filter(year <= 1991) %>%
+  summarise(media = round(mean(inflation),2),
+            mediana = median(inflation),
+            desvio = round(sd(inflation),2),
+            cv = round(sd(inflation)/mean(inflation)*100,2),
+            meanad = MeanAD(inflation),
+            n = n(),
+            IQ = IQR(inflation),
+            max = max(inflation),
+            min = min(inflation),
+            amp = max - min,
+            li = quantile(inflation, .25) - 1.5*IQR(inflation),
+            ls = quantile(inflation, .75) + 1.5*IQR(inflation),
+            ass_A = quantile(inflation, .5) - quantile(inflation, .25),
+            ass_B = quantile(inflation, .75) - quantile(inflation, .5))
+```
+
+```{r}
+medidas_u_usa_a1991 <- dados %>%
+  group_by(code) %>% 
+  filter(year <= 1991) %>%
+  summarise(media = round(mean(unemployment),2),
+            mediana = median(unemployment),
+            desvio = round(sd(unemployment),2),
+            cv = round(sd(unemployment)/mean(unemployment)*100,2),
+            meanad = MeanAD(unemployment),
+            n = n(),
+            IQ = IQR(unemployment),
+            max = max(unemployment),
+            min = min(unemployment),
+            amp = max - min,
+            li = quantile(unemployment, .25) - 1.5*IQR(unemployment),
+            ls = quantile(unemployment, .75) + 1.5*IQR(unemployment),
+            ass_A = quantile(unemployment, .5) - quantile(unemployment, .25),
+            ass_B = quantile(unemployment, .75) - quantile(unemployment, .5))
+
+```
+
+
+```{r}
+medidas_a91 <- as.tibble(rbind(medidas_pi_usa, medidas_u_usa))
+medidas_a91 <- medidas_a91 %>% select(-c(code))
+row.names(medidas_a91) <- c('Inflação','Desemprego')
+
+```
+
+
+Medidas depois de 1991
+
+```{r}
+medidas_pi_usa_d91 <- dados %>% 
+  group_by(code) %>% 
+  filter(year >= 1991) %>%
+  summarise(media = round(mean(inflation),2),
+            mediana = median(inflation),
+            desvio = round(sd(inflation),2),
+            cv = round(sd(inflation)/mean(inflation)*100,2),
+            meanad = MeanAD(inflation),
+            n = n(),
+            IQ = IQR(inflation),
+            max = max(inflation),
+            min = min(inflation),
+            amp = max - min,
+            li = quantile(inflation, .25) - 1.5*IQR(inflation),
+            ls = quantile(inflation, .75) + 1.5*IQR(inflation),
+            ass_A = quantile(inflation, .5) - quantile(inflation, .25),
+            ass_B = quantile(inflation, .75) - quantile(inflation, .5))
+```
+
+```{r}
+medidas_u_usa_d1991 <- dados %>%
+  group_by(code) %>% 
+  filter(year >= 1991) %>%
+  summarise(media = round(mean(unemployment),2),
+            mediana = median(unemployment),
+            desvio = round(sd(unemployment),2),
+            cv = round(sd(unemployment)/mean(unemployment)*100,2),
+            meanad = MeanAD(unemployment),
+            n = n(),
+            IQ = IQR(unemployment),
+            max = max(unemployment),
+            min = min(unemployment),
+            amp = max - min,
+            li = quantile(unemployment, .25) - 1.5*IQR(unemployment),
+            ls = quantile(unemployment, .75) + 1.5*IQR(unemployment),
+            ass_A = quantile(unemployment, .5) - quantile(unemployment, .25),
+            ass_B = quantile(unemployment, .75) - quantile(unemployment, .5))
+
+```
+
+
+```{r}
+medidas_d91 <- as.tibble(rbind(medidas_pi_usa, medidas_u_usa))
+medidas_d91 <- medidas_d91 %>% select(-c(code))
+row.names(medidas_d91) <- c('Inflação','Desemprego')
+
+```
+
 
 
 # Plots
