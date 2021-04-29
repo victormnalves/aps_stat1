@@ -182,6 +182,14 @@ row.names(medidas_d91) <- c('Inflação','Desemprego')
 
 ```
 
+Unindo as medidas antes e depois 91
+```{r}
+medidas_comp <- as.data.frame(rbind(medidas_a91, medidas_d91))
+row.names(medidas_comp) <- c('pi_a91', 'u_a91',
+                             'pi_d91', 'u_d91')
+```
+
+
 
 
 # Plots
