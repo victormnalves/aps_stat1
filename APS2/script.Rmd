@@ -312,8 +312,77 @@ Correlação entre variáveis
 dados %>% ggplot(aes(unemployment, inflation, label = year)) + 
   geom_point(aes(colour = year)) + 
   geom_text(aes(label = year),hjust = 0, vjust = 0, size = 3) +
-  geom_smooth(method = 'lm') +
+  geom_smooth(colour = 'black',method = 'lm', se = F) +
   xlab('Desemprego') + ylab('Inflação') + ggtitle('Relação entre inflação e desemprego') + 
   scale_colour_viridis(discrete = T, guide = F)
+```
+
+## Correlacionando por décadas
+
+```{r}
+corr_piu_60 <- dados %>% 
+  filter(year == 1960:1969) %>%
+  ggplot(aes(unemployment, inflation, label = year)) + 
+  geom_point(aes(colour = year)) + 
+  geom_text(aes(label = year),hjust = 0, vjust = 0, size = 3) +
+  geom_smooth(colour = 'black',method = 'lm', se = F) +
+  xlab('Desemprego') + ylab('Inflação') + ggtitle('Década de 60') + 
+  scale_colour_viridis(discrete = T, guide = F)
+
+corr_piu_70 <- dados %>% 
+  filter(year == 1970:1979) %>%
+  ggplot(aes(unemployment, inflation, label = year)) + 
+  geom_point(aes(colour = year)) + 
+  geom_text(aes(label = year),hjust = 0, vjust = 0, size = 3) +
+  geom_smooth(colour = 'black',method = 'lm', se = F) +
+  xlab('Desemprego') + ylab('Inflação') + ggtitle('Década de 70') + 
+  scale_colour_viridis(discrete = T, guide = F)
+
+corr_piu_80 <- dados %>% 
+  filter(year == 1980:1989) %>%
+  ggplot(aes(unemployment, inflation, label = year)) + 
+  geom_point(aes(colour = year)) + 
+  geom_text(aes(label = year),hjust = 0, vjust = 0, size = 3) +
+  geom_smooth(colour = 'black',method = 'lm', se = F) +
+  xlab('Desemprego') + ylab('Inflação') + ggtitle('Década de 80') + 
+  scale_colour_viridis(discrete = T, guide = F)
+
+corr_piu_90 <- dados %>% 
+  filter(year == 1990:1999) %>%
+  ggplot(aes(unemployment, inflation, label = year)) + 
+  geom_point(aes(colour = year)) + 
+  geom_text(aes(label = year),hjust = 0, vjust = 0, size = 3) +
+  geom_smooth(colour = 'black',method = 'lm', se = F) +
+  xlab('Desemprego') + ylab('Inflação') + ggtitle('Década de 90') + 
+  scale_colour_viridis(discrete = T, guide = F)
+
+corr_piu_00 <- dados %>% 
+  filter(year == 2000:2009) %>%
+  ggplot(aes(unemployment, inflation, label = year)) + 
+  geom_point(aes(colour = year)) + 
+  geom_text(aes(label = year),hjust = 0, vjust = 0, size = 3) +
+  geom_smooth(colour = 'black',method = 'lm', se = F) +
+  xlab('Desemprego') + ylab('Inflação') + ggtitle('Década de 00') + 
+  scale_colour_viridis(discrete = T, guide = F)
+
+corr_piu_10 <- dados %>% 
+  filter(year == 2010:2019) %>%
+  ggplot(aes(unemployment, inflation, label = year)) + 
+  geom_point(aes(colour = year)) + 
+  geom_text(aes(label = year),hjust = 0, vjust = 0, size = 3) +
+  geom_smooth(colour = 'black',method = 'lm', se = F) +
+  xlab('Desemprego') + ylab('Inflação') + ggtitle('Década de 10') + 
+  scale_colour_viridis(discrete = T, guide = F)
+```
+
+```{r}
+grid.arrange(arrangeGrob(corr_piu_60, corr_piu_70, corr_piu_80), 
+             top = 'Correlação entre desemprego e inflação da década de 60 a 80')
+
+grid.arrange(arrangeGrob(corr_piu_90, corr_piu_00, corr_piu_10), 
+             top = 'Correlação entre desemprego e inflação da década de 90 a 10')
+
+
+
 ```
 
