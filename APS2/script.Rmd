@@ -364,3 +364,42 @@ grid.arrange(arrangeGrob(corr_piu_60, corr_piu_70, corr_piu_80,
               top = grid::textGrob('Correlação entre desemprego e inflação da década de 60 à 10',
                                    x = 0, hjust = -.18))
 ```
+
+# Calculando correlações
+
+Correlação
+```{r}
+cor_g <- cor(dados$inflation, dados$unemployment)
+
+cor_60 <- cor(dados$inflation[dados$decade == 1960], 
+                   dados$unemployment[dados$decade == 1960])
+
+cor_70 <- cor(dados$inflation[dados$decade == 1970], 
+                   dados$unemployment[dados$decade == 1970])
+
+cor_80 <- cor(dados$inflation[dados$decade == 1980], 
+                   dados$unemployment[dados$decade == 1980])
+
+cor_90 <- cor(dados$inflation[dados$decade == 1990], 
+                   dados$unemployment[dados$decade == 1990])
+
+cor_00 <- cor(dados$inflation[dados$decade == 2000], 
+                   dados$unemployment[dados$decade == 2000])
+
+cor_10 <- cor(dados$inflation[dados$decade == 2010], 
+                   dados$unemployment[dados$decade == 2010])
+```
+
+Tabela de correlações
+
+```{r}
+cor_table <- as.data.frame(rbind(cor_g, cor_60) %>% 
+                         rbind(.,cor_70) %>% rbind(.,cor_80) %>%
+                         rbind(.,cor_90) %>% rbind(.,cor_00) %>%
+                         rbind(.,cor_10)) %>% 
+  rename('cor' = 'V1') %>% 
+  mutate(across(where(is.numeric), round, 3))
+
+row.names(cor_table) <- c('geral','1960','1970','1980','1990','2000','2010')
+```
+
