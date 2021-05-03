@@ -51,15 +51,15 @@ medidas_pi_usa <- dados %>%
             desvio = round(sd(inflation),2),
             cv = round(sd(inflation)/mean(inflation)*100,2),
             meanad = MeanAD(inflation),
-            n = n(),
-            IQ = IQR(inflation),
+            iqr = IQR(inflation),
             max = max(inflation),
             min = min(inflation),
             amp = max - min,
             li = quantile(inflation, .25) - 1.5*IQR(inflation),
             ls = quantile(inflation, .75) + 1.5*IQR(inflation),
             ass_A = quantile(inflation, .5) - quantile(inflation, .25),
-            ass_B = quantile(inflation, .75) - quantile(inflation, .5))
+            ass_B = quantile(inflation, .75) - quantile(inflation, .5))%>% 
+  mutate(across(where(is.numeric), round, 3))
 ```
 
 Medidas de desemprego por ano
@@ -71,22 +71,22 @@ medidas_u_usa <- dados %>%
             desvio = round(sd(unemployment),2),
             cv = round(sd(unemployment)/mean(unemployment)*100,2),
             meanad = MeanAD(unemployment),
-            n = n(),
-            IQ = IQR(unemployment),
+            iqr = IQR(unemployment),
             max = max(unemployment),
             min = min(unemployment),
             amp = max - min,
             li = quantile(unemployment, .25) - 1.5*IQR(unemployment),
             ls = quantile(unemployment, .75) + 1.5*IQR(unemployment),
             ass_A = quantile(unemployment, .5) - quantile(unemployment, .25),
-            ass_B = quantile(unemployment, .75) - quantile(unemployment, .5))
+            ass_B = quantile(unemployment, .75) - quantile(unemployment, .5))%>% 
+  mutate(across(where(is.numeric), round, 3))
 ```
 
 Unindo as tabelas de medidas 
 ```{r}
 medidas <- as.tibble(rbind(medidas_pi_usa, medidas_u_usa))
 medidas <- medidas %>% select(-c(code))
-row.names(medidas) <- c('Inflação','Desemprego')
+row.names(medidas) <- c('inflação','desemprego')
 ```
 # Medidas antes e depois de 1991
 
@@ -101,15 +101,15 @@ medidas_pi_usa_a91 <- dados %>%
             desvio = round(sd(inflation),2),
             cv = round(sd(inflation)/mean(inflation)*100,2),
             meanad = MeanAD(inflation),
-            n = n(),
-            IQ = IQR(inflation),
+            iqr = IQR(inflation),
             max = max(inflation),
             min = min(inflation),
             amp = max - min,
             li = quantile(inflation, .25) - 1.5*IQR(inflation),
             ls = quantile(inflation, .75) + 1.5*IQR(inflation),
             ass_A = quantile(inflation, .5) - quantile(inflation, .25),
-            ass_B = quantile(inflation, .75) - quantile(inflation, .5))
+            ass_B = quantile(inflation, .75) - quantile(inflation, .5))%>% 
+  mutate(across(where(is.numeric), round, 3))
 ```
 
 ```{r}
@@ -121,15 +121,15 @@ medidas_u_usa_a91 <- dados %>%
             desvio = round(sd(unemployment),2),
             cv = round(sd(unemployment)/mean(unemployment)*100,2),
             meanad = MeanAD(unemployment),
-            n = n(),
-            IQ = IQR(unemployment),
+            iqr = IQR(unemployment),
             max = max(unemployment),
             min = min(unemployment),
             amp = max - min,
             li = quantile(unemployment, .25) - 1.5*IQR(unemployment),
             ls = quantile(unemployment, .75) + 1.5*IQR(unemployment),
             ass_A = quantile(unemployment, .5) - quantile(unemployment, .25),
-            ass_B = quantile(unemployment, .75) - quantile(unemployment, .5))
+            ass_B = quantile(unemployment, .75) - quantile(unemployment, .5))%>% 
+  mutate(across(where(is.numeric), round, 3))
 
 ```
 
@@ -153,15 +153,15 @@ medidas_pi_usa_d91 <- dados %>%
             desvio = round(sd(inflation),2),
             cv = round(sd(inflation)/mean(inflation)*100,2),
             meanad = MeanAD(inflation),
-            n = n(),
-            IQ = IQR(inflation),
+            iqr = IQR(inflation),
             max = max(inflation),
             min = min(inflation),
             amp = max - min,
             li = quantile(inflation, .25) - 1.5*IQR(inflation),
             ls = quantile(inflation, .75) + 1.5*IQR(inflation),
             ass_A = quantile(inflation, .5) - quantile(inflation, .25),
-            ass_B = quantile(inflation, .75) - quantile(inflation, .5))
+            ass_B = quantile(inflation, .75) - quantile(inflation, .5))%>% 
+  mutate(across(where(is.numeric), round, 3))
 ```
 
 ```{r}
@@ -173,15 +173,15 @@ medidas_u_usa_d1991 <- dados %>%
             desvio = round(sd(unemployment),2),
             cv = round(sd(unemployment)/mean(unemployment)*100,2),
             meanad = MeanAD(unemployment),
-            n = n(),
-            IQ = IQR(unemployment),
+            iqr = IQR(unemployment),
             max = max(unemployment),
             min = min(unemployment),
             amp = max - min,
             li = quantile(unemployment, .25) - 1.5*IQR(unemployment),
             ls = quantile(unemployment, .75) + 1.5*IQR(unemployment),
             ass_A = quantile(unemployment, .5) - quantile(unemployment, .25),
-            ass_B = quantile(unemployment, .75) - quantile(unemployment, .5))
+            ass_B = quantile(unemployment, .75) - quantile(unemployment, .5)) %>% 
+  mutate(across(where(is.numeric), round, 3))
 
 ```
 
@@ -293,7 +293,7 @@ dados %>% ggplot(aes(unemployment, inflation, label = year)) +
 ## Correlacionando por décadas
 
 ```{r}
-corr_piu_60 <- dados %>% 
+cor_pi_u_60 <- dados %>% 
   filter(decade == 1960) %>%
   ggplot(aes(unemployment, inflation, label = year)) + 
   geom_point(aes(colour = year), size = 3) + 
@@ -304,7 +304,7 @@ corr_piu_60 <- dados %>%
   theme(plot.title = element_text(size = 11)) + 
   theme_gray() + theme(plot.title = element_text(size = 11))
 
-corr_piu_70 <- dados %>% 
+cor_pi_u_70 <- dados %>% 
   filter(decade == 1970) %>%
   ggplot(aes(unemployment, inflation, label = year)) + 
   geom_point(aes(colour = year), size = 3) + 
@@ -315,7 +315,7 @@ corr_piu_70 <- dados %>%
   theme(plot.title = element_text(size = 11)) + 
   theme_gray() + theme(plot.title = element_text(size = 11))
 
-corr_piu_80 <- dados %>% 
+cor_pi_u_80 <- dados %>% 
   filter(decade == 1980) %>%
   ggplot(aes(unemployment, inflation, label = year)) + 
   geom_point(aes(colour = year), size = 3) + 
@@ -325,7 +325,7 @@ corr_piu_80 <- dados %>%
   scale_colour_brewer(palette = 'Spectral', name = 'Ano') + 
   theme_gray() + theme(plot.title = element_text(size = 11))
 
-corr_piu_90 <- dados %>% 
+cor_pi_u_90 <- dados %>% 
   filter(decade == 1990) %>%
   ggplot(aes(unemployment, inflation, label = year)) + 
   geom_point(aes(colour = year), size = 3) + 
@@ -335,7 +335,7 @@ corr_piu_90 <- dados %>%
   scale_colour_brewer(palette = 'Spectral', name = 'Ano') + 
   theme_gray() + theme(plot.title = element_text(size = 11))
 
-corr_piu_00 <- dados %>% 
+cor_pi_u_00 <- dados %>% 
   filter(decade == 2000) %>%
   ggplot(aes(unemployment, inflation, label = year)) + 
   geom_point(aes(colour = year), size = 3) + 
@@ -345,7 +345,7 @@ corr_piu_00 <- dados %>%
   scale_colour_brewer(palette = 'Spectral', name = 'Ano') + 
   theme_gray() + theme(plot.title = element_text(size = 11))
 
-corr_piu_10 <- dados %>% 
+cor_pi_u_10 <- dados %>% 
   filter(decade == 2010) %>%
   ggplot(aes(unemployment, inflation, label = year)) + 
   geom_point(aes(colour = year), size = 3) + 
@@ -358,11 +358,10 @@ corr_piu_10 <- dados %>%
 ```
 
 ```{r}
-grid.arrange(arrangeGrob(corr_piu_60, corr_piu_70, corr_piu_80,
-                         corr_piu_90, corr_piu_00, corr_piu_10,
+grid.arrange(arrangeGrob(cor_pi_u_60, cor_pi_u_70, cor_pi_u_80,
+                         cor_pi_u_90, cor_pi_u_00, cor_pi_u_10,
                          ncol=2), 
-              top = grid::textGrob('Correlação entre desemprego e inflação da década de 60 à 10',
-                                   x = 0, hjust = -.18))
+              top = grid::textGrob('Correlação entre desemprego e inflação da década de 60 à 10', x = 0, hjust = -.18))
 ```
 
 # Calculando correlações
