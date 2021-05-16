@@ -15,7 +15,7 @@ library(gridExtra)
 library(DescTools)
 library(viridis)
 library(RColorBrewer)
-theme_set(theme_minimal())
+theme_set(theme_linedraw())
 ```
 
 Carregando todos os dados
@@ -203,9 +203,9 @@ dados %>% group_by(decade) %>% ggplot() +
     geom_point(aes(year,unemployment, colour = 'unemployment')) +
     ggtitle('Inflação e desemprego entre 1960 e 2019') + 
     xlab('Ano') + ylab('Taxa (%)') + ylim(-1,14) + 
-    scale_colour_viridis(discrete = T, name = 'Variável', 
-                        labels = c('Inflação', 'Desemprego')) +
-    scale_x_discrete(breaks = seq(1960, 2019, by = 1)) + theme_gray() +
+    scale_colour_grey(start = 0.8, end = 0.2, name = 'Variável', 
+                            labels = c('Inflação','Desemprego'))  +
+    scale_x_discrete(breaks = seq(1960, 2019, by = 1)) +
     theme(axis.text.x=element_text(angle=90))
 
 ```
@@ -219,7 +219,7 @@ dados %>% ggplot() +
   geom_density(aes(inflation, stat(density), fill = 'inflation'), alpha = 0.5) +
   xlab('Taxa (%)') + ylab('Densidade') + xlim(-.5,15) +
   ggtitle('Distribuição da taxa de desemprego e inflação') +
-  scale_fill_viridis(discrete = T, name = 'Variável', 
+  scale_fill_grey(start = 0.8, end = 0.2, name = 'Variável', 
                      labels = c('Inflação','Desemprego')) 
 ```
 
@@ -229,39 +229,41 @@ grid.arrange(arrangeGrob(
   dados %>% ggplot() + 
     geom_boxplot(aes(y = unemployment,
                      fill = 'unemplyment'), alpha = 0.5) +
-    xlab('Concentração') + ylab('Taxa (%)') + ylim(0,15) +
-    ggtitle('Desemprego') +
-    scale_fill_viridis(discrete = T, guide = F) ,
+    xlab('Inflação') + ylab('Taxa (%)') + ylim(0,15) +
+    scale_fill_grey(start = 0.8, end = 0.2, guide = F) +
+    theme(axis.text.x=element_blank(),
+          axis.ticks.x=element_blank()),
   dados %>% ggplot() + 
     geom_boxplot(aes(y = inflation, 
                      fill = 'inflation'), alpha = 0.5) +
-    xlab('Concentração') + ylab('Taxa (%)') + ylim(-0.5,15) +
-    ggtitle('Inflação') +
-    scale_fill_viridis(discrete = T, guide = F) + 
+    xlab('Desemprego') + ylab('Taxa (%)') + ylim(-0.5,15) +
+    scale_fill_grey(start = 0.8, end = 0.2, guide = F) + 
     theme(axis.title.y=element_blank(), 
           axis.ticks.y=element_blank(),
-          axis.text.y=element_blank()), ncol = 2),
+          axis.text.y=element_blank(),
+          axis.text.x=element_blank(),
+          axis.ticks.x=element_blank()), ncol = 2),
   top = 'Distribuição da taxa de desemprego e inflação')
 ```
 
-Distribuição desemprego boxplot por década
+Distribuição desemprego e inflação boxplot por década
 
 ```{r}
-dados %>% ggplot(aes(decade, unemployment, fill = 'unemployment')) + 
-  geom_boxplot() + 
-  xlab('Década') + ylab('Desemprego') +
-  ggtitle('Distribuição do desemprego por década') +
-  scale_fill_brewer(palette = 'Reds', guide = F)
-```
-
-Distribuição inflação boxplot por década
-
-```{r}
-dados %>% ggplot(aes(decade, inflation, fill = 'inflation')) + 
-  geom_boxplot() + 
-  xlab('Década') + ylab('Inflação') +
-  ggtitle('Distribuição do desemprego por década') +
-  scale_fill_brewer(palette = 'Blues', guide = F)
+grid.arrange(arrangeGrob(
+  dados %>% ggplot(aes(decade, unemployment, fill = 'unemployment')) + 
+    geom_boxplot() + 
+    xlab('Década') + ylab('Taxa (%)') +
+    ggtitle('Desemprego') + 
+    scale_fill_grey(start = 0.8, end = 0.2, guide = F) ,
+  dados %>% ggplot(aes(decade, inflation, fill = 'inflation')) + 
+    geom_boxplot() + 
+    xlab('Década') +
+    ggtitle('Inflação') + 
+    scale_fill_grey(start = 0.8, end = 0.2, guide = F) +
+    theme(axis.title.y=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank()), ncol = 2),
+  top = 'Distribuição da taxa de desemprego e inflação por década')
 ```
 
 
@@ -272,7 +274,7 @@ dados %>% ggplot(aes(unemployment, inflation, label = year)) +
   geom_text(aes(label = year),hjust = 0, vjust = 0, size = 3) +
   geom_smooth(colour = 'black',method = 'lm', se = F) +
   xlab('Desemprego (%)') + ylab('Inflação (%)') + ggtitle('Relação entre inflação e desemprego') + 
-  scale_colour_brewer(palette = 'Spectral', name = 'Década') + theme_gray()
+  scale_colour_grey(start = 0.8, end = 0.2, name = 'Década') 
 ```
 
 ## Correlacionando por décadas
@@ -281,65 +283,84 @@ dados %>% ggplot(aes(unemployment, inflation, label = year)) +
 grid.arrange(arrangeGrob(
   dados %>% filter(decade == 1960) %>%
     ggplot(aes(unemployment, inflation, label = year)) + 
-    geom_point(aes(colour = year), size = 3) + 
+    geom_point(aes(colour = year), size = 2) + 
     geom_smooth(colour = 'black',method = 'lm', se = F) +
     xlim(3,10) + ylim(-.36,13.55) +
     xlab('Desemprego (%)') + ylab('Inflação (%)') + ggtitle('Década de 60') + 
-    scale_colour_brewer(palette = 'Spectral', name = 'Ano') + 
-    theme(plot.title = element_text(size = 11)) + 
-    theme_gray() + 
-    theme(plot.title = element_text(size = 11)), 
-  dados %>% 
-    filter(decade == 1970) %>%
-    ggplot(aes(unemployment, inflation, label = year)) + 
-    geom_point(aes(colour = year), size = 3) + 
-    geom_smooth(colour = 'black',method = 'lm', se = F) +
-    xlim(3,10) + ylim(-.36,13.55) +
-    xlab('Desemprego (%)') + ylab('Inflação (%)') + ggtitle('Década de 70') + 
-    scale_colour_brewer(palette = 'Spectral', name = 'Ano') + 
-    theme(plot.title = element_text(size = 11)) + 
-    theme_gray() + 
-    theme(plot.title = element_text(size = 11)), 
-  dados %>% 
-    filter(decade == 1980) %>%
-    ggplot(aes(unemployment, inflation, label = year)) + 
-    geom_point(aes(colour = year), size = 3) + 
-    geom_smooth(colour = 'black',method = 'lm', se = F) +
-    xlim(3,10) + ylim(-.36,13.55) +
-    xlab('Desemprego (%)') + ylab('Inflação (%)') + ggtitle('Década de 80') + 
-    scale_colour_brewer(palette = 'Spectral', name = 'Ano') + 
-    theme_gray() + 
-    theme(plot.title = element_text(size = 11)),
+    scale_colour_grey(start = 0.8, end = 0.2, name = 'Ano') +
+    theme(plot.title = element_text(size = 11),
+          axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+          axis.ticks.x=element_blank(),
+          legend.position = c(.95,.5)),
   dados %>% 
     filter(decade == 1990) %>%
     ggplot(aes(unemployment, inflation, label = year)) + 
-    geom_point(aes(colour = year), size = 3) + 
+    geom_point(aes(colour = year), size = 2) + 
     geom_smooth(colour = 'black',method = 'lm', se = F) +
     xlim(3,10) + ylim(-.36,13.55) +
     xlab('Desemprego (%)') + ylab('Inflação (%)') + ggtitle('Década de 90') + 
-    scale_colour_brewer(palette = 'Spectral', name = 'Ano') + 
-    theme_gray() + 
-    theme(plot.title = element_text(size = 11)), 
+    scale_colour_grey(start = 0.8, end = 0.2, name = 'Ano') +
+    theme(plot.title = element_text(size = 11),
+          axis.title.y=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank(),          
+          axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+          axis.ticks.x=element_blank(),
+          legend.position = c(.95,.5)), 
+  dados %>% 
+    filter(decade == 1970) %>%
+    ggplot(aes(unemployment, inflation, label = year)) + 
+    geom_point(aes(colour = year), size = 2) + 
+    geom_smooth(colour = 'black',method = 'lm', se = F) +
+    xlim(3,10) + ylim(-.36,13.55) +
+    xlab('Desemprego (%)') + ylab('Inflação (%)') + ggtitle('Década de 70') + 
+    scale_colour_grey(start = 0.8, end = 0.2, name = 'Ano') +
+    theme(plot.title = element_text(size = 11),
+          axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+          axis.ticks.x=element_blank(),
+          legend.position = c(.95,.5)),
   dados %>% 
     filter(decade == 2000) %>%
     ggplot(aes(unemployment, inflation, label = year)) + 
-    geom_point(aes(colour = year), size = 3) + 
+    geom_point(aes(colour = year), size = 2) + 
     geom_smooth(colour = 'black',method = 'lm', se = F) +
     xlim(3,10) + ylim(-.36,13.55) +
     xlab('Desemprego (%)') + ylab('Inflação (%)') + ggtitle('Década de 00') + 
-    scale_colour_brewer(palette = 'Spectral', name = 'Ano') + 
-    theme_gray() + 
-    theme(plot.title = element_text(size = 11)), 
+    scale_colour_grey(start = 0.8, end = 0.2, name = 'Ano') +
+    theme(plot.title = element_text(size = 11),
+          axis.title.y=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank(),          
+          axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+          axis.ticks.x=element_blank(),
+          legend.position = c(.95,.5)), 
+  dados %>% 
+    filter(decade == 1980) %>%
+    ggplot(aes(unemployment, inflation, label = year)) + 
+    geom_point(aes(colour = year), size = 2) + 
+    geom_smooth(colour = 'black',method = 'lm', se = F) +
+    xlim(3,10) + ylim(-.36,13.55) +
+    xlab('Desemprego (%)') + ylab('Inflação (%)') + ggtitle('Década de 80') + 
+    scale_colour_grey(start = 0.8, end = 0.2, name = 'Ano') +
+    theme(plot.title = element_text(size = 11),
+          legend.position = c(.95,.5)), 
   dados %>% 
     filter(decade == 2010) %>%
     ggplot(aes(unemployment, inflation, label = year)) + 
-    geom_point(aes(colour = year), size = 3) + 
+    geom_point(aes(colour = year), size = 2) + 
     geom_smooth(colour = 'black', method = 'lm', se = F) +
     xlim(3,10) + ylim(-.36,13.55) +
     xlab('Desemprego (%)') + ylab('Inflação (%)') + ggtitle('Década de 10') + 
-    scale_colour_brewer(palette = 'Spectral', name = 'Ano') + 
-    theme_gray() +
-    theme(plot.title = element_text(size = 11)) ,
+    scale_colour_grey(start = 0.8, end = 0.2, name = 'Ano') +
+    theme(plot.title = element_text(size = 11),
+          axis.title.y=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank(),
+          legend.position = c(.95,.5)),
   ncol=2), 
   top = grid::textGrob('Associação entre desemprego e inflação da década de 60 à 10', 
                        x = 0, hjust = -.18))
