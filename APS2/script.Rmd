@@ -84,6 +84,8 @@ medidas <- as.tibble(
   )
 medidas <- medidas %>% select(-c(code))
 row.names(medidas) <- c('inflação','desemprego')
+
+medidas
 ```
 
 # Calculando correlações
@@ -109,6 +111,8 @@ cor_table <- as.data.frame(
   mutate(across(where(is.numeric), round, 3))
 
 row.names(cor_table) <- c('geral','1960','1970','1980','1990','2000','2010')
+
+cor_table
 ```
 
 # Medidas antes e depois de 1991
@@ -191,6 +195,7 @@ medidas_comp <- as.tibble(
 medidas_comp <- medidas_comp %>% select(-c(code))
 row.names(medidas_comp) <- c('pi_a91', 'u_a91',
                              'pi_d91', 'u_d91')
+medidas_comp
 ```
 
 # Plots
@@ -203,11 +208,10 @@ dados %>% group_by(decade) %>% ggplot() +
     geom_point(aes(year,unemployment, colour = 'unemployment')) +
     ggtitle('Inflação e desemprego entre 1960 e 2019') + 
     xlab('Ano') + ylab('Taxa (%)') + ylim(-1,14) + 
-    scale_colour_grey(start = 0.8, end = 0.2, name = 'Variável', 
+    scale_colour_grey(start = 0.5, end = 0.2, name = 'Variável', 
                             labels = c('Inflação','Desemprego'))  +
     scale_x_discrete(breaks = seq(1960, 2019, by = 1)) +
     theme(axis.text.x=element_text(angle=90))
-
 ```
 
 ## Plots de distribuição
@@ -229,14 +233,14 @@ grid.arrange(arrangeGrob(
   dados %>% ggplot() + 
     geom_boxplot(aes(y = unemployment,
                      fill = 'unemplyment'), alpha = 0.5) +
-    xlab('Inflação') + ylab('Taxa (%)') + ylim(0,15) +
+    xlab('Desemprego') + ylab('Taxa (%)') + ylim(0,15) +
     scale_fill_grey(start = 0.8, end = 0.2, guide = F) +
     theme(axis.text.x=element_blank(),
           axis.ticks.x=element_blank()),
   dados %>% ggplot() + 
     geom_boxplot(aes(y = inflation, 
                      fill = 'inflation'), alpha = 0.5) +
-    xlab('Desemprego') + ylab('Taxa (%)') + ylim(-0.5,15) +
+    xlab('Inflação') + ylab('Taxa (%)') + ylim(-0.5,15) +
     scale_fill_grey(start = 0.8, end = 0.2, guide = F) + 
     theme(axis.title.y=element_blank(), 
           axis.ticks.y=element_blank(),
