@@ -223,7 +223,9 @@ dados %>% group_by(decade) %>% ggplot() +
     scale_colour_grey(start = 0.5, end = 0, name = 'Variável', 
                             labels = c('Inflação','Desemprego'))  +
     scale_x_discrete(breaks = seq(1960, 2019, by = 1)) +
-    theme(axis.text.x=element_text(angle=90))
+    theme(axis.text.x=element_text(angle=90)) +
+    ggeasy::easy_center_title()
+
 ```
 
 ## Plots de distribuição
@@ -236,7 +238,9 @@ dados %>% ggplot() +
   xlab('Taxa (%)') + ylab('Densidade') + xlim(-.5,15) +
   ggtitle('Distribuição da taxa de desemprego e inflação') +
   scale_fill_grey(start = 0.8, end = 0.2, name = 'Variável', 
-                     labels = c('Inflação','Desemprego')) 
+                     labels = c('Inflação','Desemprego')) +
+  ggeasy::easy_center_title()
+
 ```
 
 Distribuição boxplot desemprego e inflação
@@ -248,7 +252,8 @@ grid.arrange(arrangeGrob(
     xlab('Desemprego') + ylab('Taxa (%)') + ylim(0,15) +
     scale_fill_grey(start = 0.8, end = 0.2, guide = F) +
     theme(axis.text.x=element_blank(),
-          axis.ticks.x=element_blank()),
+          axis.ticks.x=element_blank()) +
+    ggeasy::easy_center_title(),
   dados %>% ggplot() + 
     geom_boxplot(aes(y = inflation, 
                      fill = 'inflation'), alpha = 0.5) +
@@ -258,7 +263,8 @@ grid.arrange(arrangeGrob(
           axis.ticks.y=element_blank(),
           axis.text.y=element_blank(),
           axis.text.x=element_blank(),
-          axis.ticks.x=element_blank()), ncol = 2),
+          axis.ticks.x=element_blank()) +
+    ggeasy::easy_center_title(), ncol = 2) ,
   top = 'Distribuição da taxa de desemprego e inflação')
 ```
 
@@ -270,7 +276,8 @@ grid.arrange(arrangeGrob(
     geom_boxplot() + 
     xlab('Década') + ylab('Taxa (%)') +
     ggtitle('Desemprego') + 
-    scale_fill_grey(start = 0.8, end = 0.2, guide = F) ,
+    scale_fill_grey(start = 0.8, end = 0.2, guide = F) +
+    ggeasy::easy_center_title(),
   dados %>% ggplot(aes(decade, inflation, fill = 'inflation')) + 
     geom_boxplot() + 
     xlab('Década') +
@@ -278,7 +285,8 @@ grid.arrange(arrangeGrob(
     scale_fill_grey(start = 0.8, end = 0.2, guide = F) +
     theme(axis.title.y=element_blank(),
           axis.text.y=element_blank(),
-          axis.ticks.y=element_blank()), ncol = 2),
+          axis.ticks.y=element_blank()), ncol = 2) +
+  ggeasy::easy_center_title(),
   top = 'Distribuição da taxa de desemprego e inflação por década')
 ```
 
@@ -290,7 +298,8 @@ dados %>% ggplot(aes(unemployment, inflation, label = year)) +
   geom_text(aes(label = year),hjust = 0, vjust = 0, size = 3) +
   geom_smooth(colour = 'black',method = 'lm', se = F) +
   xlab('Desemprego (%)') + ylab('Inflação (%)') + ggtitle('Relação entre inflação e desemprego') + 
-  scale_colour_grey(start = 0.8, end = 0.2, name = 'Década') 
+  scale_colour_grey(start = 0.8, end = 0.2, name = 'Década') +
+  ggeasy::easy_center_title()
 ```
 
 ```{r}
@@ -303,7 +312,8 @@ grid.arrange(arrangeGrob(
     xlim(3,10) + ylim(-.36,13.55) +
     xlab('Desemprego (%)') + ylab('Inflação (%)') + 
       ggtitle('Associação entre desemprego e inflação antes de 1991') + 
-    scale_colour_grey(start = 0.8, end = 0.2, name = 'Ano', guide = F),
+    scale_colour_grey(start = 0.8, end = 0.2, name = 'Ano', guide = F) +
+    ggeasy::easy_center_title(),
     
     dados %>% filter(year > 1991) %>%
     ggplot(aes(unemployment, inflation, label = year)) + 
@@ -313,9 +323,27 @@ grid.arrange(arrangeGrob(
     xlim(3,10) + ylim(-.36,13.55) +
     xlab('Desemprego (%)') + ylab('Inflação (%)') + 
       ggtitle('Associação entre desemprego e inflação depois de 1991') + 
-    scale_colour_grey(start = 0.8, end = 0.2, name = 'Ano', guide = F)
+    scale_colour_grey(start = 0.8, end = 0.2, name = 'Ano', guide = F) +
+    ggeasy::easy_center_title()
 ))
 ```
+
+## Verificando normal
+
+```{r}
+ggplot(dados, aes(sample = unemployment)) +
+  geom_qq() +
+  geom_qq_line() +
+  ggtitle(paste('Associação distribuição normal e distribuição do desemprego')) +
+  ggeasy::easy_center_title()
+
+ggplot(dados, aes(sample = inflation)) +
+  geom_qq() +
+  geom_qq_line() +
+  ggtitle(paste('Associação distribuição normal e distribuição da inflação')) +
+  ggeasy::easy_center_title()
+```
+
 
 ## Correlacionando por décadas
 
